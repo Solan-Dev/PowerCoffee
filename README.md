@@ -2,9 +2,6 @@
 
 Status: Microsoft Learn access is rate-limited (HTTP 429). The steps below are based on live CLI help output from `pac` 1.52.1. I will retry Learn and update this file when access is restored.
 
-## Target environment
-- User: James@solanit.com
-- URL: https://orgfe8637fb.crm11.dynamics.com
 
 ## Goal
 Create a solution-based app package that includes:
