@@ -30,6 +30,8 @@ Create a solution-based app package that includes:
 7) (Optional) Create tables via Web API
    - Run scripts/07-create-tables.ps1
    - Note: Lookup columns require relationship creation (add in Maker portal)
+8) (Optional) Create Brewed By lookup via Web API
+   - Run scripts/08-create-relationship.ps1
 
 ## Best-practice notes
 - Keep both apps inside the same solution for ALM.
