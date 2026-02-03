@@ -420,22 +420,6 @@ GuidedFlowScreen As screen:
                     Y: =0
                     ZIndex: =5
 
-                CheckboxCanvas1 As Checkbox:
-                    BasePaletteColor: =
-                    DisplayMode: =DisplayMode.Edit
-                    FontColor: =
-                    Height: =32
-                    LayoutMaxHeight: =0
-                    LayoutMaxWidth: =0
-                    LayoutMinHeight: =32
-                    LayoutMinWidth: =160
-                    OnCheck: =false
-                    OnUncheck: =false
-                    Width: =160
-                    X: =0
-                    Y: =0
-                    ZIndex: =7
-
                 ButtonCanvas4_3 As Button:
                     BasePaletteColor: =
                     BorderColor: =
@@ -452,59 +436,6 @@ GuidedFlowScreen As screen:
                     X: =0
                     Y: =0
                     ZIndex: =8
-
-            conRightMain_1 As groupContainer.horizontalAutoLayoutContainer:
-                DropShadow: =DropShadow.Light
-                Fill: =RGBA(255, 255, 255, 1)
-                FillPortions: =4
-                LayoutAlignItems: =LayoutAlignItems.Center
-                LayoutDirection: =LayoutDirection.Vertical
-                LayoutGap: =varGap
-                LayoutGridColumns: =6
-                LayoutGridRows: =6
-                LayoutMaxHeight: =0
-                LayoutMaxWidth: =0
-                LayoutMinHeight: =Parent.Height - (Parent.PaddingTop + Parent.PaddingBottom)
-                LayoutMinWidth: =250
-                LayoutMode: =LayoutMode.Auto
-                PaddingBottom: =varGap *0.5
-                PaddingLeft: =varGap *0.5
-                PaddingRight: =varGap *0.5
-                PaddingTop: =varGap *0.5
-                RadiusBottomLeft: =4
-                RadiusBottomRight: =4
-                RadiusTopLeft: =4
-                RadiusTopRight: =4
-                Visible: =locvisMainRight
-                ZIndex: =6
-
-                DropdownCanvas1_4 As Dropdown.pcfdataset:
-                    DefaultSelectedItems: =
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =32
-                    Items: =Sequence(12)
-                    LayoutMaxHeight: =0
-                    LayoutMaxWidth: =0
-                    LayoutMinHeight: =32
-                    LayoutMinWidth: =320
-                    Width: =150
-                    X: =0
-                    Y: =0
-                    ZIndex: =3
-
-                DropdownCanvas1_5 As Dropdown.pcfdataset:
-                    DefaultSelectedItems: =
-                    DisplayMode: =DisplayMode.Edit
-                    Height: =32
-                    Items: =Sequence(12)
-                    LayoutMaxHeight: =0
-                    LayoutMaxWidth: =0
-                    LayoutMinHeight: =32
-                    LayoutMinWidth: =320
-                    Width: =150
-                    X: =0
-                    Y: =0
-                    ZIndex: =4
 
     conPopUp_1 As groupContainer.manualLayoutContainer:
         DropShadow: =DropShadow.Light

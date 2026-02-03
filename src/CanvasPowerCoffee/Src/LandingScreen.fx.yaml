@@ -318,49 +318,6 @@ HomeScreen As screen:
             X: =405
             ZIndex: =43
 
-        btnTempTables_1 As Button:
-            BasePaletteColor: =
-            BorderColor: =
-            DisplayMode: =DisplayMode.Edit
-            FontColor: =
-            Height: =32
-            OnSelect: =Navigate(DiscoverScreen,ScreenTransition.Fade);
-            Text: ="nav"
-            Width: =96
-            X: =587
-            Y: =2
-            ZIndex: =44
-
-    Label1_1 As label:
-        BorderColor: =App.Theme.Colors.Darker40
-        Color: =RGBA(0, 0, 0, 1)
-        DisabledColor: =RGBA(166, 166, 166, 1)
-        Font: =App.Theme.Font
-        Size: =13
-        Text: |-
-            =$"{Host.Version}  
-            {varDevMode}"
-        Width: =408
-        Y: =669
-        ZIndex: =3
-
-    TextCanvas2 As Text:
-        BorderColor: =
-        DisplayMode: =DisplayMode.Edit
-        Fill: =
-        FontColor: =
-        Height: =82
-        Text: |-
-            =$"Closed: {CountIf(colLocations,!IsOpen)}/{CountRows(colLocations)}
-            Open: {CountIf(colLocations,IsOpen)}/{CountRows(colLocations)}
-            Total Summed: {Sum(CountIf(colLocations,!IsOpen),CountIf(colLocations,IsOpen))}/{CountRows(colLocations)}
-            Total Details created: {CountRows(colLocationDetails)}"
-        Visible: =varDevMode
-        Width: =188
-        X: =1178
-        Y: =648
-        ZIndex: =5
-
     TextCanvas3 As Text:
         BorderColor: =
         DisplayMode: =DisplayMode.Edit
