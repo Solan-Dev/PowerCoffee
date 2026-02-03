@@ -1,4 +1,4 @@
-TemplateControls As screen:
+QuickNoteScreen As screen:
     Fill: =Color.White
     LoadingSpinnerColor: =App.Theme.Colors.Primary
 
@@ -10,7 +10,7 @@ TemplateControls As screen:
         FontColor: =
         Height: =32
         Icon: ="DismissCircle"
-        OnSelect: =Navigate(TemplateScreen,ScreenTransition.Fade)
+        OnSelect: =Navigate(GuidedFlowScreen,ScreenTransition.Fade)
         Text: ="Back"
         Width: =96
         X: =1100

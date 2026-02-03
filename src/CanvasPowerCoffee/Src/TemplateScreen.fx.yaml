@@ -1,4 +1,4 @@
-TemplateScreen As screen:
+GuidedFlowScreen As screen:
     Fill: =RGBA(246, 244, 240,1)
     LoadingSpinnerColor: =App.Theme.Colors.Primary
     OnVisible: =Select(btnOnVis_1)
@@ -394,7 +394,7 @@ TemplateScreen As screen:
                     LayoutMaxWidth: =0
                     LayoutMinHeight: =32
                     LayoutMinWidth: =96
-                    OnSelect: =Navigate(TemplateControls,ScreenTransition.Fade)
+                    OnSelect: =Navigate(QuickNoteScreen,ScreenTransition.Fade)
                     Text: ="Quick Note"
                     Width: =96
                     X: =0
@@ -446,7 +446,7 @@ TemplateScreen As screen:
                     LayoutMaxWidth: =0
                     LayoutMinHeight: =32
                     LayoutMinWidth: =96
-                    OnSelect: =Navigate(SiteDetails,ScreenTransition.Fade)
+                    OnSelect: =Navigate(CompareScreen,ScreenTransition.Fade)
                     Text: ="Compare Last 3"
                     Width: =96
                     X: =0

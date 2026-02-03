@@ -8,9 +8,9 @@ cmpNavBar As CanvasComponent:
         =
         Table(
             {
-                ScreenName:["TemplateScreen",""]
-                ,DisplayScreenName:"TemplateScreen"
-                ,Navigation:TemplateScreen
+                ScreenName:["GuidedFlowScreen",""]
+                ,DisplayScreenName:"Guided Flow"
+                ,Navigation:GuidedFlowScreen
                 ,DefaultPathColour:"'#FFFFFF'"
                 ,LogoHeight:"'28'"
                 ,LogoWidth:"'48'"
@@ -23,9 +23,9 @@ cmpNavBar As CanvasComponent:
                 ,TextColour:RGBA(255,255,255,1)
             },
             {
-                ScreenName:["TemplateControls",""]
-                ,DisplayScreenName:"TemplateControls"
-                ,Navigation:TemplateControls
+                ScreenName:["QuickNoteScreen",""]
+                ,DisplayScreenName:"Quick Note"
+                ,Navigation:QuickNoteScreen
                 ,DefaultPathColour:"'#FFFFFF'"
                 ,LogoHeight:"'28'"
                 ,LogoWidth:"'48'"

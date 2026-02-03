@@ -1,4 +1,4 @@
-LandingScreen As screen:
+HomeScreen As screen:
     Fill: =RGBA(246, 244, 240,1)
     LoadingSpinnerColor: =App.Theme.Colors.Primary
     OnVisible: |-
@@ -200,9 +200,9 @@ LandingScreen As screen:
                 =ClearCollect(colNav,
                         Table(
                         {
-                            ScreenName:["TemplateScreen"]
+                            ScreenName:["GuidedFlowScreen"]
                             ,DisplayScreenName:"Guided Flow"
-                            ,Navigation:TemplateScreen
+                            ,Navigation:GuidedFlowScreen
                             ,DefaultPathColour:"'white'"//sfgkjrbvkljefbglkjearnkljnef
                             ,LogoHeight:"'28'"
                             ,LogoWidth:"'48'"
@@ -215,9 +215,9 @@ LandingScreen As screen:
                             ,TextColour:RGBA(255,255,255,1)
                         },
                         {
-                            ScreenName:["TemplateControls"]
+                            ScreenName:["QuickNoteScreen"]
                             ,DisplayScreenName:"Quick Note"
-                            ,Navigation:TemplateControls
+                            ,Navigation:QuickNoteScreen
                             ,DefaultPathColour:"'white'"
                             ,LogoHeight:"'28'"
                             ,LogoWidth:"'48'"
@@ -230,9 +230,9 @@ LandingScreen As screen:
                             ,TextColour:RGBA(255,255,255,1)
                         },
                         {
-                            ScreenName:["SiteDetails"]
+                            ScreenName:["CompareScreen"]
                             ,DisplayScreenName:"Compare"
-                            ,Navigation:SiteDetails
+                            ,Navigation:CompareScreen
                             ,DefaultPathColour:"'white'"
                             ,LogoHeight:"'28'"
                             ,LogoWidth:"'48'"
@@ -245,9 +245,9 @@ LandingScreen As screen:
                             ,TextColour:RGBA(255,255,255,1)
                         },
                         {
-                            ScreenName:["VacuityScreen"]
+                            ScreenName:["DiscoverScreen"]
                             ,DisplayScreenName:"Discover"
-                            ,Navigation:VacuityScreen
+                            ,Navigation:DiscoverScreen
                             ,DefaultPathColour:"'white'"
                             ,LogoHeight:"'28'"
                             ,LogoWidth:"'48'"
@@ -260,9 +260,9 @@ LandingScreen As screen:
                             ,TextColour:RGBA(255,255,255,1)
                         },
                         {
-                            ScreenName:["VacuityScreenNested"]
+                            ScreenName:["PromptsScreen"]
                             ,DisplayScreenName:"Prompts"
-                            ,Navigation:VacuityScreenNested
+                            ,Navigation:PromptsScreen
                             ,DefaultPathColour:"'white'"
                             ,LogoHeight:"'28'"
                             ,LogoWidth:"'48'"
@@ -324,7 +324,7 @@ LandingScreen As screen:
             DisplayMode: =DisplayMode.Edit
             FontColor: =
             Height: =32
-            OnSelect: =Navigate(VacuityScreen,ScreenTransition.Fade);
+            OnSelect: =Navigate(DiscoverScreen,ScreenTransition.Fade);
             Text: ="nav"
             Width: =96
             X: =587

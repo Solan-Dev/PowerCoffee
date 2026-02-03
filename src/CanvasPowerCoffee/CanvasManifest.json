@@ -133,11 +133,11 @@
     "UserLocale": "en-US"
   },
   "ScreenOrder": [
-    "LandingScreen",
-    "SiteDetails",
-    "VacuityScreen",
-    "VacuityScreenNested",
-    "TemplateScreen",
-    "TemplateControls"
+    "HomeScreen",
+    "CompareScreen",
+    "DiscoverScreen",
+    "PromptsScreen",
+    "GuidedFlowScreen",
+    "QuickNoteScreen"
   ]
 }
