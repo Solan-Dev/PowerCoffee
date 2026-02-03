@@ -119,7 +119,7 @@ VacuityScreenNested As screen:
             Gallery6_3 As gallery.variableTemplateHeightGallery:
                 BorderColor: =App.Theme.Colors.Darker40
                 DelayItemLoading: =true
-                Items: =colTheme
+                Items: =colFlavorWheel
                 Layout: =Layout.Vertical
                 LoadingSpinner: =LoadingSpinner.Data
                 TemplatePadding: =varGap
@@ -160,14 +160,18 @@ VacuityScreenNested As screen:
                         Font: =App.Theme.Font
                         FontWeight: =FontWeight.Semibold
                         Height: =33
-                        OnSelect: =Select(Parent)
+                        OnSelect: |-
+                            =If(
+                                IsBlank(LookUp(colFlavorWheelSelected, Name = ThisItem.Name && Category = ThisItem.Category)),
+                                Collect(colFlavorWheelSelected, { Name: ThisItem.Name, Category: ThisItem.Category }),
+                                RemoveIf(colFlavorWheelSelected, Name = ThisItem.Name && Category = ThisItem.Category)
+                            )
                         PaddingBottom: =0
                         PaddingLeft: =0
                         PaddingRight: =0
                         PaddingTop: =0
                         Size: =10
-                        Text: |-
-                            =$"{ThisItem.Name}   - Hex: {ThisItem.Hex}   - RGBA({ThisItem.R}, {ThisItem.G}, {ThisItem.B}, {ThisItem.A})"
+                        Text: =If(CountRows(Filter(colFlavorWheelSelected, Name = ThisItem.Name && Category = ThisItem.Category)) > 0, "✓ " & ThisItem.Name, ThisItem.Name)
                         VerticalAlign: =VerticalAlign.Top
                         Width: =421
                         ZIndex: =8

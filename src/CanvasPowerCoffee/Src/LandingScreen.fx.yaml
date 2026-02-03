@@ -126,6 +126,40 @@ LandingScreen As screen:
                     )
                 );
                 ClearCollect(
+                    colFlavorWheel,
+                    {
+                        Category: "Aroma",
+                        Colours: [
+                            { Name: "Citrus", Category: "Aroma", Hex: "#FFD3B3", R: 255, G: 211, B: 179, A: 1 },
+                            { Name: "Floral", Category: "Aroma", Hex: "#FFE6F2", R: 255, G: 230, B: 242, A: 1 },
+                            { Name: "Chocolate", Category: "Aroma", Hex: "#D3B79B", R: 211, G: 183, B: 155, A: 1 },
+                            { Name: "Nutty", Category: "Aroma", Hex: "#E8D5B5", R: 232, G: 213, B: 181, A: 1 },
+                            { Name: "Spice", Category: "Aroma", Hex: "#FFC8A2", R: 255, G: 200, B: 162, A: 1 }
+                        ]
+                    },
+                    {
+                        Category: "Flavor",
+                        Colours: [
+                            { Name: "Berry", Category: "Flavor", Hex: "#F7B2BD", R: 247, G: 178, B: 189, A: 1 },
+                            { Name: "Caramel", Category: "Flavor", Hex: "#F7C59F", R: 247, G: 197, B: 159, A: 1 },
+                            { Name: "Stone fruit", Category: "Flavor", Hex: "#FFD1A1", R: 255, G: 209, B: 161, A: 1 },
+                            { Name: "Tropical", Category: "Flavor", Hex: "#FFE29A", R: 255, G: 226, B: 154, A: 1 },
+                            { Name: "Herbal", Category: "Flavor", Hex: "#CFE8C9", R: 207, G: 232, B: 201, A: 1 }
+                        ]
+                    },
+                    {
+                        Category: "Finish",
+                        Colours: [
+                            { Name: "Short", Category: "Finish", Hex: "#E6E6E6", R: 230, G: 230, B: 230, A: 1 },
+                            { Name: "Clean", Category: "Finish", Hex: "#F0F7F4", R: 240, G: 247, B: 244, A: 1 },
+                            { Name: "Lingering", Category: "Finish", Hex: "#F2E0D0", R: 242, G: 224, B: 208, A: 1 },
+                            { Name: "Dry", Category: "Finish", Hex: "#EADBC8", R: 234, G: 219, B: 200, A: 1 },
+                            { Name: "Sweet", Category: "Finish", Hex: "#FFE9C9", R: 255, G: 233, B: 201, A: 1 }
+                        ]
+                    }
+                );
+                ClearCollect(colFlavorWheelSelected, Table());
+                ClearCollect(
                     colSurprisePrompts,
                     Table(
                         { Label: "Pick a song that fits this cup" },
