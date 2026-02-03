@@ -27,6 +27,9 @@ Create a solution-based app package that includes:
    - Run scripts/04-export-solution.ps1
 6) (Optional) Download/Unpack the canvas app sources
    - Run scripts/05-canvas-source.ps1
+7) (Optional) Create tables via Web API
+   - Run scripts/07-create-tables.ps1
+   - Note: Lookup columns require relationship creation (add in Maker portal)
 
 ## Best-practice notes
 - Keep both apps inside the same solution for ALM.
