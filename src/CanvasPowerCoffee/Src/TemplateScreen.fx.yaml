@@ -361,8 +361,8 @@ TemplateScreen As screen:
                             Defaults('Tasting Notes'),
                             {
                                 'Coffee Name': "Guided Note",
-                                'Brew Method': varUserDefaultSite.SiteName,
-                                'Roast Level': If(CountRows(colWarehouses) > 0, First(colWarehouses).WarehouseName, "Medium"),
+                                'Brew Method': Coalesce(varDefaultBrew, varUserDefaultSite.SiteName),
+                                'Roast Level': Coalesce(varDefaultRoast, If(CountRows(colWarehouses) > 0, First(colWarehouses).WarehouseName, "Medium")),
                                 'Rating': 7,
                                 'Brew Date': Today(),
                                 'Tasting Notes':

@@ -529,6 +529,42 @@ SiteDetails As screen:
                     Y: =0
                     ZIndex: =35
 
+                galCompareNotes As gallery.variableTemplateHeightGallery:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DelayItemLoading: =true
+                    Items: =FirstN(SortByColumns(colTastingNotes,"CreatedOn",Descending),3)
+                    Layout: =Layout.Vertical
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TemplatePadding: =varGap
+                    TemplateSize: =80
+                    Width: =Parent.Width
+                    ZIndex: =36
+
+                    txtCompareTitle As Text:
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =24
+                        Text: =ThisItem.CoffeeName & " • " & ThisItem.BrewMethod
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.TemplateWidth
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                    txtCompareDetails As Text:
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =24
+                        Text: ="Rating " & Text(ThisItem.Rating) & " • " & ThisItem.Notes
+                        Width: =Parent.TemplateWidth
+                        X: =0
+                        Y: =30
+                        ZIndex: =2
+
             conRightMain_2 As groupContainer.horizontalAutoLayoutContainer:
                 DropShadow: =DropShadow.Light
                 Fill: =RGBA(255, 255, 255, 1)
