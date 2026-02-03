@@ -412,7 +412,7 @@ VacuityScreenNested As screen:
                     LayoutMinHeight: =32
                     LayoutMinWidth: =96
                     Text: |-
-                        ="Filter:"
+                        ="Prompt:"
                     VerticalAlign: =VerticalAlign.Middle
                     Width: =48
                     X: =0
@@ -423,7 +423,7 @@ VacuityScreenNested As screen:
                     DefaultSelectedItems: =varUserDefaultSite
                     DisplayMode: =DisplayMode.Edit
                     Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
-                    Items: =colSites
+                    Items: =colSurprisePrompts
                     LayoutMaxHeight: =0
                     LayoutMaxWidth: =0
                     LayoutMinHeight: =32
@@ -434,16 +434,16 @@ VacuityScreenNested As screen:
                     ZIndex: =21
 
                     SiteID3_2 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
-                        FieldDisplayName: ="SiteID"
-                        FieldName: ="SiteID"
-                        FieldType: ="g"
+                        FieldDisplayName: ="Prompt"
+                        FieldName: ="Label"
+                        FieldType: ="s"
                         FieldVariantName: ="textualColumn"
                         Order: =2
                         ZIndex: =22
 
                     SiteName3_2 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
-                        FieldDisplayName: ="SiteName"
-                        FieldName: ="SiteName"
+                        FieldDisplayName: ="Prompt"
+                        FieldName: ="Label"
                         FieldType: ="s"
                         FieldVariantName: ="textualColumn"
                         Order: =1
@@ -451,9 +451,9 @@ VacuityScreenNested As screen:
 
                 ddWarehouses_1 As Dropdown.pcfdataset:
                     DefaultSelectedItems: =
-                    DisplayMode: =If(IsBlank(ddSites_1.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+                    DisplayMode: =DisplayMode.Edit
                     Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
-                    Items: =Filter(colWarehouses,SiteID =ddSites_1.Selected.SiteID)
+                    Items: =colMoods
                     LayoutMaxHeight: =0
                     LayoutMaxWidth: =0
                     LayoutMinHeight: =32
@@ -464,34 +464,34 @@ VacuityScreenNested As screen:
                     ZIndex: =24
 
                     WarehouseID1_2 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
-                        FieldDisplayName: ="WarehouseID"
-                        FieldName: ="WarehouseID"
-                        FieldType: ="g"
+                        FieldDisplayName: ="Mood"
+                        FieldName: ="Label"
+                        FieldType: ="s"
                         FieldVariantName: ="textualColumn"
                         Order: =2
                         ZIndex: =25
 
                     WarehouseName3_2 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
-                        FieldDisplayName: ="WarehouseName"
-                        FieldName: ="WarehouseName"
+                        FieldDisplayName: ="Mood"
+                        FieldName: ="Label"
                         FieldType: ="s"
                         FieldVariantName: ="textualColumn"
                         Order: =1
                         ZIndex: =26
 
                     SiteID4_2 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
-                        FieldDisplayName: ="SiteID"
-                        FieldName: ="SiteID"
-                        FieldType: ="g"
+                        FieldDisplayName: ="Mood"
+                        FieldName: ="Label"
+                        FieldType: ="s"
                         FieldVariantName: ="textualColumn"
                         Order: =3
                         ZIndex: =27
 
                 ddDoors_1 As Dropdown.pcfdataset:
                     DefaultSelectedItems: =
-                    DisplayMode: =If(IsBlank(ddWarehouses_1.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+                    DisplayMode: =DisplayMode.Edit
                     Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
-                    Items: =Filter(colDoors,WarehouseID=ddWarehouses_1.Selected.WarehouseID)
+                    Items: =colFlavor
                     LayoutMaxHeight: =0
                     LayoutMaxWidth: =0
                     LayoutMinHeight: =32
@@ -502,16 +502,16 @@ VacuityScreenNested As screen:
                     ZIndex: =28
 
                     DoorID1_2 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
-                        FieldDisplayName: ="DoorID"
-                        FieldName: ="DoorID"
-                        FieldType: ="g"
+                        FieldDisplayName: ="Flavor"
+                        FieldName: ="Label"
+                        FieldType: ="s"
                         FieldVariantName: ="textualColumn"
                         Order: =2
                         ZIndex: =29
 
                     DoorName1_2 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
-                        FieldDisplayName: ="DoorName"
-                        FieldName: ="DoorName"
+                        FieldDisplayName: ="Flavor"
+                        FieldName: ="Label"
                         FieldType: ="s"
                         FieldVariantName: ="textualColumn"
                         Order: =1
@@ -528,7 +528,7 @@ VacuityScreenNested As screen:
                 btnSearchLocations_4 As Button:
                     BasePaletteColor: =
                     BorderColor: =
-                    DisplayMode: =If(IsBlank(ddDoors_1),DisplayMode.Disabled,DisplayMode.Edit)
+                    DisplayMode: =DisplayMode.Edit
                     FontColor: =
                     FontSize: =11
                     Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
@@ -538,8 +538,11 @@ VacuityScreenNested As screen:
                     LayoutMinHeight: =32
                     LayoutMinWidth: =96
                     OnSelect: |-
-                        =UpdateContext({locvisRackTierFilter:true})
-                    Text: ="R&T Filter"
+                        =Set(varMemoryHook, ddSites_1.Selected.Label);
+                        Set(varMemoryMood, ddWarehouses_1.Selected.Label);
+                        Set(varMemoryFlavor, ddDoors_1.Selected.Label);
+                        Notify("Prompts saved", NotificationType.Success)
+                    Text: ="Save Prompts"
                     Width: =96
                     X: =0
                     Y: =0
@@ -557,18 +560,9 @@ VacuityScreenNested As screen:
                     LayoutMinHeight: =32
                     LayoutMinWidth: =96
                     OnSelect: |-
-                        =ClearCollect(colSelectedLocations,
-                            Filter(colLocations,
-                                (IsBlank(ddSites_1.Selected) || SiteID = ddSites_1.Selected.SiteID),
-                                (IsBlank(ddWarehouses_1.Selected) || WarehouseID = ddWarehouses_1.Selected.WarehouseID),
-                                (IsBlank(ddDoors_1.Selected) || DoorID = ddDoors_1.Selected.DoorID),
-                                // Select all if rack blank, if not, select values between low and high rack
-                                (And(IsBlank(ddRacksLow_1.Selected),IsBlank(ddRacksHigh_1.Selected)) || (RackCode >= Value(ddRacksLow_1.Selected.Value) && RackCode <= Value(ddRacksHigh_1.Selected.Value))),
-                                // Select all if tier blank, if not, select values between low and high tier
-                                (And(IsBlank(ddTiersLow_1.Selected),IsBlank(ddTiersHigh_1.Selected)) || (TierCode >= Value(ddTiersLow_1.Selected.Value) && TierCode <= Value(ddTiersHigh_1.Selected.Value)))
-                            )
-                        )
-                    Text: ="Search"
+                        =Set(varSurprisePrompt, LookUp(colSurprisePrompts, true).Label);
+                        Notify(varSurprisePrompt, NotificationType.Information)
+                    Text: ="Surprise Me"
                     Width: =96
                     X: =0
                     Y: =0
@@ -591,10 +585,6 @@ VacuityScreenNested As screen:
                         =Reset(ddSites_1);
                         Reset(ddWarehouses_1);
                         Reset(ddDoors_1);
-                        Reset(ddRacksLow_1);
-                        Reset(ddRacksHigh_1);
-                        Reset(ddTiersLow_1);
-                        Reset(ddTiersHigh_1);
                     Text: =
                     Width: =36
                     X: =0
