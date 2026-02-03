@@ -10,9 +10,8 @@ TemplateControls As screen:
         FontColor: =
         Height: =32
         Icon: ="DismissCircle"
-        OnSelect: |-
-            =UpdateContext({locvisPopUp:false,locvisNewClosed:false})
-        Text: ="close"
+        OnSelect: =Navigate(TemplateScreen,ScreenTransition.Fade)
+        Text: ="Back"
         Width: =96
         X: =1100
         Y: =35
@@ -79,20 +78,7 @@ TemplateControls As screen:
         PaddingLeft: =varGap
         PaddingRight: =varGap
         PaddingTop: =
-        Text: |-
-            =First(Filter(
-                        colLocations,
-                        (IsBlank(ddSites_3.Selected) || SiteID = ddSites_3.Selected.SiteID),
-                        (IsBlank(ddWarehouses_2.Selected) || WarehouseID = ddWarehouses_2.Selected.WarehouseID),
-                        (IsBlank(ddDoors_2.Selected) || DoorID = ddDoors_2.Selected.DoorID),
-            // RackCode is not blank, and is between two values
-                        (IsBlank(ddRacksLow_2.Selected) || IsBlank(ddRacksHigh_2.Selected) ||  
-                            (RackCode >= Value(ddRacksLow_2.Selected.Value) && RackCode <= Value(ddRacksHigh_2.Selected.Value))),
-            // TierCode is not blank and is between two values
-                        (IsBlank(ddTiersLow_2.Selected) || IsBlank(ddTiersHigh_2.Selected) || 
-                            (TierCode >= Value(ddTiersLow_2.Selected.Value) && TierCode <= Value(ddTiersHigh_2.Selected.Value)))
-                    )
-            ).StorageType
+        Text: =If(!IsBlank(ddSites_3.Selected), ddSites_3.Selected.SiteName, "Select brew method")
         VerticalAlign: =VerticalAlign.Middle
         Weight: ='TextCanvas.Weight'.Regular
         Width: =156
@@ -107,6 +93,7 @@ TemplateControls As screen:
         Fill: =
         FontColor: =
         Height: =32
+        SelectedDate: =Today()
         Width: =256
         X: =1052
         Y: =190
@@ -119,6 +106,7 @@ TemplateControls As screen:
         Fill: =
         FontColor: =
         Height: =64
+        HintText: ="Tasting notes..."
         Mode: ='TextInputCanvas.Mode'.Multiline
         Width: =320
         X: =988
@@ -133,50 +121,21 @@ TemplateControls As screen:
         Height: =32
         Icon: ="Save"
         OnSelect: |
-            =// 1. Add closure columns as blank to colSelectedLocations
-            ClearCollect(
-                colSelectedLocations,
-                AddColumns(
-                    Filter(
-                        colLocations,
-                        (IsBlank(ddSites.Selected) || SiteID = ddSites.Selected.SiteID),
-                        (IsBlank(ddWarehouses.Selected) || WarehouseID = ddWarehouses.Selected.WarehouseID),
-                        (IsBlank(ddDoors.Selected) || DoorID = ddDoors.Selected.DoorID),
-            // RackCode is not blank, and is between two values
-                        (IsBlank(ddRacksLow.Selected) || IsBlank(ddRacksHigh.Selected) ||  
-                            (RackCode >= Value(ddRacksLow.Selected.Value) && RackCode <= Value(ddRacksHigh.Selected.Value))),
-            // TierCode is not blank and is between two values
-                        (IsBlank(ddTiersLow.Selected) || IsBlank(ddTiersHigh.Selected) || 
-                            (TierCode >= Value(ddTiersLow.Selected.Value) && TierCode <= Value(ddTiersHigh.Selected.Value)))
-                    ),
-                    ClosedDate, Blank(),
-                    ExpectedOpenDate, Blank(),
-                    ClosedReason, "",
-                    ClosedReasonDescription, "",
-                    ClosedOn, Blank()
-                )
+            =Collect(
+                colTastingNotes,
+                {
+                    NoteID: GUID(),
+                    CoffeeName: "Quick Note",
+                    BrewMethod: If(!IsBlank(ddSites_3.Selected), ddSites_3.Selected.SiteName, ""),
+                    BrewDate: DatePickerCanvas1_2.SelectedDate,
+                    Notes: TextInputCanvas1_1.Text,
+                    Rating: 7,
+                    CreatedOn: Now()
+                }
             );
-            
-            // 2. Patch in closure values for matched locations
-            ForAll(
-                colClosedLocations,
-                With(
-                    {
-                        index: LookUp(colSelectedLocations, LocationID = ThisRecord.LocationID)
-                    },
-                    Patch(
-                        colSelectedLocations,
-                        index,
-                        {
-                            ClosedDate: index.ClosedDate,
-                            ExpectedOpenDate: index.ExpectedOpenDate,
-                            ClosedReason: index.ClosedReason,
-                            ClosedReasonDescription: index.ClosedReasonDescription
-                        }
-                    )
-                )
-            );
-        Text: ="Save"
+            Reset(TextInputCanvas1_1);
+            Notify("Quick note saved", NotificationType.Success)
+        Text: ="Save Quick Note"
         Width: =96
         X: =946
         Y: =35
@@ -206,7 +165,7 @@ TemplateControls As screen:
             Fill: =
             FontColor: =
             Height: =39
-            Text: ="Title Header"
+            Text: ="Quick Note"
             VerticalAlign: =VerticalAlign.Middle
             Weight: ='TextCanvas.Weight'.Semibold
             Width: =90
@@ -226,7 +185,7 @@ TemplateControls As screen:
             PaddingRight: =varGap
             PaddingTop: =
             Text: |-
-                ="Storage Type:"
+                ="Brew Method:"
             VerticalAlign: =VerticalAlign.Middle
             Weight: ='TextCanvas.Weight'.Regular
             Width: =156

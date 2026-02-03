@@ -10,6 +10,7 @@ TemplateScreen As screen:
     cmpHeader_1 As cmpHeader:
         Height: |
             =60
+        Title: ="Guided Tasting Flow"
         ZIndex: =2
 
     conScreen_1 As groupContainer.verticalAutoLayoutContainer:
@@ -86,7 +87,7 @@ TemplateScreen As screen:
                     LayoutMinHeight: =32
                     LayoutMinWidth: =96
                     Text: |-
-                        ="Filter:"
+                        ="Aroma / Flavor:"
                     VerticalAlign: =VerticalAlign.Middle
                     Width: =48
                     X: =0
@@ -97,7 +98,7 @@ TemplateScreen As screen:
                     DefaultSelectedItems: =
                     DisplayMode: =DisplayMode.Edit
                     Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
-                    Items: =Sequence(12)
+                    Items: =colAroma
                     LayoutMaxHeight: =0
                     LayoutMaxWidth: =0
                     LayoutMinHeight: =32
@@ -111,7 +112,7 @@ TemplateScreen As screen:
                     DefaultSelectedItems: =
                     DisplayMode: =DisplayMode.Edit
                     Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
-                    Items: =Sequence(12)
+                    Items: =colFlavor
                     LayoutMaxHeight: =0
                     LayoutMaxWidth: =0
                     LayoutMinHeight: =32
@@ -147,7 +148,7 @@ TemplateScreen As screen:
                     DefaultSelectedItems: =
                     DisplayMode: =DisplayMode.Edit
                     Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
-                    Items: =Sequence(12)
+                    Items: =colFinish
                     LayoutMaxHeight: =0
                     LayoutMaxWidth: =0
                     LayoutMinHeight: =32
@@ -161,7 +162,7 @@ TemplateScreen As screen:
                     DefaultSelectedItems: =
                     DisplayMode: =DisplayMode.Edit
                     Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
-                    Items: =Sequence(12)
+                    Items: =colMoods
                     LayoutMaxHeight: =0
                     LayoutMaxWidth: =0
                     LayoutMinHeight: =32
@@ -355,8 +356,24 @@ TemplateScreen As screen:
                     LayoutMinHeight: =32
                     LayoutMinWidth: =96
                     OnSelect: |-
-                        =UpdateContext({locvisPopUp:true,locvisColours:true})
-                    Text: ="View Colours"
+                        =Collect(
+                            colTastingNotes,
+                            {
+                                NoteID: GUID(),
+                                CoffeeName: "Guided Note",
+                                BrewMethod: varUserDefaultSite.SiteName,
+                                RoastLevel: If(CountRows(colWarehouses) > 0, First(colWarehouses).WarehouseName, "Medium"),
+                                Aroma: DropdownCanvas1.Selected.Label,
+                                Flavor: DropdownCanvas1_1.Selected.Label,
+                                Finish: DropdownCanvas1_2.Selected.Label,
+                                Mood: DropdownCanvas1_3.Selected.Label,
+                                Rating: 7,
+                                Notes: "Guided flow capture",
+                                CreatedOn: Now()
+                            }
+                        );
+                        Notify("Tasting note saved", NotificationType.Success)
+                    Text: ="Save Note"
                     Width: =96
                     X: =0
                     Y: =0
@@ -372,9 +389,8 @@ TemplateScreen As screen:
                     LayoutMaxWidth: =0
                     LayoutMinHeight: =32
                     LayoutMinWidth: =96
-                    OnSelect: |-
-                        =UpdateContext({locvisPopUp:true,locvisRequest:true})
-                    Text: ="View Request"
+                    OnSelect: =Navigate(TemplateControls,ScreenTransition.Fade)
+                    Text: ="Quick Note"
                     Width: =96
                     X: =0
                     Y: =0
@@ -391,8 +407,9 @@ TemplateScreen As screen:
                     LayoutMinHeight: =32
                     LayoutMinWidth: =96
                     OnSelect: |-
-                        =UpdateContext({locvisMainRight:!locvisMainRight})
-                    Text: ="RightSide"
+                        =Set(varSurprisePrompt, LookUp(colSurprisePrompts, true).Label);
+                        Notify(varSurprisePrompt, NotificationType.Information)
+                    Text: ="Surprise Me"
                     Width: =96
                     X: =0
                     Y: =0
@@ -424,9 +441,8 @@ TemplateScreen As screen:
                     LayoutMaxWidth: =0
                     LayoutMinHeight: =32
                     LayoutMinWidth: =96
-                    OnSelect: |-
-                        =UpdateContext({locvisLoading:!locvisLoading})
-                    Text: ="ViewLoading"
+                    OnSelect: =Navigate(SiteDetails,ScreenTransition.Fade)
+                    Text: ="Compare Last 3"
                     Width: =96
                     X: =0
                     Y: =0

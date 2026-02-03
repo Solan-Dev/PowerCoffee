@@ -47,6 +47,7 @@ SiteDetails As screen:
     cmpHeader_2 As cmpHeader:
         Height: |
             =60
+        Title: ="Compare last 3 brews"
         ZIndex: =2
 
     conScreen_2 As groupContainer.verticalAutoLayoutContainer:

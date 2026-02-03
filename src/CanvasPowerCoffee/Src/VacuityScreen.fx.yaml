@@ -47,7 +47,7 @@ VacuityScreen As screen:
     cmpHeader_3 As cmpHeader:
         Height: |
             =60
-        Title: ="Overview of Warehouse Operational Status"//LookUp(colNav,Navigation.Name = App.ActiveScreen.Name,DisplayScreenName)
+        Title: ="Discover & surprise me"//LookUp(colNav,Navigation.Name = App.ActiveScreen.Name,DisplayScreenName)
         ZIndex: =2
 
     conScreen_3 As groupContainer.verticalAutoLayoutContainer:

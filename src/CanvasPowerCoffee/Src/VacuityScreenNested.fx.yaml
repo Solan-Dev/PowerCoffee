@@ -47,6 +47,7 @@ VacuityScreenNested As screen:
     cmpHeader_4 As cmpHeader:
         Height: |
             =60
+        Title: ="Prompts & flavor wheel"
         ZIndex: =2
 
     conPopUp_4 As groupContainer.manualLayoutContainer:

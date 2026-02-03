@@ -38,26 +38,110 @@ LandingScreen As screen:
             Height: =34
             OnSelect: |
                 =Select(Timer1);
-                Select(btnTempTables);
                 Select(btnColNav);
                 ClearCollect(
-                    colClosedReasons,
-                    { ID: 1, Reason: "Asbestos" },
-                    { ID: 2, Reason: "Lighting Issue" },
-                    { ID: 3, Reason: "Warehouse Roof Damage" },
-                    { ID: 4, Reason: "Road Blocked" },
-                    { ID: 5, Reason: "Water Ingress" },
-                    { ID: 6, Reason: "Damaged Rack" },
-                    { ID: 7, Reason: "Machinery Access Restriction" },
-                    { ID: 8, Reason: "Health & Safety Issue" },
-                    { ID: 9, Reason: "Damaged Door" },
-                    { ID: 10, Reason: "Other (Please specify in comments)" }
+                    colSites,
+                    { SiteID: 1, SiteName: "Pour-over" },
+                    { SiteID: 2, SiteName: "Espresso" },
+                    { SiteID: 3, SiteName: "AeroPress" },
+                    { SiteID: 4, SiteName: "French Press" },
+                    { SiteID: 5, SiteName: "Other" }
                 );
                 ClearCollect(
-                    colLocationStatusOptions,
-                    { Label: "Open", Value: 1 },
-                    { Label: "Closed", Value: 0 }
+                    colWarehouses,
+                    Ungroup(
+                        ForAll(
+                            colSites As m,
+                            Table(
+                                { WarehouseID: GUID(), WarehouseName: "Light", SiteID: m.SiteID },
+                                { WarehouseID: GUID(), WarehouseName: "Medium", SiteID: m.SiteID },
+                                { WarehouseID: GUID(), WarehouseName: "Dark", SiteID: m.SiteID }
+                            )
+                        ),
+                        Value
+                    )
                 );
+                ClearCollect(
+                    colDoors,
+                    Ungroup(
+                        ForAll(
+                            colWarehouses As r,
+                            Table(
+                                { DoorID: GUID(), DoorName: "Washed", WarehouseID: r.WarehouseID, SiteID: r.SiteID },
+                                { DoorID: GUID(), DoorName: "Natural", WarehouseID: r.WarehouseID, SiteID: r.SiteID },
+                                { DoorID: GUID(), DoorName: "Honey", WarehouseID: r.WarehouseID, SiteID: r.SiteID },
+                                { DoorID: GUID(), DoorName: "Experimental", WarehouseID: r.WarehouseID, SiteID: r.SiteID }
+                            )
+                        ),
+                        Value
+                    )
+                );
+                ClearCollect(
+                    colOrigins,
+                    Table(
+                        { Label: "Ethiopia" },
+                        { Label: "Colombia" },
+                        { Label: "Kenya" },
+                        { Label: "Brazil" },
+                        { Label: "Other" }
+                    )
+                );
+                ClearCollect(
+                    colMoods,
+                    Table(
+                        { Label: "Calm" },
+                        { Label: "Energized" },
+                        { Label: "Focused" },
+                        { Label: "Cozy" }
+                    )
+                );
+                ClearCollect(
+                    colAroma,
+                    Table(
+                        { Label: "Citrus" },
+                        { Label: "Floral" },
+                        { Label: "Chocolate" },
+                        { Label: "Nutty" },
+                        { Label: "Spice" }
+                    )
+                );
+                ClearCollect(
+                    colFlavor,
+                    Table(
+                        { Label: "Berry" },
+                        { Label: "Caramel" },
+                        { Label: "Stone fruit" },
+                        { Label: "Tropical" },
+                        { Label: "Herbal" }
+                    )
+                );
+                ClearCollect(
+                    colFinish,
+                    Table(
+                        { Label: "Short" },
+                        { Label: "Clean" },
+                        { Label: "Lingering" },
+                        { Label: "Dry" },
+                        { Label: "Sweet" }
+                    )
+                );
+                ClearCollect(
+                    colSurprisePrompts,
+                    Table(
+                        { Label: "Pick a song that fits this cup" },
+                        { Label: "Name a place this coffee reminds you of" },
+                        { Label: "Choose a color for the finish" },
+                        { Label: "Describe the aroma as a season" }
+                    )
+                );
+                ClearCollect(
+                    colTastingNotes,
+                    Table(
+                        { NoteID: GUID(), CoffeeName: "Morning Glow", BrewMethod: "Pour-over", RoastLevel: "Light", Aroma: "Citrus", Flavor: "Berry", Finish: "Clean", Mood: "Focused", Rating: 8, Notes: "Bright and juicy.", CreatedOn: Now() },
+                        { NoteID: GUID(), CoffeeName: "Nightcap", BrewMethod: "French Press", RoastLevel: "Dark", Aroma: "Chocolate", Flavor: "Caramel", Finish: "Lingering", Mood: "Cozy", Rating: 7, Notes: "Comforting and smooth.", CreatedOn: Now() }
+                    )
+                );
+                Set(varUserDefaultSite, First(colSites));
             Text: ="onVis"
             Width: =96
             X: =0
@@ -74,9 +158,9 @@ LandingScreen As screen:
                 =ClearCollect(colNav,
                         Table(
                         {
-                            ScreenName:["SiteDetails"]
-                            ,DisplayScreenName:"Site Details"
-                            ,Navigation:SiteDetails
+                            ScreenName:["TemplateScreen"]
+                            ,DisplayScreenName:"Guided Flow"
+                            ,Navigation:TemplateScreen
                             ,DefaultPathColour:"'white'"//sfgkjrbvkljefbglkjearnkljnef
                             ,LogoHeight:"'28'"
                             ,LogoWidth:"'48'"
@@ -89,9 +173,54 @@ LandingScreen As screen:
                             ,TextColour:RGBA(255,255,255,1)
                         },
                         {
+                            ScreenName:["TemplateControls"]
+                            ,DisplayScreenName:"Quick Note"
+                            ,Navigation:TemplateControls
+                            ,DefaultPathColour:"'white'"
+                            ,LogoHeight:"'28'"
+                            ,LogoWidth:"'48'"
+                            ,ViewBox:"'1 2 46 24'"
+                            ,SelectedPathColour:"<linearGradient id='StrokeGradient' x1='10' y1='10' x2='46' y2='22' gradientUnits='userSpaceOnUse'><stop stop-color='#FF6F00'/><stop offset='1' stop-color='#FF6F00'/></linearGradient>"
+                            ,LogoPath:"d='M0 2C0 0.895431 0.895431 0 2 0H46C47.1046 0 48 0.895431 48 2V26C48 27.1046 47.1046 28 46 28H2C0.895431 28 0 27.1046 0 26V2ZM27.1882 6.84005C25.6452 6.15254 23.9213 5.98223 22.2737 6.3545C20.626 6.72676 19.1428 7.62167 18.0453 8.90575C16.9478 10.1898 16.2948 11.7943 16.1836 13.4798C16.0725 15.1654 16.5092 16.8417 17.4286 18.2588C18.348 19.6758 19.7008 20.7577 21.2853 21.3431C22.8699 21.9285 24.6012 21.986 26.221 21.5071C27.8409 21.0282 29.2626 20.0384 30.274 18.6855C31.2854 17.3325 31.8324 15.6889 31.8333 13.9997V13.2333C31.8333 12.9572 32.0572 12.7333 32.3333 12.7333C32.6095 12.7333 32.8333 12.9572 32.8333 13.2333V14V14.0003C32.8322 15.9051 32.2154 17.7586 31.0749 19.2842C29.9344 20.8099 28.3312 21.926 26.5046 22.4661C24.6779 23.0062 22.7256 22.9413 20.9388 22.2812C19.152 21.621 17.6264 20.401 16.5897 18.803C15.5529 17.205 15.0605 15.3147 15.1858 13.414C15.3111 11.5133 16.0475 9.70404 17.2851 8.25603C18.5228 6.80803 20.1953 5.79887 22.0533 5.37908C23.9113 4.95929 25.8552 5.15135 27.5952 5.92662C27.8474 6.03901 27.9608 6.3346 27.8484 6.58683C27.736 6.83907 27.4404 6.95244 27.1882 6.84005ZM32.6871 7.68671C32.8822 7.49135 32.8821 7.17477 32.6867 6.9796C32.4914 6.78444 32.1748 6.7846 31.9796 6.97996L23.9998 14.9677L21.8536 12.8214C21.6583 12.6262 21.3417 12.6262 21.1464 12.8214C20.9512 13.0167 20.9512 13.3333 21.1464 13.5286L23.6464 16.0286C23.7402 16.1224 23.8675 16.175 24.0001 16.175C24.1328 16.175 24.26 16.1222 24.3537 16.0284L32.6871 7.68671Z'"
+                            ,LogoStrokeWidth:"'1'"
+                            ,LogoFill:"'none'"
+                            ,TextSize:8
+                            ,TextColour:RGBA(255,255,255,1)
+                        },
+                        {
+                            ScreenName:["SiteDetails"]
+                            ,DisplayScreenName:"Compare"
+                            ,Navigation:SiteDetails
+                            ,DefaultPathColour:"'white'"
+                            ,LogoHeight:"'28'"
+                            ,LogoWidth:"'48'"
+                            ,ViewBox:"'1 2 46 24'"
+                            ,SelectedPathColour:"<linearGradient id='StrokeGradient' x1='10' y1='10' x2='46' y2='22' gradientUnits='userSpaceOnUse'><stop stop-color='#FF6F00'/><stop offset='1' stop-color='#FF6F00'/></linearGradient>"
+                            ,LogoPath:"d='M0 2C0 0.895431 0.895431 0 2 0H46C47.1046 0 48 0.895431 48 2V26C48 27.1046 47.1046 28 46 28H2C0.895431 28 0 27.1046 0 26V2ZM27.1882 6.84005C25.6452 6.15254 23.9213 5.98223 22.2737 6.3545C20.626 6.72676 19.1428 7.62167 18.0453 8.90575C16.9478 10.1898 16.2948 11.7943 16.1836 13.4798C16.0725 15.1654 16.5092 16.8417 17.4286 18.2588C18.348 19.6758 19.7008 20.7577 21.2853 21.3431C22.8699 21.9285 24.6012 21.986 26.221 21.5071C27.8409 21.0282 29.2626 20.0384 30.274 18.6855C31.2854 17.3325 31.8324 15.6889 31.8333 13.9997V13.2333C31.8333 12.9572 32.0572 12.7333 32.3333 12.7333C32.6095 12.7333 32.8333 12.9572 32.8333 13.2333V14V14.0003C32.8322 15.9051 32.2154 17.7586 31.0749 19.2842C29.9344 20.8099 28.3312 21.926 26.5046 22.4661C24.6779 23.0062 22.7256 22.9413 20.9388 22.2812C19.152 21.621 17.6264 20.401 16.5897 18.803C15.5529 17.205 15.0605 15.3147 15.1858 13.414C15.3111 11.5133 16.0475 9.70404 17.2851 8.25603C18.5228 6.80803 20.1953 5.79887 22.0533 5.37908C23.9113 4.95929 25.8552 5.15135 27.5952 5.92662C27.8474 6.03901 27.9608 6.3346 27.8484 6.58683C27.736 6.83907 27.4404 6.95244 27.1882 6.84005ZM32.6871 7.68671C32.8822 7.49135 32.8821 7.17477 32.6867 6.9796C32.4914 6.78444 32.1748 6.7846 31.9796 6.97996L23.9998 14.9677L21.8536 12.8214C21.6583 12.6262 21.3417 12.6262 21.1464 12.8214C20.9512 13.0167 20.9512 13.3333 21.1464 13.5286L23.6464 16.0286C23.7402 16.1224 23.8675 16.175 24.0001 16.175C24.1328 16.175 24.26 16.1222 24.3537 16.0284L32.6871 7.68671Z'"
+                            ,LogoStrokeWidth:"'1'"
+                            ,LogoFill:"'none'"
+                            ,TextSize:8
+                            ,TextColour:RGBA(255,255,255,1)
+                        },
+                        {
                             ScreenName:["VacuityScreen"]
-                            ,DisplayScreenName:"Vacuity"
+                            ,DisplayScreenName:"Discover"
                             ,Navigation:VacuityScreen
+                            ,DefaultPathColour:"'white'"
+                            ,LogoHeight:"'28'"
+                            ,LogoWidth:"'48'"
+                            ,ViewBox:"'1 2 46 24'"
+                            ,SelectedPathColour:"<linearGradient id='StrokeGradient' x1='10' y1='10' x2='46' y2='22' gradientUnits='userSpaceOnUse'><stop stop-color='#FF6F00'/><stop offset='1' stop-color='#FF6F00'/></linearGradient>"
+                            ,LogoPath:"d='M0 2C0 0.895431 0.895431 0 2 0H46C47.1046 0 48 0.895431 48 2V26C48 27.1046 47.1046 28 46 28H2C0.895431 28 0 27.1046 0 26V2ZM27.1882 6.84005C25.6452 6.15254 23.9213 5.98223 22.2737 6.3545C20.626 6.72676 19.1428 7.62167 18.0453 8.90575C16.9478 10.1898 16.2948 11.7943 16.1836 13.4798C16.0725 15.1654 16.5092 16.8417 17.4286 18.2588C18.348 19.6758 19.7008 20.7577 21.2853 21.3431C22.8699 21.9285 24.6012 21.986 26.221 21.5071C27.8409 21.0282 29.2626 20.0384 30.274 18.6855C31.2854 17.3325 31.8324 15.6889 31.8333 13.9997V13.2333C31.8333 12.9572 32.0572 12.7333 32.3333 12.7333C32.6095 12.7333 32.8333 12.9572 32.8333 13.2333V14V14.0003C32.8322 15.9051 32.2154 17.7586 31.0749 19.2842C29.9344 20.8099 28.3312 21.926 26.5046 22.4661C24.6779 23.0062 22.7256 22.9413 20.9388 22.2812C19.152 21.621 17.6264 20.401 16.5897 18.803C15.5529 17.205 15.0605 15.3147 15.1858 13.414C15.3111 11.5133 16.0475 9.70404 17.2851 8.25603C18.5228 6.80803 20.1953 5.79887 22.0533 5.37908C23.9113 4.95929 25.8552 5.15135 27.5952 5.92662C27.8474 6.03901 27.9608 6.3346 27.8484 6.58683C27.736 6.83907 27.4404 6.95244 27.1882 6.84005ZM32.6871 7.68671C32.8822 7.49135 32.8821 7.17477 32.6867 6.9796C32.4914 6.78444 32.1748 6.7846 31.9796 6.97996L23.9998 14.9677L21.8536 12.8214C21.6583 12.6262 21.3417 12.6262 21.1464 12.8214C20.9512 13.0167 20.9512 13.3333 21.1464 13.5286L23.6464 16.0286C23.7402 16.1224 23.8675 16.175 24.0001 16.175C24.1328 16.175 24.26 16.1222 24.3537 16.0284L32.6871 7.68671Z'"
+                            ,LogoStrokeWidth:"'1'"
+                            ,LogoFill:"'none'"
+                            ,TextSize:8
+                            ,TextColour:RGBA(255,255,255,1)
+                        },
+                        {
+                            ScreenName:["VacuityScreenNested"]
+                            ,DisplayScreenName:"Prompts"
+                            ,Navigation:VacuityScreenNested
                             ,DefaultPathColour:"'white'"
                             ,LogoHeight:"'28'"
                             ,LogoWidth:"'48'"
@@ -117,143 +246,7 @@ LandingScreen As screen:
             DisplayMode: =DisplayMode.Edit
             FontColor: =
             Height: =32
-            OnSelect: |-
-                =// Create Sites (5 sites)
-                ClearCollect(
-                    colSites,
-                    ForAll(
-                        Sequence(20),
-                        {
-                            SiteID: GUID(),
-                            SiteName: "Site " & Text(Value),
-                            CreatedBy: User().Email,
-                            CreatedOn: Now()
-                        }
-                    )
-                );
-                
-                // Create Warehouses (1-5 warehouses per site)
-                ClearCollect(
-                    colWarehouses,
-                    Ungroup(
-                        ForAll(
-                            colSites As site,
-                            ForAll(
-                                Sequence(RandBetween(1, 10)) As warehouseNum,
-                                {
-                                    WarehouseID: GUID(),
-                                    WarehouseName: "Warehouse " & Text(warehouseNum.Value),
-                                    SiteID: site.SiteID,
-                                    CreatedBy: User().Email,
-                                    CreatedOn: Now()
-                                }
-                            )
-                        ),
-                        Value
-                    )
-                );
-                
-                // Create Doors (1-3 doors per warehouse)
-                ClearCollect(
-                    colDoors,
-                    Ungroup(
-                        ForAll(
-                            colWarehouses As wh,
-                            ForAll(
-                                Sequence(RandBetween(1, 3)) As doorNum,
-                                {
-                                    DoorID: GUID(),
-                                    DoorName: "Door " & Text(doorNum.Value),
-                                    WarehouseID: wh.WarehouseID,
-                                    SiteID: wh.SiteID, // Carry forward SiteID
-                                    CreatedBy: User().Email,
-                                    CreatedOn: Now()
-                                }
-                            )
-                        ),
-                        Value
-                    )
-                );
-                
-                // Create Locations (now includes SiteID and WarehouseID)
-                ClearCollect(
-                    colLocations,
-                    Ungroup(
-                        Ungroup(
-                            ForAll(
-                                colDoors As dr,
-                                ForAll(
-                                    Sequence(RandBetween(1, 30)) As rackNum,
-                                    ForAll(
-                                        Sequence(RandBetween(1, 10)) As tierNum,
-                                        {
-                                            LocationID: GUID(),
-                                            SiteID: dr.SiteID,
-                                            WarehouseID: dr.WarehouseID,
-                                            DoorID: dr.DoorID,
-                                            RackCode: rackNum.Value,
-                                            TierCode: tierNum.Value,
-                                            StorageType: "Pallet",
-                                            CaskNumber: RandBetween(0,16),
-                                            IsOpen: Rand() > 0.1
-                                        }
-                                    )
-                                )
-                            ),
-                            Value
-                        ),
-                        Value
-                    )
-                );
-                
-                // Create LocationDetails for Closed Locations only
-                ClearCollect(
-                    colLocationDetails,
-                    AddColumns(
-                        Filter(colLocations, !IsOpen),
-                        LocationDetailsID, GUID(),
-                        ClosedDate, DateAdd(Today(), -RandBetween(1, 7), TimeUnit.Days),
-                        ExpectedOpenDate, DateAdd(Today(), RandBetween(1, 5), TimeUnit.Days),
-                        ClosedReason, LookUp(colClosedReasons,ID = RandBetween(1,10),Reason),
-                        ClosedReasonDescription, "Routine check",
-                        CreatedBy, User().Email,
-                        CreatedOn, Now()
-                    )
-                );
-                
-                // Create ClosedLocations flattened table
-                ClearCollect(
-                    colClosedLocations,
-                    ForAll(
-                        colLocationDetails,
-                        {
-                            SiteID: SiteID,
-                            WarehouseID: WarehouseID,
-                            DoorID: DoorID,
-                            LocationID: LocationID,
-                            Status: false,
-                            ClosedDate: ClosedDate,
-                            ExpectedOpenDate: ExpectedOpenDate,
-                            ClosedReason: ClosedReason,
-                            ClosedReasonDescription: ClosedReasonDescription,
-                            CreatedBy: CreatedBy,
-                            CreatedOn: CreatedOn
-                        }
-                    )
-                );
-                
-                // Pick a random site from colSites
-                ClearCollect(colUserDefaultSite,Last(FirstN(colSites,RandBetween(1, CountRows(colSites)))));
-                
-                // Set variable from the random site
-                Set(varUserDefaultSite,First(colUserDefaultSite));
-                
-                ClearCollect(
-                    colSelectedLocations,
-                        Filter(
-                            colLocations,SiteID = varUserDefaultSite.SiteID
-                        )
-                )
+            OnSelect: =Select(btnOnVis)
             Text: ="btnTempTables"
             Width: =96
             X: =231
@@ -334,7 +327,7 @@ LandingScreen As screen:
         FontColor: =
         Height: =141
         Size: =90
-        Text: ="Scotch"
+        Text: ="Power"
         Weight: ='TextCanvas.Weight'.Semibold
         Width: =377
         X: =305
@@ -350,7 +343,7 @@ LandingScreen As screen:
         FontItalic: =true
         Height: =141
         Size: =90
-        Text: ="Intelligence"
+        Text: ="Coffee"
         Weight: ='TextCanvas.Weight'.Medium
         Width: =538
         X: =428
@@ -365,7 +358,7 @@ LandingScreen As screen:
         FontColor: =
         Height: =141
         Size: =90
-        Text: ="Platform"
+        Text: ="Notes"
         Weight: ='TextCanvas.Weight'.Semibold
         Width: =365
         X: =555
@@ -374,7 +367,7 @@ LandingScreen As screen:
 
     cmpLoadingSpinner_2 As cmpLoadingSpinner:
         Height: =669
-        LoadingMessage: ="Creating example data"
+        LoadingMessage: ="Brewing sample notes"
         Visible: =locvisLoading
         ZIndex: =9
 
