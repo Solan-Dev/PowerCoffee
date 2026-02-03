@@ -356,21 +356,26 @@ TemplateScreen As screen:
                     LayoutMinHeight: =32
                     LayoutMinWidth: =96
                     OnSelect: |-
-                        =Collect(
-                            colTastingNotes,
+                        =Patch(
+                            'Tasting Notes',
+                            Defaults('Tasting Notes'),
                             {
-                                NoteID: GUID(),
-                                CoffeeName: "Guided Note",
-                                BrewMethod: varUserDefaultSite.SiteName,
-                                RoastLevel: If(CountRows(colWarehouses) > 0, First(colWarehouses).WarehouseName, "Medium"),
-                                Aroma: DropdownCanvas1.Selected.Label,
-                                Flavor: DropdownCanvas1_1.Selected.Label,
-                                Finish: DropdownCanvas1_2.Selected.Label,
-                                Mood: DropdownCanvas1_3.Selected.Label,
-                                Rating: 7,
-                                Notes: "Guided flow capture",
-                                CreatedOn: Now()
+                                'Coffee Name': "Guided Note",
+                                'Brew Method': varUserDefaultSite.SiteName,
+                                'Roast Level': If(CountRows(colWarehouses) > 0, First(colWarehouses).WarehouseName, "Medium"),
+                                'Rating': 7,
+                                'Brew Date': Today(),
+                                'Tasting Notes':
+                                    "Aroma: " & DropdownCanvas1.Selected.Label &
+                                    " | Flavor: " & DropdownCanvas1_1.Selected.Label &
+                                    " | Finish: " & DropdownCanvas1_2.Selected.Label &
+                                    " | Mood: " & DropdownCanvas1_3.Selected.Label
                             }
+                        );
+                        Refresh('Tasting Notes');
+                        ClearCollect(
+                            colTastingNotes,
+                            FirstN(SortByColumns('Tasting Notes', "Created On", Descending), 3)
                         );
                         Notify("Tasting note saved", NotificationType.Success)
                     Text: ="Save Note"

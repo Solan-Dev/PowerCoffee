@@ -136,9 +136,15 @@ LandingScreen As screen:
                 );
                 ClearCollect(
                     colTastingNotes,
-                    Table(
-                        { NoteID: GUID(), CoffeeName: "Morning Glow", BrewMethod: "Pour-over", RoastLevel: "Light", Aroma: "Citrus", Flavor: "Berry", Finish: "Clean", Mood: "Focused", Rating: 8, Notes: "Bright and juicy.", CreatedOn: Now() },
-                        { NoteID: GUID(), CoffeeName: "Nightcap", BrewMethod: "French Press", RoastLevel: "Dark", Aroma: "Chocolate", Flavor: "Caramel", Finish: "Lingering", Mood: "Cozy", Rating: 7, Notes: "Comforting and smooth.", CreatedOn: Now() }
+                    IfError(
+                        FirstN(
+                            SortByColumns('Tasting Notes', "Created On", Descending),
+                            3
+                        ),
+                        Table(
+                            { NoteID: GUID(), CoffeeName: "Morning Glow", BrewMethod: "Pour-over", RoastLevel: "Light", Aroma: "Citrus", Flavor: "Berry", Finish: "Clean", Mood: "Focused", Rating: 8, Notes: "Bright and juicy.", CreatedOn: Now() },
+                            { NoteID: GUID(), CoffeeName: "Nightcap", BrewMethod: "French Press", RoastLevel: "Dark", Aroma: "Chocolate", Flavor: "Caramel", Finish: "Lingering", Mood: "Cozy", Rating: 7, Notes: "Comforting and smooth.", CreatedOn: Now() }
+                        )
                     )
                 );
                 Set(varUserDefaultSite, First(colSites));

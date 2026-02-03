@@ -121,17 +121,21 @@ TemplateControls As screen:
         Height: =32
         Icon: ="Save"
         OnSelect: |
-            =Collect(
-                colTastingNotes,
+            =Patch(
+                'Tasting Notes',
+                Defaults('Tasting Notes'),
                 {
-                    NoteID: GUID(),
-                    CoffeeName: "Quick Note",
-                    BrewMethod: If(!IsBlank(ddSites_3.Selected), ddSites_3.Selected.SiteName, ""),
-                    BrewDate: DatePickerCanvas1_2.SelectedDate,
-                    Notes: TextInputCanvas1_1.Text,
-                    Rating: 7,
-                    CreatedOn: Now()
+                    'Coffee Name': "Quick Note",
+                    'Brew Method': If(!IsBlank(ddSites_3.Selected), ddSites_3.Selected.SiteName, ""),
+                    'Brew Date': DatePickerCanvas1_2.SelectedDate,
+                    'Tasting Notes': TextInputCanvas1_1.Text,
+                    'Rating': 7
                 }
+            );
+            Refresh('Tasting Notes');
+            ClearCollect(
+                colTastingNotes,
+                FirstN(SortByColumns('Tasting Notes', "Created On", Descending), 3)
             );
             Reset(TextInputCanvas1_1);
             Notify("Quick note saved", NotificationType.Success)
