@@ -8,7 +8,7 @@ pac auth create --name $ProfileName --url $EnvironmentUrl
 
 # Select the profile and environment
 pac auth select --name $ProfileName
-pac env select --url $EnvironmentUrl
+pac env select --environment $EnvironmentUrl
 
 # Show current context
 pac auth who

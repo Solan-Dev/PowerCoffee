@@ -35,6 +35,7 @@
 ### Feature 3.1: Home & list
 **User story:** As a taster, I want to see recent notes so that I can quickly revisit them.
 - Task: Home screen with list + filters
+- Task: Apply PowerCoffee theme (#ff6f00) to header and buttons
 
 ### Feature 3.2: Create note
 **User story:** As a taster, I want to add a new note so that I can capture a tasting.

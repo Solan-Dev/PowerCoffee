@@ -32,6 +32,10 @@ Table: `pc_roastery` (optional)
 - New tasting note screen
 - My notes screen
 
+## Theme
+- Primary color: #ff6f00
+- Secondary neutrals: #1b1b1b, #f7f7f7
+
 ## Environment variables
 - `pc_default_brewer` (User or Team)
 - `pc_default_roast_level` (Choice)

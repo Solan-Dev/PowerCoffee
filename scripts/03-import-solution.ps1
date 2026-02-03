@@ -1,7 +1,7 @@
 param(
   [string]$EnvironmentUrl = "https://orgfe8637fb.crm11.dynamics.com",
-  [string]$SolutionFolder = ".\\src\\Solution",
-  [string]$ZipPath = ".\\artifacts\\sit_solution_unmanaged.zip"
+  [string]$SolutionFolder = ".\\src\\Solution\\src",
+  [string]$ZipPath = ".\\artifacts\\PowerCoffee_unmanaged.zip"
 )
 
 # Pack and import the solution (unmanaged)

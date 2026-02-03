@@ -34,6 +34,10 @@ Create a solution-based app package that includes:
 - Use connection references for connectors.
 - Run solution checker before export for release.
 
+## Theme
+- Primary color: #ff6f00
+- Use for header, buttons, and accent elements in the canvas app.
+
 ## CLI MCP server (Copilot MCP)
 - `pac copilot mcp --run` starts the local MCP server.
 - Use this when integrating VS Code copilot workflows with Dataverse copilots.
