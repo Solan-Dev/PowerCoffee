@@ -1,0 +1,49 @@
+cmpDialogueBox As CanvasComponent:
+    Background: =RGBA(varTheme.Main.PopUpBackground.R,varTheme.Main.PopUpBackground.G,varTheme.Main.PopUpBackground.B,varTheme.Main.PopUpBackground.A)
+    Fill: =cmpDialogueBox.Background
+    Height: =App.DesignHeight
+    TitleText: ="Title Text"
+    Width: =App.DesignWidth
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    conDialogueBackground As groupContainer.manualLayoutContainer:
+        Height: =Parent.Height
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        conDialogue As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Regular
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height * 0.5
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width * 0.25
+            X: =(Parent.Width - Self.Width) *0.5
+            Y: =(Parent.Height - Self.Height) *0.5
+            ZIndex: =1
+
+            txtTitle As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =32
+                Text: =cmpDialogueBox.TitleText
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =Parent.Width - Self.X - 15
+                X: =15
+                Y: =15
+                ZIndex: =1
+

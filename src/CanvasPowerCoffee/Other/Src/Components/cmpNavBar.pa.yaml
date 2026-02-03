@@ -1,0 +1,291 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  cmpNavBar:
+    DefinitionType: CanvasComponent
+    AccessAppScope: true
+    CustomProperties:
+      CurrentScreen:
+        PropertyKind: Input
+        DisplayName: CurrentScreen
+        Description: A custom property
+        DataType: Text
+        Default: =App.ActiveScreen.Name
+      HamburgerTitle:
+        PropertyKind: Input
+        DisplayName: HamburgerTitle
+        Description: A custom property
+        DataType: Text
+        Default: ="Hello"
+      IconSize:
+        PropertyKind: Input
+        DisplayName: IconSize
+        Description: A custom property
+        DataType: Number
+        Default: =64
+      TemplateHeight:
+        PropertyKind: Input
+        DisplayName: TemplateHeight
+        Description: A custom property
+        DataType: Number
+        Default: =64
+      TemplatePadding:
+        PropertyKind: Input
+        DisplayName: TemplatePadding
+        Description: A custom property
+        DataType: Number
+        Default: =12
+      TopGap:
+        PropertyKind: Input
+        DisplayName: TopGap
+        Description: A custom property
+        DataType: Number
+        Default: |+
+          =60
+      ViewComponents:
+        PropertyKind: Input
+        DisplayName: ViewComponents
+        Description: A custom property
+        DataType: Table
+        Default: |-
+          =Table(
+              {
+                   conTopPadding: false
+                  ,conHamburger:false
+                  ,conBottomPadding: true
+                  ,conUserImage: true
+              }
+          )
+      navItems:
+        PropertyKind: Input
+        DisplayName: navItems
+        Description: A custom property
+        DataType: Table
+        Default: |-
+          =
+          Table(
+              {
+                  ScreenName:["TemplateScreen",""]
+                  ,DisplayScreenName:"TemplateScreen"
+                  ,Navigation:TemplateScreen
+                  ,DefaultPathColour:"'#FFFFFF'"
+                  ,LogoHeight:"'28'"
+                  ,LogoWidth:"'48'"
+                  ,ViewBox:"'1 1 46 26'"
+                  ,SelectedPathColour:"<linearGradient id='StrokeGradient' x1='0' y1='10' x2='48' y2='28' gradientUnits='userSpaceOnUse'><stop stop-color='#FF7A00'/><stop offset='1' stop-color='#FF0F00'/></linearGradient>"
+                  ,LogoPath:"d='M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z'"
+                  ,LogoStrokeWidth:"'1'"
+                  ,LogoFill:"'none'"
+                  ,TextSize:10
+                  ,TextColour:RGBA(255,255,255,1)
+              },
+              {
+                  ScreenName:["TemplateControls",""]
+                  ,DisplayScreenName:"TemplateControls"
+                  ,Navigation:TemplateControls
+                  ,DefaultPathColour:"'#FFFFFF'"
+                  ,LogoHeight:"'28'"
+                  ,LogoWidth:"'48'"
+                  ,ViewBox:"'1 1 46 26'"
+                  ,SelectedPathColour:"<linearGradient id='StrokeGradient' x1='0' y1='10' x2='20' y2='10' gradientUnits='userSpaceOnUse'><stop stop-color='#FF7A00'/><stop offset='1' stop-color='#FF0F00'/></linearGradient>"
+                  ,LogoPath:"d='M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z'"
+                  ,LogoStrokeWidth:"'1'"
+                  ,LogoFill:"'none'"
+                  ,TextSize:10
+                  ,TextColour:RGBA(255,255,255,1)
+              }
+          )
+          /*
+          */
+    Properties:
+      Height: =App.DesignHeight
+      Width: =64
+    Children:
+      - conNav:
+          Control: GroupContainer@1.4.0
+          Variant: AutoLayout
+          Properties:
+            Fill: =RGBA(0, 0, 0, 1)
+            Height: =cmpNavBar.Height - Self.Y
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =15
+            PaddingBottom: =Self.LayoutGap *0.5
+            PaddingTop: =Self.LayoutGap *0.5
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =cmpNavBar.Width
+            Y: =cmpNavBar.TopGap
+          Children:
+            - conTopPadding:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =0
+                  Height: =cmpNavBar.IconSize
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutMinWidth: =cmpNavBar.IconSize
+                  RadiusBottomLeft: =cmpNavBar.IconSize*0.5
+                  RadiusBottomRight: =cmpNavBar.IconSize*0.5
+                  RadiusTopLeft: =cmpNavBar.IconSize*0.5
+                  RadiusTopRight: =cmpNavBar.IconSize*0.5
+                  Visible: =First(cmpNavBar.ViewComponents).conTopPadding
+                  Width: =cmpNavBar.IconSize
+            - conHamburger:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =0
+                  Height: =cmpNavBar.IconSize
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  Visible: =First(cmpNavBar.ViewComponents).conHamburger
+                Children:
+                  - icnHamburger:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =RGBA(0, 18, 107, 1)
+                        Icon: =Icon.Hamburger
+                        PaddingBottom: =12
+                        PaddingLeft: =12
+                        PaddingRight: =12
+                        PaddingTop: =12
+                        Width: =cmpNavBar.IconSize
+                  - lblHamburger:
+                      Control: Label@2.5.1
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Start
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        Height: =icnHamburger.Height
+                        Text: =cmpNavBar.HamburgerTitle
+                        Width: =64
+            - galNav:
+                Control: Gallery@2.15.0
+                Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Items: =cmpNavBar.navItems
+                  LayoutMinHeight: =cmpNavBar.IconSize
+                  LayoutMinWidth: =cmpNavBar.Width
+                  LoadingSpinner: =LoadingSpinner.None
+                  ShowScrollbar: =false
+                  TemplateSize: =Self.Width
+                  Width: =Parent.Width
+                Children:
+                  - imgLogo:
+                      Control: Image@2.2.3
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Height: =Substitute(ThisItem.LogoHeight,"'","")
+                        Image: |-
+                          ="data:image/svg+xml;utf8, "&EncodeUrl($"<svg width={ThisItem.LogoWidth} height={ThisItem.LogoHeight} viewBox={ThisItem.ViewBox} fill='none' xmlns='http://www.w3.org/2000/svg'>
+                            <defs>
+                              {ThisItem.SelectedPathColour}
+                            </defs>
+                            <path {ThisItem.LogoPath} 
+                                  stroke={If(cmpNavBar.CurrentScreen in ThisItem.ScreenName,"'url(#StrokeGradient)'",ThisItem.DefaultPathColour)}
+                                  stroke-width={ThisItem.LogoStrokeWidth}
+                                  fill={ThisItem.LogoFill}
+                              />
+                          </svg>"
+                          )
+                        OnSelect: =Select(Parent)
+                        Width: =Substitute(ThisItem.LogoWidth,"'","")
+                        X: =(Parent.Width - Self.Width) *0.5
+                        Y: =(Parent.TemplateHeight - Parent.TemplateHeight*0.9)*0.5
+                  - Label2:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =ThisItem.TextColour
+                        Font: =Font.'Open Sans'
+                        Height: =Parent.TemplateHeight - Self.Y
+                        OnSelect: =Select(Parent)
+                        Size: =ThisItem.TextSize
+                        Text: =ThisItem.DisplayScreenName
+                        Width: =Parent.TemplateWidth
+                        Y: =imgLogo.Height
+                  - Button1:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =ColorFade(Self.Fill, -15%)
+                        BorderThickness: =0
+                        Color: =RGBA(255, 255, 255, 1)
+                        DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                        Fill: =RGBA(225,225,225,0)
+                        FocusedBorderColor: =RGBA(225,225,225,0)
+                        FocusedBorderThickness: =0
+                        Font: =Font.'Open Sans'
+                        Height: =Parent.TemplateHeight
+                        HoverBorderColor: =RGBA(225,225,225,0)
+                        HoverColor: =RGBA(255, 255, 255, 0.4)
+                        HoverFill: =RGBA(225,225,225,0.2)
+                        OnSelect: =Navigate(ThisItem.Navigation,ScreenTransition.Fade)
+                        PressedBorderColor: =RGBA(225,225,225,0)
+                        PressedColor: =RGBA(116,116,116,0.4)
+                        PressedFill: =RGBA(255,255,255,0.4)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Text: =
+                        Width: =Parent.TemplateWidth
+            - conUserImage:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =0
+                  Height: =cmpNavBar.IconSize
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutMinWidth: =cmpNavBar.IconSize
+                  PaddingBottom: =cmpNavBar.TemplatePadding*0.5
+                  PaddingLeft: =cmpNavBar.TemplatePadding*0.5
+                  PaddingRight: =cmpNavBar.TemplatePadding*0.5
+                  PaddingTop: =cmpNavBar.TemplatePadding*0.5
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Visible: =First(cmpNavBar.ViewComponents).conUserImage
+                Children:
+                  - imgUser:
+                      Control: Image@2.2.3
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Height: =Parent.Height - cmpNavBar.TemplatePadding*2
+                        Image: =User().Image
+                        RadiusBottomLeft: =Self.Width
+                        RadiusBottomRight: =Self.Width
+                        RadiusTopLeft: =Self.Height
+                        RadiusTopRight: =Self.Width
+                        Width: =Self.Height
+                        X: =(Parent.Width - Self.Width) *0.5
+            - conPaddingBottom:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =0
+                  Height: =cmpNavBar.IconSize
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutMinWidth: =cmpNavBar.IconSize
+                  RadiusBottomLeft: =cmpNavBar.IconSize*0.5
+                  RadiusBottomRight: =cmpNavBar.IconSize*0.5
+                  RadiusTopLeft: =cmpNavBar.IconSize*0.5
+                  RadiusTopRight: =cmpNavBar.IconSize*0.5
+                  Visible: =First(cmpNavBar.ViewComponents).conBottomPadding
+                  Width: =cmpNavBar.IconSize

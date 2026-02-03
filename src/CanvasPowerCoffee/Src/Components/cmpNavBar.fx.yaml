@@ -1,0 +1,271 @@
+cmpNavBar As CanvasComponent:
+    CurrentScreen: =App.ActiveScreen.Name
+    Fill: =RGBA(0, 0, 0, 0)
+    HamburgerTitle: ="Hello"
+    Height: =App.DesignHeight
+    IconSize: =64
+    navItems: |-
+        =
+        Table(
+            {
+                ScreenName:["TemplateScreen",""]
+                ,DisplayScreenName:"TemplateScreen"
+                ,Navigation:TemplateScreen
+                ,DefaultPathColour:"'#FFFFFF'"
+                ,LogoHeight:"'28'"
+                ,LogoWidth:"'48'"
+                ,ViewBox:"'1 1 46 26'"
+                ,SelectedPathColour:"<linearGradient id='StrokeGradient' x1='0' y1='10' x2='48' y2='28' gradientUnits='userSpaceOnUse'><stop stop-color='#FF6F00'/><stop offset='1' stop-color='#FF6F00'/></linearGradient>"
+                ,LogoPath:"d='M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z'"
+                ,LogoStrokeWidth:"'1'"
+                ,LogoFill:"'none'"
+                ,TextSize:10
+                ,TextColour:RGBA(255,255,255,1)
+            },
+            {
+                ScreenName:["TemplateControls",""]
+                ,DisplayScreenName:"TemplateControls"
+                ,Navigation:TemplateControls
+                ,DefaultPathColour:"'#FFFFFF'"
+                ,LogoHeight:"'28'"
+                ,LogoWidth:"'48'"
+                ,ViewBox:"'1 1 46 26'"
+                ,SelectedPathColour:"<linearGradient id='StrokeGradient' x1='0' y1='10' x2='20' y2='10' gradientUnits='userSpaceOnUse'><stop stop-color='#FF6F00'/><stop offset='1' stop-color='#FF6F00'/></linearGradient>"
+                ,LogoPath:"d='M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z'"
+                ,LogoStrokeWidth:"'1'"
+                ,LogoFill:"'none'"
+                ,TextSize:10
+                ,TextColour:RGBA(255,255,255,1)
+            }
+        )
+        /*
+        */
+    TemplateHeight: =64
+    TemplatePadding: =12
+    TopGap: |
+        =60
+    ViewComponents: |-
+        =Table(
+            {
+                 conTopPadding: false
+                ,conHamburger:false
+                ,conBottomPadding: true
+                ,conUserImage: true
+            }
+        )
+    Width: =64
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    conNav As groupContainer.verticalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(0, 0, 0, 1)
+        Height: =cmpNavBar.Height - Self.Y
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =15
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =Self.LayoutGap *0.5
+        PaddingTop: =Self.LayoutGap *0.5
+        Width: =cmpNavBar.Width
+        Y: =cmpNavBar.TopGap
+        ZIndex: =1
+
+        conTopPadding As groupContainer.verticalAutoLayoutContainer:
+            FillPortions: =0
+            Height: =cmpNavBar.IconSize
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =cmpNavBar.IconSize
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =cmpNavBar.IconSize*0.5
+            RadiusBottomRight: =cmpNavBar.IconSize*0.5
+            RadiusTopLeft: =cmpNavBar.IconSize*0.5
+            RadiusTopRight: =cmpNavBar.IconSize*0.5
+            Visible: =First(cmpNavBar.ViewComponents).conTopPadding
+            Width: =cmpNavBar.IconSize
+            ZIndex: =1
+
+        conHamburger As groupContainer.horizontalAutoLayoutContainer:
+            FillPortions: =0
+            Height: =cmpNavBar.IconSize
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Visible: =First(cmpNavBar.ViewComponents).conHamburger
+            ZIndex: =2
+
+            icnHamburger As icon.Hamburger:
+                BorderColor: =RGBA(0, 18, 107, 1)
+                Color: =RGBA(0, 18, 107, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(244, 244, 244, 1)
+                Icon: =Icon.Hamburger
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                PaddingBottom: =12
+                PaddingLeft: =12
+                PaddingRight: =12
+                PaddingTop: =12
+                Width: =cmpNavBar.IconSize
+                ZIndex: =1
+
+            lblHamburger As label:
+                AlignInContainer: =AlignInContainer.Start
+                BorderColor: =RGBA(0, 18, 107, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FillPortions: =1
+                Height: =icnHamburger.Height
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                Size: =13
+                Text: =cmpNavBar.HamburgerTitle
+                Width: =64
+                ZIndex: =2
+
+        "galNav As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+            BorderColor: =RGBA(0, 18, 107, 1)
+            DelayItemLoading: =true
+            Items: =cmpNavBar.navItems
+            Layout: =Layout.Vertical
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =cmpNavBar.IconSize
+            LayoutMinWidth: =cmpNavBar.Width
+            ShowScrollbar: =false
+            TemplatePadding: =0
+            TemplateSize: =Self.Width
+            Width: =Parent.Width
+            ZIndex: =3
+
+            imgLogo As image:
+                BorderColor: =RGBA(0, 18, 107, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =Substitute(ThisItem.LogoHeight,"'","")
+                Image: |-
+                    ="data:image/svg+xml;utf8, "&EncodeUrl($"<svg width={ThisItem.LogoWidth} height={ThisItem.LogoHeight} viewBox={ThisItem.ViewBox} fill='none' xmlns='http://www.w3.org/2000/svg'>
+                      <defs>
+                        {ThisItem.SelectedPathColour}
+                      </defs>
+                      <path {ThisItem.LogoPath} 
+                            stroke={If(cmpNavBar.CurrentScreen in ThisItem.ScreenName,"'url(#StrokeGradient)'",ThisItem.DefaultPathColour)}
+                            stroke-width={ThisItem.LogoStrokeWidth}
+                            fill={ThisItem.LogoFill}
+                        />
+                    </svg>"
+                    )
+                OnSelect: =Select(Parent)
+                Width: =Substitute(ThisItem.LogoWidth,"'","")
+                X: =(Parent.Width - Self.Width) *0.5
+                Y: =(Parent.TemplateHeight - Parent.TemplateHeight*0.9)*0.5
+                ZIndex: =1
+
+            Label2 As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 18, 107, 1)
+                Color: =ThisItem.TextColour
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                Height: =Parent.TemplateHeight - Self.Y
+                OnSelect: =Select(Parent)
+                Size: =ThisItem.TextSize
+                Text: =ThisItem.DisplayScreenName
+                Width: =Parent.TemplateWidth
+                Y: =imgLogo.Height
+                ZIndex: =2
+
+            Button1 As button:
+                BorderThickness: =0
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Fill: =RGBA(225,225,225,0)
+                FocusedBorderColor: =RGBA(225,225,225,0)
+                FocusedBorderThickness: =0
+                FontWeight: =FontWeight.Semibold
+                Height: =Parent.TemplateHeight
+                HoverBorderColor: =RGBA(225,225,225,0)
+                HoverColor: =RGBA(255, 255, 255, 0.4)
+                HoverFill: =RGBA(225,225,225,0.2)
+                OnSelect: =Navigate(ThisItem.Navigation,ScreenTransition.Fade)
+                PressedBorderColor: =RGBA(225,225,225,0)
+                PressedColor: =RGBA(116,116,116,0.4)
+                PressedFill: =RGBA(255,255,255,0.4)
+                RadiusBottomLeft: =0
+                RadiusBottomRight: =0
+                RadiusTopLeft: =0
+                RadiusTopRight: =0
+                Size: =15
+                Text: =
+                Width: =Parent.TemplateWidth
+                ZIndex: =3
+
+        conUserImage As groupContainer.verticalAutoLayoutContainer:
+            FillPortions: =0
+            Height: =cmpNavBar.IconSize
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =cmpNavBar.IconSize
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =cmpNavBar.TemplatePadding*0.5
+            PaddingLeft: =cmpNavBar.TemplatePadding*0.5
+            PaddingRight: =cmpNavBar.TemplatePadding*0.5
+            PaddingTop: =cmpNavBar.TemplatePadding*0.5
+            Visible: =First(cmpNavBar.ViewComponents).conUserImage
+            ZIndex: =4
+
+            imgUser As image:
+                AlignInContainer: =AlignInContainer.Center
+                BorderColor: =RGBA(0, 18, 107, 1)
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Height: =Parent.Height - cmpNavBar.TemplatePadding*2
+                Image: =User().Image
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                RadiusBottomLeft: =Self.Width
+                RadiusBottomRight: =Self.Width
+                RadiusTopLeft: =Self.Height
+                RadiusTopRight: =Self.Width
+                Width: =Self.Height
+                X: =(Parent.Width - Self.Width) *0.5
+                ZIndex: =1
+
+        conPaddingBottom As groupContainer.verticalAutoLayoutContainer:
+            FillPortions: =0
+            Height: =cmpNavBar.IconSize
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =cmpNavBar.IconSize
+            LayoutMode: =LayoutMode.Auto
+            RadiusBottomLeft: =cmpNavBar.IconSize*0.5
+            RadiusBottomRight: =cmpNavBar.IconSize*0.5
+            RadiusTopLeft: =cmpNavBar.IconSize*0.5
+            RadiusTopRight: =cmpNavBar.IconSize*0.5
+            Visible: =First(cmpNavBar.ViewComponents).conBottomPadding
+            Width: =cmpNavBar.IconSize
+            ZIndex: =5
+

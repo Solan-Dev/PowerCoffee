@@ -1,0 +1,85 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  cmpLoadingSpinner:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      Background:
+        PropertyKind: Input
+        DisplayName: Background
+        Description: A custom property
+        DataType: Color
+        Default: =RGBA(0, 0, 0, 0.15)
+      LoadingMessage:
+        PropertyKind: Input
+        DisplayName: LoadingMessage
+        Description: A custom property
+        DataType: Text
+        Default: =""
+      LoadingText:
+        PropertyKind: Input
+        DisplayName: LoadingText
+        Description: A custom property
+        DataType: Text
+        Default: ="Loading"
+    Properties:
+      Height: =App.DesignHeight
+      Width: =App.DesignWidth
+    Children:
+      - conSpinnerBackground:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            Fill: =cmpLoadingSpinner.Background
+            Height: =Parent.Height
+            Width: =Parent.Width
+          Children:
+            - conSpinner:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Properties:
+                  DropShadow: =DropShadow.Regular
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =Parent.Height*0.5
+                  Width: =Parent.Width * 0.25
+                  X: =(Parent.Width - Self.Width) *0.5
+                  Y: =(Parent.Height - Self.Height) *0.5
+                Children:
+                  - imgSpinner:
+                      Control: Image@2.2.3
+                      Properties:
+                        Image: |+
+                          ="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSdnJyB4MT0nMCUnIHkxPScwJScgeDI9JzEwMCUnIHkyPScwJSc+PHN0b3Agb2Zmc2V0PScwJScgc3RvcC1jb2xvcj0nI0ZGN0EwMCcvPjxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nI0ZGMEYwMCcvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxjaXJjbGUgY3g9JzUwJyBjeT0nNTAnIHI9JzQ1JyBzdHJva2U9J3JnYmEoMjM2LDIzNCwyMzAsMSknIHN0cm9rZS13aWR0aD0nMTAnIGZpbGw9J25vbmUnLz48Y2lyY2xlIGN4PSc1MCcgY3k9JzUwJyByPSc0NScgc3Ryb2tlPSd1cmwoI2cpJyBzdHJva2Utd2lkdGg9JzEwJyBmaWxsPSdub25lJyBzdHJva2UtbGluZWNhcD0ncm91bmQnIHRyYW5zZm9ybT0ncm90YXRlKC05MCA1MCA1MCknPjxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9J3N0cm9rZS1kYXNoYXJyYXknIHZhbHVlcz0nMSwyODIuNjs3MCwyMTIuNjsxLDI4Mi42JyBkdXI9JzEuNXMnIHJlcGVhdENvdW50PSdpbmRlZmluaXRlJyBrZXlUaW1lcz0nMDswLjU7MScgY2FsY01vZGU9J2xpbmVhcicvPjxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9J3N0cm9rZS1kYXNob2Zmc2V0JyB2YWx1ZXM9JzA7LTI4Mi42JyBkdXI9JzEuNXMnIHJlcGVhdENvdW50PSdpbmRlZmluaXRlJyBjYWxjTW9kZT0nbGluZWFyJy8+PC9jaXJjbGU+PC9zdmc+"
+                        X: =(Parent.Width - Self.Width) *0.5
+                        Y: =(Parent.Height - Self.Height) *0.25
+                  - txtLoading:
+                      Control: Text@0.0.51
+                      Properties:
+                        Align: ='TextCanvas.Align'.Center
+                        Text: =cmpLoadingSpinner.LoadingText
+                        VerticalAlign: =VerticalAlign.Middle
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width
+                        X: =(Parent.Width - Self.Width) *0.5
+                        Y: =imgSpinner.Y+imgSpinner.Height
+                  - txtMessage:
+                      Control: Text@0.0.51
+                      Properties:
+                        Align: ='TextCanvas.Align'.Center
+                        Height: =Parent.Height-Self.Y
+                        PaddingBottom: =15
+                        PaddingLeft: =15
+                        PaddingRight: =15
+                        PaddingTop: =15
+                        Text: =cmpLoadingSpinner.LoadingMessage
+                        VerticalAlign: =VerticalAlign.Top
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width
+                        X: =(Parent.Width - Self.Width) *0.5
+                        Y: =txtLoading.Y + txtLoading.Height

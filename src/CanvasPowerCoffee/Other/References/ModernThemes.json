@@ -1,0 +1,39 @@
+{
+  "Themes": [
+    {
+      "EntityName": "PowerAppsTheme",
+      "ThemeName": "PowerAppsTheme"
+    },
+    {
+      "EntityName": "GreenTheme",
+      "ThemeName": "GreenTheme"
+    },
+    {
+      "BasePaletteColor": "#f6f4f0",
+      "ColorOverrides": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "#BD8400",
+        "#000000",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "EntityName": "Diageo",
+      "Font": "Segoe UI",
+      "HueTorsion": 0,
+      "ThemeName": "Diageo",
+      "ThemePrimaryColorLocked": false,
+      "Vibrancy": 0
+    }
+  ]
+}

@@ -1,0 +1,275 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  TemplateControls:
+    Children:
+      - btnExampleSecondary:
+          Control: Button@0.0.45
+          Properties:
+            Appearance: ='ButtonCanvas.Appearance'.Secondary
+            Icon: ="DismissCircle"
+            OnSelect: =UpdateContext({locvisPopUp:false,locvisNewClosed:false})
+            Text: ="close"
+            X: =1100
+            Y: =35
+      - ddSites_3:
+          Control: DropDown@0.0.45
+          Properties:
+            DefaultSelectedItems: =varUserDefaultSite
+            Items: =colSites
+            Width: =256
+            X: =1052
+            Y: =86
+          Children:
+            - SiteID3_4:
+                Control: DropDownDataField@1.5.0
+                Variant: textualColumn
+                IsLocked: true
+                Properties:
+                  FieldDisplayName: ="SiteID"
+                  FieldName: ="SiteID"
+                  FieldType: ="g"
+                  Order: =2
+            - SiteName3_4:
+                Control: DropDownDataField@1.5.0
+                Variant: textualColumn
+                IsLocked: true
+                Properties:
+                  FieldDisplayName: ="SiteName"
+                  FieldName: ="SiteName"
+                  FieldType: ="s"
+                  Order: =1
+      - btnExampleIcon:
+          Control: Button@0.0.45
+          Properties:
+            Appearance: ='ButtonCanvas.Appearance'.Secondary
+            Height: =24
+            Icon: ="ArrowReset"
+            Layout: ='ButtonCanvas.Layout'.IconOnly
+            OnSelect: |-
+              =Reset(ddSites_3);
+              Reset(ddWarehouses_2);
+              Reset(ddDoors_2);
+              Reset(ddRacksLow_2);
+              Reset(ddRacksHigh_2);
+              Reset(ddTiersLow_2);
+              Reset(ddTiersHigh_2);
+            Text: =
+            Width: =36
+            X: =1053
+            Y: =39
+      - lblCalculatedField:
+          Control: Text@0.0.51
+          Properties:
+            Align: ='TextCanvas.Align'.Start
+            BorderRadius: =4
+            Fill: =RGBA(245, 245, 245, 1)
+            PaddingLeft: =varGap
+            PaddingRight: =varGap
+            Text: |-
+              =First(Filter(
+                          colLocations,
+                          (IsBlank(ddSites_3.Selected) || SiteID = ddSites_3.Selected.SiteID),
+                          (IsBlank(ddWarehouses_2.Selected) || WarehouseID = ddWarehouses_2.Selected.WarehouseID),
+                          (IsBlank(ddDoors_2.Selected) || DoorID = ddDoors_2.Selected.DoorID),
+              // RackCode is not blank, and is between two values
+                          (IsBlank(ddRacksLow_2.Selected) || IsBlank(ddRacksHigh_2.Selected) ||  
+                              (RackCode >= Value(ddRacksLow_2.Selected.Value) && RackCode <= Value(ddRacksHigh_2.Selected.Value))),
+              // TierCode is not blank and is between two values
+                          (IsBlank(ddTiersLow_2.Selected) || IsBlank(ddTiersHigh_2.Selected) || 
+                              (TierCode >= Value(ddTiersLow_2.Selected.Value) && TierCode <= Value(ddTiersHigh_2.Selected.Value)))
+                      )
+              ).StorageType
+            VerticalAlign: =VerticalAlign.Middle
+            Weight: ='TextCanvas.Weight'.Regular
+            Width: =156
+            X: =1152
+            Y: =136
+      - DatePickerCanvas1_2:
+          Control: DatePicker@0.0.46
+          Properties:
+            Width: =256
+            X: =1052
+            Y: =190
+      - TextInputCanvas1_1:
+          Control: TextInput@0.0.54
+          Properties:
+            Height: =64
+            Mode: ='TextInputCanvas.Mode'.Multiline
+            X: =988
+            Y: =240
+      - btnExamplePrimary:
+          Control: Button@0.0.45
+          Properties:
+            Icon: ="Save"
+            OnSelect: |+
+              =// 1. Add closure columns as blank to colSelectedLocations
+              ClearCollect(
+                  colSelectedLocations,
+                  AddColumns(
+                      Filter(
+                          colLocations,
+                          (IsBlank(ddSites.Selected) || SiteID = ddSites.Selected.SiteID),
+                          (IsBlank(ddWarehouses.Selected) || WarehouseID = ddWarehouses.Selected.WarehouseID),
+                          (IsBlank(ddDoors.Selected) || DoorID = ddDoors.Selected.DoorID),
+              // RackCode is not blank, and is between two values
+                          (IsBlank(ddRacksLow.Selected) || IsBlank(ddRacksHigh.Selected) ||  
+                              (RackCode >= Value(ddRacksLow.Selected.Value) && RackCode <= Value(ddRacksHigh.Selected.Value))),
+              // TierCode is not blank and is between two values
+                          (IsBlank(ddTiersLow.Selected) || IsBlank(ddTiersHigh.Selected) || 
+                              (TierCode >= Value(ddTiersLow.Selected.Value) && TierCode <= Value(ddTiersHigh.Selected.Value)))
+                      ),
+                      ClosedDate, Blank(),
+                      ExpectedOpenDate, Blank(),
+                      ClosedReason, "",
+                      ClosedReasonDescription, "",
+                      ClosedOn, Blank()
+                  )
+              );
+
+              // 2. Patch in closure values for matched locations
+              ForAll(
+                  colClosedLocations,
+                  With(
+                      {
+                          index: LookUp(colSelectedLocations, LocationID = ThisRecord.LocationID)
+                      },
+                      Patch(
+                          colSelectedLocations,
+                          index,
+                          {
+                              ClosedDate: index.ClosedDate,
+                              ExpectedOpenDate: index.ExpectedOpenDate,
+                              ClosedReason: index.ClosedReason,
+                              ClosedReasonDescription: index.ClosedReasonDescription
+                          }
+                      )
+                  )
+              );
+            Text: ="Save"
+            X: =946
+            Y: =35
+      - conExampleContainer:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =128
+            PaddingLeft: =varGap
+            PaddingRight: =varGap
+            Width: =526
+            X: =782
+            Y: =328
+          Children:
+            - lblTitleHeader:
+                Control: Text@0.0.51
+                Properties:
+                  Align: ='TextCanvas.Align'.End
+                  Height: =39
+                  Text: ="Title Header"
+                  VerticalAlign: =VerticalAlign.Middle
+                  Weight: ='TextCanvas.Weight'.Semibold
+                  Width: =90
+            - lblFieldTitle:
+                Control: Text@0.0.51
+                Properties:
+                  Align: ='TextCanvas.Align'.End
+                  Height: =36
+                  PaddingLeft: =varGap
+                  PaddingRight: =varGap
+                  Text: ="Storage Type:"
+                  VerticalAlign: =VerticalAlign.Middle
+                  Weight: ='TextCanvas.Weight'.Regular
+                  Width: =156
+                  Y: =39
+      - cmpLoadingSpinner_3:
+          Control: CanvasComponent
+          ComponentName: cmpLoadingSpinner
+          Properties:
+            Background: =RGBA(0, 0, 0, 0.15)
+            Height: =288
+            LoadingMessage: =""
+            LoadingText: ="Loading"
+            Width: =399
+      - conExampleTable:
+          Control: GroupContainer@1.4.0
+          Variant: AutoLayout
+          Properties:
+            Fill: =RGBA(255, 255, 255, 1)
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =varGap
+            PaddingBottom: =varGap *0.5
+            PaddingLeft: =varGap *0.5
+            PaddingRight: =varGap *0.5
+            PaddingTop: =varGap *0.5
+            Y: =502
+          Children:
+            - conHeaders_1:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  FillPortions: =0
+                  Height: =64
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  PaddingLeft: =varGap*1.5
+                Children:
+                  - lblIDHeader:
+                      Control: Text@0.0.51
+                      Properties:
+                        Height: =Parent.Height
+                        Text: |-
+                          ="Header 1 
+                          ID"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                  - lblReasonTypeHeader:
+                      Control: Text@0.0.51
+                      Properties:
+                        FillPortions: =1
+                        Height: =Parent.Height
+                        Text: |-
+                          ="Header 2
+                          Reason Type"
+                        Weight: ='TextCanvas.Weight'.Semibold
+            - galExample:
+                Control: Gallery@2.15.0
+                Variant: VariableHeight
+                Properties:
+                  Height: =Parent.Height - Self.Y
+                  Items: =colClosedReasons
+                  LayoutMinHeight: =Parent.Height - Self.Y
+                  TemplateSize: =32
+                Children:
+                  - conRackAndTierValues_1:
+                      Control: GroupContainer@1.4.0
+                      Variant: AutoLayout
+                      Properties:
+                        Height: =Parent.TemplateHeight
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        PaddingLeft: =varGap
+                        Width: =Parent.TemplateWidth - varGap
+                      Children:
+                        - lblItemID:
+                            Control: Text@0.0.51
+                            Properties:
+                              Text: =ThisItem.ID
+                        - lblItemReason:
+                            Control: Text@0.0.51
+                            Properties:
+                              FillPortions: =1
+                              Text: =ThisItem.Reason
+                              Width: =218
+      - btnExampleTertiary_1:
+          Control: Button@0.0.45
+          Properties:
+            Appearance: ='ButtonCanvas.Appearance'.Subtle
+            Icon: ="ArrowRight"
+            OnSelect: =UpdateContext({locvisPopUp:false,locvisNewClosed:false})
+            Text: ="button"
+            X: =1212
+            Y: =35

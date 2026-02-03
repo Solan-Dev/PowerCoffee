@@ -1,0 +1,396 @@
+TemplateControls As screen:
+    Fill: =Color.White
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+
+    btnExampleSecondary As Button:
+        Appearance: ='ButtonCanvas.Appearance'.Secondary
+        BasePaletteColor: =
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =
+        Height: =32
+        Icon: ="DismissCircle"
+        OnSelect: |-
+            =UpdateContext({locvisPopUp:false,locvisNewClosed:false})
+        Text: ="close"
+        Width: =96
+        X: =1100
+        Y: =35
+        ZIndex: =4
+
+    ddSites_3 As Dropdown.pcfdataset:
+        DefaultSelectedItems: =varUserDefaultSite
+        DisplayMode: =DisplayMode.Edit
+        Height: =32
+        Items: =colSites
+        Width: =256
+        X: =1052
+        Y: =86
+        ZIndex: =5
+
+        SiteID3_4 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+            FieldDisplayName: ="SiteID"
+            FieldName: ="SiteID"
+            FieldType: ="g"
+            FieldVariantName: ="textualColumn"
+            Order: =2
+            ZIndex: =40
+
+        SiteName3_4 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+            FieldDisplayName: ="SiteName"
+            FieldName: ="SiteName"
+            FieldType: ="s"
+            FieldVariantName: ="textualColumn"
+            Order: =1
+            ZIndex: =41
+
+    btnExampleIcon As Button:
+        Appearance: ='ButtonCanvas.Appearance'.Secondary
+        BasePaletteColor: =
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =
+        Height: =24
+        Icon: ="ArrowReset"
+        Layout: ='ButtonCanvas.Layout'.IconOnly
+        OnSelect: |-
+            =Reset(ddSites_3);
+            Reset(ddWarehouses_2);
+            Reset(ddDoors_2);
+            Reset(ddRacksLow_2);
+            Reset(ddRacksHigh_2);
+            Reset(ddTiersLow_2);
+            Reset(ddTiersHigh_2);
+        Text: =
+        Width: =36
+        X: =1053
+        Y: =39
+        ZIndex: =6
+
+    lblCalculatedField As Text:
+        Align: ='TextCanvas.Align'.Start
+        AutoHeight: =false
+        BorderColor: =
+        BorderRadius: =4
+        DisplayMode: =DisplayMode.Edit
+        Fill: =RGBA(245, 245, 245, 1)
+        FontColor: =
+        Height: =32
+        PaddingLeft: =varGap
+        PaddingRight: =varGap
+        PaddingTop: =
+        Text: |-
+            =First(Filter(
+                        colLocations,
+                        (IsBlank(ddSites_3.Selected) || SiteID = ddSites_3.Selected.SiteID),
+                        (IsBlank(ddWarehouses_2.Selected) || WarehouseID = ddWarehouses_2.Selected.WarehouseID),
+                        (IsBlank(ddDoors_2.Selected) || DoorID = ddDoors_2.Selected.DoorID),
+            // RackCode is not blank, and is between two values
+                        (IsBlank(ddRacksLow_2.Selected) || IsBlank(ddRacksHigh_2.Selected) ||  
+                            (RackCode >= Value(ddRacksLow_2.Selected.Value) && RackCode <= Value(ddRacksHigh_2.Selected.Value))),
+            // TierCode is not blank and is between two values
+                        (IsBlank(ddTiersLow_2.Selected) || IsBlank(ddTiersHigh_2.Selected) || 
+                            (TierCode >= Value(ddTiersLow_2.Selected.Value) && TierCode <= Value(ddTiersHigh_2.Selected.Value)))
+                    )
+            ).StorageType
+        VerticalAlign: =VerticalAlign.Middle
+        Weight: ='TextCanvas.Weight'.Regular
+        Width: =156
+        X: =1152
+        Y: =136
+        ZIndex: =7
+
+    "DatePickerCanvas1_2 As 'Date picker'":
+        BasePaletteColor: =
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        Fill: =
+        FontColor: =
+        Height: =32
+        Width: =256
+        X: =1052
+        Y: =190
+        ZIndex: =8
+
+    "TextInputCanvas1_1 As 'Text input'":
+        BasePaletteColor: =
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        Fill: =
+        FontColor: =
+        Height: =64
+        Mode: ='TextInputCanvas.Mode'.Multiline
+        Width: =320
+        X: =988
+        Y: =240
+        ZIndex: =9
+
+    btnExamplePrimary As Button:
+        BasePaletteColor: =
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =
+        Height: =32
+        Icon: ="Save"
+        OnSelect: |
+            =// 1. Add closure columns as blank to colSelectedLocations
+            ClearCollect(
+                colSelectedLocations,
+                AddColumns(
+                    Filter(
+                        colLocations,
+                        (IsBlank(ddSites.Selected) || SiteID = ddSites.Selected.SiteID),
+                        (IsBlank(ddWarehouses.Selected) || WarehouseID = ddWarehouses.Selected.WarehouseID),
+                        (IsBlank(ddDoors.Selected) || DoorID = ddDoors.Selected.DoorID),
+            // RackCode is not blank, and is between two values
+                        (IsBlank(ddRacksLow.Selected) || IsBlank(ddRacksHigh.Selected) ||  
+                            (RackCode >= Value(ddRacksLow.Selected.Value) && RackCode <= Value(ddRacksHigh.Selected.Value))),
+            // TierCode is not blank and is between two values
+                        (IsBlank(ddTiersLow.Selected) || IsBlank(ddTiersHigh.Selected) || 
+                            (TierCode >= Value(ddTiersLow.Selected.Value) && TierCode <= Value(ddTiersHigh.Selected.Value)))
+                    ),
+                    ClosedDate, Blank(),
+                    ExpectedOpenDate, Blank(),
+                    ClosedReason, "",
+                    ClosedReasonDescription, "",
+                    ClosedOn, Blank()
+                )
+            );
+            
+            // 2. Patch in closure values for matched locations
+            ForAll(
+                colClosedLocations,
+                With(
+                    {
+                        index: LookUp(colSelectedLocations, LocationID = ThisRecord.LocationID)
+                    },
+                    Patch(
+                        colSelectedLocations,
+                        index,
+                        {
+                            ClosedDate: index.ClosedDate,
+                            ExpectedOpenDate: index.ExpectedOpenDate,
+                            ClosedReason: index.ClosedReason,
+                            ClosedReasonDescription: index.ClosedReasonDescription
+                        }
+                    )
+                )
+            );
+        Text: ="Save"
+        Width: =96
+        X: =946
+        Y: =35
+        ZIndex: =10
+
+    conExampleContainer As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =128
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        PaddingLeft: =varGap
+        PaddingRight: =varGap
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =526
+        X: =782
+        Y: =328
+        ZIndex: =11
+
+        lblTitleHeader As Text:
+            Align: ='TextCanvas.Align'.End
+            BorderColor: =
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =39
+            Text: ="Title Header"
+            VerticalAlign: =VerticalAlign.Middle
+            Weight: ='TextCanvas.Weight'.Semibold
+            Width: =90
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+        lblFieldTitle As Text:
+            Align: ='TextCanvas.Align'.End
+            AutoHeight: =false
+            BorderColor: =
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =36
+            PaddingLeft: =varGap
+            PaddingRight: =varGap
+            PaddingTop: =
+            Text: |-
+                ="Storage Type:"
+            VerticalAlign: =VerticalAlign.Middle
+            Weight: ='TextCanvas.Weight'.Regular
+            Width: =156
+            X: =0
+            Y: =39
+            ZIndex: =2
+
+    cmpLoadingSpinner_3 As cmpLoadingSpinner:
+        Height: =288
+        Width: =399
+        ZIndex: =12
+
+    conExampleTable As groupContainer.horizontalAutoLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =RGBA(255, 255, 255, 1)
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: =varGap
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =varGap *0.5
+        PaddingLeft: =varGap *0.5
+        PaddingRight: =varGap *0.5
+        PaddingTop: =varGap *0.5
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Y: =502
+        ZIndex: =13
+
+        conHeaders_1 As groupContainer.horizontalAutoLayoutContainer:
+            DropShadow: =DropShadow.Light
+            FillPortions: =0
+            Height: =64
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingLeft: =varGap*1.5
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            ZIndex: =1
+
+            lblIDHeader As Text:
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =Parent.Height
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Text: |-
+                    ="Header 1 
+                    ID"
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =12
+
+            lblReasonTypeHeader As Text:
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FillPortions: =1
+                FontColor: =
+                Height: =Parent.Height
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =32
+                LayoutMinWidth: =96
+                Text: |-
+                    ="Header 2
+                    Reason Type"
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =96
+                X: =0
+                Y: =0
+                ZIndex: =13
+
+        galExample As gallery.variableTemplateHeightGallery:
+            BorderColor: =App.Theme.Colors.Darker40
+            DelayItemLoading: =true
+            Height: =Parent.Height - Self.Y
+            Items: =colClosedReasons
+            Layout: =Layout.Vertical
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =Parent.Height - Self.Y
+            LayoutMinWidth: =320
+            LoadingSpinner: =LoadingSpinner.Data
+            TemplateSize: =32
+            ZIndex: =2
+
+            conRackAndTierValues_1 As groupContainer.horizontalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Height: =Parent.TemplateHeight
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMode: =LayoutMode.Auto
+                PaddingLeft: =varGap
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Width: =Parent.TemplateWidth - varGap
+                ZIndex: =1
+
+                lblItemID As Text:
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: =ThisItem.ID
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                lblItemReason As Text:
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FillPortions: =1
+                    FontColor: =
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: =ThisItem.Reason
+                    Width: =218
+                    X: =0
+                    Y: =0
+                    ZIndex: =2
+
+    btnExampleTertiary_1 As Button:
+        Appearance: ='ButtonCanvas.Appearance'.Subtle
+        BasePaletteColor: =
+        BorderColor: =
+        DisplayMode: =DisplayMode.Edit
+        FontColor: =
+        Height: =32
+        Icon: ="ArrowRight"
+        OnSelect: |-
+            =UpdateContext({locvisPopUp:false,locvisNewClosed:false})
+        Text: ="button"
+        Width: =96
+        X: =1212
+        Y: =35
+        ZIndex: =14
+

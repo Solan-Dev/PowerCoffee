@@ -1,0 +1,64 @@
+{
+  "ComponentAllowCustomization": true,
+  "ComponentChangedSinceFileImport": true,
+  "ComponentManifest": {
+    "AllowAccessToGlobals": true,
+    "AllowCustomization": true,
+    "Description": "",
+    "Name": "cmpSmallCalendar",
+    "TemplateGuid": "c74fa23a94d24dbd84f75160cc70e132"
+  },
+  "ComponentType": "CanvasComponent",
+  "CustomGroupControlTemplateName": "",
+  "CustomProperties": [
+    {
+      "Category": 0,
+      "DisplayName": "inDate",
+      "Hidden": false,
+      "Name": "inDate",
+      "PropertyDataTypeKey": "DateTime",
+      "Tooltip": "A custom property",
+      "Type": "{\"Version\":\"1.348\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"DateTime\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "inValues",
+      "Hidden": false,
+      "Name": "inValues",
+      "PropertyDataTypeKey": "Table",
+      "Tooltip": "A custom property",
+      "Type": "{\"Version\":\"1.348\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"StartofWeek\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "inMonth",
+      "Hidden": false,
+      "Name": "inMonth",
+      "PropertyDataTypeKey": "String",
+      "Tooltip": "A custom property",
+      "Type": "{\"Version\":\"1.348\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "inEvents",
+      "Hidden": false,
+      "Name": "inEvents",
+      "PropertyDataTypeKey": "Table",
+      "Tooltip": "A custom property",
+      "Type": "{\"Version\":\"1.348\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Table\",\"EnumString\":\"\",\"Type\":[{\"Name\":\"EventDate\",\"Kind\":\"Date\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"EventDescription\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"EventName\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]},{\"Name\":\"EventType\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}]}}"
+    }
+  ],
+  "FirstParty": true,
+  "Id": "http://microsoft.com/appmagic/Component",
+  "IsComponentLocked": false,
+  "IsComponentTemplate": true,
+  "IsCustomGroupControlTemplate": false,
+  "IsPcfControl": false,
+  "IsPremiumPcfControl": false,
+  "IsWidgetTemplate": false,
+  "LastModifiedTimestamp": "639057186963499960",
+  "Name": "c74fa23a94d24dbd84f75160cc70e132",
+  "OverridableProperties": {},
+  "TemplateOriginalName": "57362fb1adb64a778eed5b2344e46ff6",
+  "Version": "1.0"
+}

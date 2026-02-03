@@ -1,0 +1,56 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  cmpDialogueBox:
+    DefinitionType: CanvasComponent
+    CustomProperties:
+      Background:
+        PropertyKind: Input
+        DisplayName: Background
+        Description: A custom property
+        DataType: Color
+        Default: =RGBA(varTheme.Main.PopUpBackground.R,varTheme.Main.PopUpBackground.G,varTheme.Main.PopUpBackground.B,varTheme.Main.PopUpBackground.A)
+      TitleText:
+        PropertyKind: Input
+        DisplayName: TitleText
+        Description: A custom property
+        DataType: Text
+        Default: ="Title Text"
+    Properties:
+      Fill: =cmpDialogueBox.Background
+      Height: =App.DesignHeight
+      Width: =App.DesignWidth
+    Children:
+      - conDialogueBackground:
+          Control: GroupContainer@1.4.0
+          Variant: ManualLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Height: =Parent.Height
+            Width: =Parent.Width
+          Children:
+            - conDialogue:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Properties:
+                  DropShadow: =DropShadow.Regular
+                  Fill: =RGBA(255, 255, 255, 1)
+                  Height: =Parent.Height * 0.5
+                  Width: =Parent.Width * 0.25
+                  X: =(Parent.Width - Self.Width) *0.5
+                  Y: =(Parent.Height - Self.Height) *0.5
+                Children:
+                  - txtTitle:
+                      Control: Text@0.0.51
+                      Properties:
+                        Text: =cmpDialogueBox.TitleText
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =Parent.Width - Self.X - 15
+                        X: =15
+                        Y: =15

@@ -1,0 +1,41 @@
+App As appinfo:
+    BackEnabled: =true
+    Formulas: |+
+        =varFont="URW Geometric";
+        varDevMode = If(StartsWith(Host.Version,"PowerApps-Studio"),true,false);
+        //If(StartsWith(Host.Version,"PowerApps-Studio"),Set(varDevMode,true));
+        varGap = 12;
+        varTheme =
+            {
+                Signal: {
+                    Pink: { Hex: "#FF9A91", R: 255, G: 154, B: 145, A: 1 },
+                    Red: { Hex: "#B9251C", R: 185, G: 37,  B: 28,  A: 1 },
+                    Amber: { Hex: "#BD8400", R: 189, G: 132, B: 0,  A: 1 },
+                    LightGreen: { Hex: "#8DE8AD", R: 141, G: 232, B: 173, A: 1 },
+                    DarkGreen: { Hex: "#198038", R: 25,  G: 128, B: 56,  A: 1 }
+                },
+                Main:{
+                    ScreenBackground: { Hex: "#F6F4F1", R: 246, G: 244, B: 241, A: 1 },
+                    PopUpBackground: { R: 0, G: 0, B: 0, A: 0.15}
+                },
+                Support: {
+                    Teal: {Hex: "#4ABDCF",R: 74, G: 189, B: 207, A: 1},
+                    Blue: {Hex: "#233986",R: 35, G: 57, B: 134, A: 1},
+                    Purple: {Hex: "#542671",R: 84, G: 38, B: 113, A: 1},
+                    Magenta:{ Hex: "#E40D7E",R: 228, G: 13, B: 126, A: 1},
+                    Orange:{Hex: "#FF6F00",R: 255, G: 111, B: 0, A: 1},
+                    Yellow: {Hex: "#F9E23A",R: 249, G: 226, B: 58, A: 1}
+                }
+            }
+        ;
+        
+    StartScreen: =LandingScreen
+    Theme: =Diageo
+
+    Host As hostControl.DefaultHostControlVariant:
+        OnCancel: =false
+        OnEdit: =false
+        OnNew: =false
+        OnSave: =false
+        OnView: =false
+

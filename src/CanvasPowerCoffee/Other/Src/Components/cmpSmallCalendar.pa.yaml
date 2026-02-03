@@ -1,0 +1,344 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  cmpSmallCalendar:
+    DefinitionType: CanvasComponent
+    AccessAppScope: true
+    CustomProperties:
+      inDate:
+        PropertyKind: Input
+        DisplayName: inDate
+        Description: A custom property
+        DataType: DateAndTime
+        Default: =Today()
+      inEvents:
+        PropertyKind: Input
+        DisplayName: inEvents
+        Description: A custom property
+        DataType: Table
+        Default: |+
+          =Table(
+              {EventDate:Date(2025,2,1),EventType:"AutomatedRelease",EventName:"Automated Release",EventDescription:"Event rgk jner go jj nerg;i jenrgk;jenrg oierfbokdnffb"},
+              {EventDate:Date(2025,2,1),EventType:"DecisionEngine",EventName:"Decision Engine",EventDescription:"Event description"},
+              {EventDate:Date(2025,2,1),EventType:"LeagueTable",EventName:"Event3",EventDescription:"Event description"},
+              {EventDate:Date(2025,2,1),EventType:"FreeText",EventName:"Event4",EventDescription:"Event description"}
+          )
+      inMonth:
+        PropertyKind: Input
+        DisplayName: inMonth
+        Description: A custom property
+        DataType: Text
+        Default: =Text(cmpSmallCalendar.inDate,"mmmm yyyy")
+      inValues:
+        PropertyKind: Input
+        DisplayName: inValues
+        Description: A custom property
+        DataType: Table
+        Default: =Table({StartofWeek:"Monday"})
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      Height: =250
+      Width: =360
+    Children:
+      - conBase_1:
+          Control: GroupContainer@1.4.0
+          Variant: AutoLayout
+          Properties:
+            Fill: =RGBA(240, 240, 240, 1)
+            Height: =cmpSmallCalendar.Height - (Self.Y*2)
+            LayoutDirection: =LayoutDirection.Vertical
+            PaddingBottom: =2
+            Width: =cmpSmallCalendar.Width - (Self.X *2)
+            X: =5
+            Y: =5
+          Children:
+            - conHeader_1:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =10
+                  LayoutMinWidth: =Parent.Width
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Width: =cmpSmallCalendar.Width
+                Children:
+                  - conHeaderLeft_1:
+                      Control: GroupContainer@1.4.0
+                      Variant: ManualLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        Fill: =RGBA(255, 255, 255, 1)
+                        LayoutMinHeight: =Parent.Height
+                        LayoutMinWidth: =5
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                      Children:
+                        - btnPreviousMonth_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(0,0,0,0)
+                              BorderThickness: =1
+                              Color: =RGBA(0,0,0,1)
+                              DisabledBorderColor: =RGBA(0,0,0,0)
+                              Fill: =RGBA(0,0,0,0)
+                              FocusedBorderColor: =RGBA(0,0,0,0)
+                              FocusedBorderThickness: =0
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Normal
+                              Height: =Parent.Height - (Self.Y *2)
+                              HoverBorderColor: =RGBA(0,0,0,1)
+                              HoverColor: =RGBA(0,0,0,1)
+                              HoverFill: =RGBA(240, 240, 240, 0.8)
+                              OnSelect: |-
+                                =Set(varMonth,
+                                    Date(
+                                    Year(varMonth),
+                                    Month(varMonth)-1,
+                                    1
+                                    )
+                                )
+                              PressedBorderColor: =RGBA(0,0,0,0)
+                              PressedColor: =RGBA(0,0,0,0)
+                              PressedFill: =RGBA(0,0,0,0)
+                              RadiusBottomLeft: =0
+                              RadiusBottomRight: =0
+                              RadiusTopLeft: =0
+                              RadiusTopRight: =0
+                              Text: ="<"
+                              Width: =26
+                              X: =166
+                              Y: =2
+                        - btnNextMonth_1:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(0,0,0,0)
+                              BorderThickness: =1
+                              Color: =RGBA(0,0,0,1)
+                              DisabledBorderColor: =RGBA(0,0,0,0)
+                              Fill: =RGBA(0,0,0,0)
+                              FocusedBorderColor: =RGBA(0,0,0,0)
+                              FocusedBorderThickness: =0
+                              Font: =Font.'Open Sans'
+                              FontWeight: =FontWeight.Normal
+                              Height: =Parent.Height - (Self.Y *2)
+                              HoverBorderColor: =RGBA(0,0,0,1)
+                              HoverColor: =RGBA(0,0,0,1)
+                              HoverFill: =RGBA(240, 240, 240, 0.8)
+                              OnSelect: |-
+                                =Set(varMonth,
+                                    Date(
+                                    Year(varMonth),
+                                    Month(varMonth)+1,
+                                    1
+                                    )
+                                )
+                              PressedBorderColor: =RGBA(0,0,0,0)
+                              PressedColor: =RGBA(0,0,0,0)
+                              PressedFill: =RGBA(0,0,0,0)
+                              RadiusBottomLeft: =0
+                              RadiusBottomRight: =0
+                              RadiusTopLeft: =0
+                              RadiusTopRight: =0
+                              Text: =">"
+                              Width: =26
+                              X: =192
+                              Y: =2
+                        - Label3:
+                            Control: Label@2.5.1
+                            Properties:
+                              Height: =Parent.Height
+                              Size: =12
+                              Text: =$"{Text(varMonth,"mmmm")}  {Text(varMonth,"yyyy")}"
+                              Width: =164
+                              X: =2
+                              Y: =21
+            - conCalendar_1:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =11
+                  LayoutDirection: =LayoutDirection.Vertical
+                  PaddingBottom: =2
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Width: =cmpSmallCalendar.Width
+                Children:
+                  - galHeader_1:
+                      Control: Gallery@2.15.0
+                      Variant: Horizontal
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Fill: =RGBA(255, 255, 255, 1)
+                        FillPortions: =2
+                        Height: =45
+                        Items: |-
+                          =ForAll(
+                              Sequence(7),
+                              cmpSmallCalendar.inDate
+                              +Value-Weekday(cmpSmallCalendar.inDate, 
+                                  Switch(First(cmpSmallCalendar.inValues).StartofWeek,
+                                      "Monday",
+                                      StartOfWeek.Monday,
+                                      "Tuesday",
+                                      StartOfWeek.Tuesday,
+                                      "Wednesday",
+                                      StartOfWeek.Wednesday,
+                                      "Thursday",
+                                      StartOfWeek.Thursday,
+                                      "Friday",
+                                      StartOfWeek.Friday,
+                                      "Saturday",
+                                      StartOfWeek.Saturday,
+                                      "Sunday",
+                                      StartOfWeek.Sunday
+                                      ))
+                          )
+                        LayoutMinHeight: =10
+                        LoadingSpinner: =LoadingSpinner.None
+                        TemplatePadding: =galCalendarDays_1.TemplatePadding
+                        TemplateSize: =galCalendarDays_1.TemplateWidth
+                        Width: =galCalendarDays_1.Width
+                        X: =40
+                        Y: =103
+                      Children:
+                        - txtDay_1:
+                            Control: Text@0.0.51
+                            Properties:
+                              Align: ='TextCanvas.Align'.Center
+                              Height: =Parent.TemplateHeight
+                              Text: =Text(ThisItem.Value,"ddd")
+                              VerticalAlign: =VerticalAlign.Bottom
+                              Width: =Parent.TemplateWidth
+                  - galCalendarDays_1:
+                      Control: Gallery@2.15.0
+                      Variant: Vertical
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Fill: =RGBA(240, 240, 240, 1)
+                        FillPortions: =12
+                        Items: |+
+                          =ForAll(
+                              Sequence(42),
+                              varMonth
+                              +Value-Weekday(varMonth, 
+                                  Switch(First(cmpSmallCalendar.inValues).StartofWeek,
+                                      "Monday",
+                                      StartOfWeek.Monday,
+                                      "Tuesday",
+                                      StartOfWeek.Tuesday,
+                                      "Wednesday",
+                                      StartOfWeek.Wednesday,
+                                      "Thursday",
+                                      StartOfWeek.Thursday,
+                                      "Friday",
+                                      StartOfWeek.Friday,
+                                      "Saturday",
+                                      StartOfWeek.Saturday,
+                                      "Sunday",
+                                      StartOfWeek.Sunday
+                                      ))
+                          )
+
+                        LoadingSpinner: =LoadingSpinner.None
+                        ShowScrollbar: =false
+                        TemplateFill: =If(ThisItem.Value=Today(),RGBA(227, 240, 250, 1),RGBA(255,255,255,1))
+                        TemplatePadding: =2
+                        TemplateSize: =(galCalendarDays_1.Height - (galCalendarDays_1.TemplatePadding*6))/6
+                        Width: =Parent.Width
+                        WrapCount: =7
+                        X: =40
+                        Y: =188
+                      Children:
+                        - galEvents_1:
+                            Control: Gallery@2.15.0
+                            Variant: Vertical
+                            Properties:
+                              BorderColor: =RGBA(0, 18, 107, 1)
+                              Height: =Parent.TemplateHeight
+                              Items: =Filter(cmpSmallCalendar.inEvents,EventDate=ThisItem.Value)
+                              LoadingSpinner: =LoadingSpinner.None
+                              ShowScrollbar: =false
+                              TemplatePadding: =1
+                              TemplateSize: =(Self.Height *0.5) - Self.TemplatePadding
+                              Width: =Parent.TemplateWidth
+                              WrapCount: =2
+                            Children:
+                              - Image2_1:
+                                  Control: Image@2.2.3
+                                  Properties:
+                                    BorderColor: =RGBA(0, 18, 107, 1)
+                                    Height: =Parent.TemplateHeight
+                                    Image: |-
+                                      ="data:image/svg+xml;utf8," & EncodeUrl(
+                                          $"<svg width='{Self.Width}' height='{Self.Height}' viewBox='0 0 {Self.Width} {Self.Height}' xmlns='http://www.w3.org/2000/svg'>
+                                              <defs>
+                                                  <linearGradient id='AutomatedRelease' x1='0%' y1='0%' x2='100%' y2='0%' gradientUnits='userSpaceOnUse'>
+                                                      <stop offset='0%' stop-color='#FF0F00'/>
+                                                      <stop offset='100%' stop-color='#FF7A00'/>
+                                                  </linearGradient>
+                                                  <linearGradient id='DecisionEngine' x1='0%' y1='0%' x2='100%' y2='0%' gradientUnits='userSpaceOnUse'>
+                                                      <stop offset='0%' stop-color='#0057FF'/>
+                                                      <stop offset='100%' stop-color='#A6DFFF'/>
+                                                  </linearGradient>
+                                                  <linearGradient id='LeagueTable' x1='0%' y1='0%' x2='100%' y2='0%' gradientUnits='userSpaceOnUse'>
+                                                      <stop offset='0%' stop-color='#FF96BE'/>
+                                                      <stop offset='100%' stop-color='#FDF6EB'/>
+                                                  </linearGradient>
+                                                  <linearGradient id='FreeText' x1='0%' y1='0%' x2='100%' y2='0%' gradientUnits='userSpaceOnUse'>
+                                                      <stop offset='0%' stop-color='#FDDB98'/>
+                                                      <stop offset='100%' stop-color='#FFF1D7'/>
+                                                  </linearGradient>
+                                              </defs>
+                                              <rect width='{Self.Width}' height='{Self.Height}' fill='url(#{Switch(ThisItem.EventType,"AutomatedRelease","AutomatedRelease","DecisionEngine","DecisionEngine","LeagueTable","LeagueTable","FreeText","FreeText")})' />
+                                          </svg>"
+                                      )
+                                    OnSelect: =Select(Parent)
+                                    RadiusBottomLeft: =7
+                                    RadiusBottomRight: =7
+                                    RadiusTopLeft: =7
+                                    RadiusTopRight: =7
+                                    Width: =Self.Height
+                                    X: =Parent.TemplateWidth - (Self.Width*1.2)
+                                    Y: |+
+                                      =0
+                        - txtDayDate_1:
+                            Control: Text@0.0.51
+                            Properties:
+                              Align: ='TextCanvas.Align'.Center
+                              Fill: =RGBA(0,0,0,0)
+                              FontColor: |-
+                                =If(ThisItem.Value >= Date(
+                                    Year(varMonth),
+                                    Month(varMonth)+1,
+                                    1
+                                    ) || ThisItem.Value <= Date(
+                                    Year(varMonth),
+                                    Month(varMonth),
+                                    0
+                                    )
+                                    || Weekday(ThisItem.Value) = 1
+                                    || Weekday(ThisItem.Value) = 7
+                                    ,RGBA(116,116,116,1),RGBA(00,0,0,1)
+                                )
+                              Height: =Parent.TemplateHeight
+                              PaddingLeft: =3
+                              Size: =12
+                              Text: =$"{Text(ThisItem.Value,"dd")}"
+                              VerticalAlign: =VerticalAlign.Middle
+                              Width: =Parent.TemplateWidth
+                              Wrap: =false

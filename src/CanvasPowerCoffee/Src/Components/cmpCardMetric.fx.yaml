@@ -1,0 +1,168 @@
+cmpCardMetric As CanvasComponent:
+    CardValues: |-
+        =Table(
+            {
+                 TitleHeight:10
+                ,TitleVis:true
+                ,TitleFontSize:11
+                ,TitleFontWeight:FontWeight.Bold
+                ,SubTitleHeight:10
+                ,SubTitleVis:true
+                ,SubTitleFontSize:8
+                ,SubTitleFontWeight:FontWeight.Lighter
+                ,MainHeight:10
+                ,MainVis:true
+                ,MainFontSize:28
+                ,MainFontWeight:FontWeight.Normal
+                ,PrefixVis:false
+                ,PrefixFontSize:10
+                ,PrefixFontWeight:FontWeight.Normal
+                ,SuffixVis:false
+                ,SuffixFontSize:10
+                ,SuffixFontWeight:FontWeight.Normal
+                ,NoteVis:true
+                ,NoteFontSize:8
+                ,NoteFontWeight:FontWeight.Normal
+        
+            }
+        )
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =105
+    MainColour: =RGBA(0, 0, 0, 1)
+    MainText: ="Main Text"
+    NoteText: ="NoteText"
+    SubTitleColour: =RGBA(0, 0, 0, 1)
+    SubTitleText: ="Text"
+    TitleColour: =RGBA(0, 0, 0, 1)
+    TitleText: ="TitleText"
+    Width: |
+        =300
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    conCard As groupContainer.verticalAutoLayoutContainer:
+        Fill: =RGBA(255, 255, 255, 1)
+        Height: =cmpCardMetric.Height
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        LayoutMode: =LayoutMode.Auto
+        RadiusBottomLeft: =5
+        RadiusBottomRight: =5
+        RadiusTopLeft: =5
+        RadiusTopRight: =5
+        Width: =cmpCardMetric.Width
+        ZIndex: =1
+
+        conTitle As groupContainer.horizontalAutoLayoutContainer:
+            FillPortions: =3
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =First(cmpCardMetric.CardValues).TitleHeight
+            LayoutMinWidth: =Parent.Width
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =1
+
+            lblPrefix_2 As label:
+                AlignInContainer: =AlignInContainer.Start
+                BorderColor: =RGBA(0, 18, 107, 1)
+                Color: =cmpCardMetric.TitleColour
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FillPortions: =1
+                FontWeight: =First(cmpCardMetric.CardValues).TitleFontWeight
+                Height: =Parent.Height
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinWidth: =10
+                Size: =First(cmpCardMetric.CardValues).TitleFontSize
+                Text: =cmpCardMetric.TitleText
+                Visible: =First(cmpCardMetric.CardValues).TitleVis
+                Width: =Parent.Width
+                ZIndex: =1
+
+        conSubTitle As groupContainer.horizontalAutoLayoutContainer:
+            FillPortions: =3
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =First(cmpCardMetric.CardValues).SubTitleHeight
+            LayoutMinWidth: =Parent.Width
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =2
+
+            lblPrefix_3 As label:
+                BorderColor: =RGBA(0, 18, 107, 1)
+                Color: =cmpCardMetric.SubTitleColour
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FillPortions: =1
+                FontWeight: =First(cmpCardMetric.CardValues).SubTitleFontWeight
+                Height: =Parent.Height
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinWidth: =10
+                Size: =First(cmpCardMetric.CardValues).SubTitleFontSize
+                Text: =cmpCardMetric.SubTitleText
+                Visible: =First(cmpCardMetric.CardValues).SubTitleVis
+                Width: =Parent.Width
+                ZIndex: =1
+
+        conMetric As groupContainer.horizontalAutoLayoutContainer:
+            FillPortions: =6
+            Height: =First(cmpCardMetric.CardValues).MainHeight
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =10
+            LayoutMinWidth: =Parent.Width
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =3
+
+            lblValue As label:
+                Align: =Align.Center
+                BorderColor: =RGBA(0, 18, 107, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FillPortions: =4
+                FontWeight: =First(cmpCardMetric.CardValues).MainFontWeight
+                Height: =Parent.Height
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                Size: =First(cmpCardMetric.CardValues).MainFontSize
+                Text: =cmpCardMetric.MainText
+                Visible: =First(cmpCardMetric.CardValues).MainVis
+                Width: =Parent.Width
+                ZIndex: =2
+
+        conComment As groupContainer.horizontalAutoLayoutContainer:
+            FillPortions: =3
+            Height: =90
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =10
+            LayoutMinWidth: =Parent.Width
+            LayoutMode: =LayoutMode.Auto
+            ZIndex: =4
+
+            lblPrefix_1 As label:
+                BorderColor: =RGBA(0, 18, 107, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                DisabledColor: =RGBA(166, 166, 166, 1)
+                FillPortions: =1
+                FontWeight: =First(cmpCardMetric.CardValues).NoteFontWeight
+                Height: =Parent.Height
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinWidth: =10
+                Size: =First(cmpCardMetric.CardValues).NoteFontSize
+                Text: =cmpCardMetric.NoteText
+                Visible: =First(cmpCardMetric.CardValues).NoteVis
+                Width: =Parent.Width
+                ZIndex: =1
+

@@ -1,0 +1,831 @@
+SiteDetails As screen:
+    Fill: =RGBA(246, 244, 240,1)
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: =Select(btnOnVis_3)
+
+    cmpNavBar_5 As cmpNavBar:
+        Height: =767
+        navItems: |-
+            =colNav
+            /*
+            Table(
+                {
+                    ScreenName:["TemplateScreen",""]
+                    ,DisplayScreenName:"TemplateScreen"
+                    ,Navigation:TemplateScreen
+                    ,DefaultPathColour:"'#FFFFFF'"
+                    ,LogoHeight:"'28'"
+                    ,LogoWidth:"'48'"
+                    ,ViewBox:"'1 1 46 26'"
+                    ,SelectedPathColour:"<linearGradient id='StrokeGradient' x1='0' y1='10' x2='48' y2='28' gradientUnits='userSpaceOnUse'><stop stop-color='#FF6F00'/><stop offset='1' stop-color='#FF6F00'/></linearGradient>"
+                    ,LogoPath:"d='M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z'"
+                    ,LogoStrokeWidth:"'1'"
+                    ,LogoFill:"'none'"
+                    ,TextSize:10
+                    ,TextColour:RGBA(255,255,255,1)
+                },
+                {
+                    ScreenName:["TemplateControls",""]
+                    ,DisplayScreenName:"TemplateControls"
+                    ,Navigation:TemplateControls
+                    ,DefaultPathColour:"'#FFFFFF'"
+                    ,LogoHeight:"'28'"
+                    ,LogoWidth:"'48'"
+                    ,ViewBox:"'1 1 46 26'"
+                    ,SelectedPathColour:"<linearGradient id='StrokeGradient' x1='0' y1='10' x2='20' y2='10' gradientUnits='userSpaceOnUse'><stop stop-color='#FF6F00'/><stop offset='1' stop-color='#FF6F00'/></linearGradient>"
+                    ,LogoPath:"d='M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z'"
+                    ,LogoStrokeWidth:"'1'"
+                    ,LogoFill:"'none'"
+                    ,TextSize:10
+                    ,TextColour:RGBA(255,255,255,1)
+                }
+            )
+            /*
+            */
+        TopGap: =56
+
+    cmpHeader_2 As cmpHeader:
+        Height: |
+            =60
+        ZIndex: =2
+
+    conScreen_2 As groupContainer.verticalAutoLayoutContainer:
+        Height: =708
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: |
+            =varGap*0.25
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =varGap *0.25
+        PaddingLeft: =varGap *0.25
+        PaddingRight: =varGap *0.25
+        PaddingTop: =varGap *0.25
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =1302
+        X: =64
+        Y: =60
+        ZIndex: =3
+
+        conFilters_2 As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 0)
+            FillPortions: =0
+            Height: =45
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutGap: =varGap
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =varGap*0.25
+            PaddingLeft: =varGap*0.5
+            PaddingRight: =varGap*0.25
+            PaddingTop: =varGap*0.25
+            ZIndex: =12
+
+            conLeftFilterBlock_2 As groupContainer.horizontalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutGap: =varGap
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - (Parent.PaddingTop + Parent.PaddingBottom)
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =varGap*0.5
+                PaddingLeft: =varGap*0.5
+                PaddingRight: =varGap*0.5
+                PaddingTop: =varGap*0.5
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =13
+
+                TextCanvas1_1 As Text:
+                    Align: ='TextCanvas.Align'.End
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: |-
+                        ="Filter:"
+                    VerticalAlign: =VerticalAlign.Middle
+                    Width: =48
+                    X: =0
+                    Y: =0
+                    ZIndex: =14
+
+                DropdownCanvas1_6 As Dropdown.pcfdataset:
+                    DefaultSelectedItems: =
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
+                    Items: =colSites
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    Width: =150
+                    X: =0
+                    Y: =0
+                    ZIndex: =15
+
+                    SiteID3 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="SiteID"
+                        FieldName: ="SiteID"
+                        FieldType: ="g"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =40
+
+                    SiteName3 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="SiteName"
+                        FieldName: ="SiteName"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =2
+                        ZIndex: =41
+
+                DropdownCanvas1_7 As Dropdown.pcfdataset:
+                    DefaultSelectedItems: =
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
+                    Items: =colWarehouses
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    Width: =150
+                    X: =0
+                    Y: =0
+                    ZIndex: =16
+
+                    WarehouseID1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="WarehouseID"
+                        FieldName: ="WarehouseID"
+                        FieldType: ="g"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =42
+
+                    WarehouseName3 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="WarehouseName"
+                        FieldName: ="WarehouseName"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =2
+                        ZIndex: =43
+
+                    SiteID4 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="SiteID"
+                        FieldName: ="SiteID"
+                        FieldType: ="g"
+                        FieldVariantName: ="textualColumn"
+                        Order: =3
+                        ZIndex: =44
+
+                DropdownCanvas1_8 As Dropdown.pcfdataset:
+                    DefaultSelectedItems: =
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
+                    Items: =colDoors
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    Width: =150
+                    X: =0
+                    Y: =0
+                    ZIndex: =17
+
+                    DoorID1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="DoorID"
+                        FieldName: ="DoorID"
+                        FieldType: ="g"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =45
+
+                    DoorName1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="DoorName"
+                        FieldName: ="DoorName"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =2
+                        ZIndex: =46
+
+                    WarehouseID2 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="WarehouseID"
+                        FieldName: ="WarehouseID"
+                        FieldType: ="g"
+                        FieldVariantName: ="textualColumn"
+                        Order: =3
+                        ZIndex: =47
+
+            conFloatFilter_2 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - Parent.PaddingTop - Parent.PaddingBottom
+                LayoutMinWidth: =250
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =20
+
+                TextCanvas1_5 As Text:
+                    Align: ='TextCanvas.Align'.End
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =39
+                    Text: |-
+                        ="Filter:"
+                    VerticalAlign: =VerticalAlign.Middle
+                    Width: =48
+                    X: =0
+                    Y: =0
+                    ZIndex: =21
+
+        conHeadlineMetrics_2 As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 0)
+            FillPortions: =0
+            Height: =100
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutGap: |
+                =varGap *0.5
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =varGap*0.25
+            PaddingLeft: =varGap*0.5
+            PaddingRight: =varGap*0.25
+            PaddingTop: =varGap*0.25
+            ZIndex: =22
+
+            conMetric_6 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                FillPortions: =4
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - (Parent.PaddingTop + Parent.PaddingBottom)
+                LayoutMinWidth: =210
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =23
+
+                cmpCardMetric_6 As cmpCardMetric:
+                    Height: =Parent.Height
+                    Width: =Parent.Width
+
+            conMetric_7 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                FillPortions: =4
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - (Parent.PaddingTop + Parent.PaddingBottom)
+                LayoutMinWidth: =210
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =24
+
+                cmpCardMetric_7 As cmpCardMetric:
+                    Height: =Parent.Height
+                    Width: =Parent.Width
+
+            conMetric_8 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                FillPortions: =4
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - (Parent.PaddingTop + Parent.PaddingBottom)
+                LayoutMinWidth: =210
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =25
+
+                cmpCardMetric_8 As cmpCardMetric:
+                    Height: =Parent.Height
+                    Width: =Parent.Width
+
+            conMetric_9 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                FillPortions: =4
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - (Parent.PaddingTop + Parent.PaddingBottom)
+                LayoutMinWidth: =210
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =26
+
+                cmpCardMetric_9 As cmpCardMetric:
+                    Height: =Parent.Height
+                    Width: =Parent.Width
+
+            conMetric_10 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                FillPortions: =4
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - (Parent.PaddingTop + Parent.PaddingBottom)
+                LayoutMinWidth: =210
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =27
+
+                cmpCardMetric_10 As cmpCardMetric:
+                    Height: =Parent.Height
+                    Width: =Parent.Width
+
+        conMain_2 As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 0)
+            Height: =45
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutGap: |
+                =varGap *0.5
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =varGap*0.25
+            PaddingLeft: =varGap*0.5
+            PaddingRight: =varGap*0.25
+            PaddingTop: =varGap*0.25
+            ZIndex: =28
+
+            conLeftMain_2 As groupContainer.horizontalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =8
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =varGap
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - (Parent.PaddingTop + Parent.PaddingBottom)
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =varGap *0.5
+                PaddingLeft: =varGap *0.5
+                PaddingRight: =varGap *0.5
+                PaddingTop: =varGap *0.5
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =29
+
+                ButtonCanvas4_4 As Button:
+                    BasePaletteColor: =
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Font: =varFont
+                    FontColor: =
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    OnSelect: |-
+                        =UpdateContext({locvisPopUp:true,locvisColours:true})
+                    Text: ="View Colours"
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =30
+
+                ButtonCanvas4_5 As Button:
+                    BasePaletteColor: =
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    OnSelect: |-
+                        =UpdateContext({locvisPopUp:true,locvisRequest:true})
+                    Text: ="View Request"
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =31
+
+                ButtonCanvas4_6 As Button:
+                    BasePaletteColor: =
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    OnSelect: |-
+                        =UpdateContext({locvisMainRight:!locvisMainRight})
+                    Text: ="RightSide"
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =32
+
+                CheckboxCanvas1_1 As Checkbox:
+                    BasePaletteColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =160
+                    OnCheck: =false
+                    OnUncheck: =false
+                    Width: =160
+                    X: =0
+                    Y: =0
+                    ZIndex: =33
+
+                ButtonCanvas4_7 As Button:
+                    BasePaletteColor: =
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    OnSelect: |-
+                        =UpdateContext({locvisLoading:!locvisLoading})
+                    Text: ="ViewLoading"
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =34
+
+                CheckboxCanvas2_1 As Checkbox:
+                    BasePaletteColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =160
+                    OnCheck: =false
+                    OnUncheck: =false
+                    Width: =160
+                    X: =0
+                    Y: =0
+                    ZIndex: =35
+
+            conRightMain_2 As groupContainer.horizontalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =4
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =varGap
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - (Parent.PaddingTop + Parent.PaddingBottom)
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =varGap *0.5
+                PaddingLeft: =varGap *0.5
+                PaddingRight: =varGap *0.5
+                PaddingTop: =varGap *0.5
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                Visible: =locvisMainRight
+                ZIndex: =36
+
+                DropdownCanvas1_10 As Dropdown.pcfdataset:
+                    DefaultSelectedItems: =
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    Items: =Sequence(12)
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    Width: =150
+                    X: =0
+                    Y: =0
+                    ZIndex: =37
+
+                DropdownCanvas1_11 As Dropdown.pcfdataset:
+                    DefaultSelectedItems: =
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =32
+                    Items: =Sequence(12)
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    Width: =150
+                    X: =0
+                    Y: =0
+                    ZIndex: =38
+
+    conPopUp_2 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =768
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =locvisPopUp
+        Width: =1366
+        ZIndex: =4
+
+        Rectangle1_1 As rectangle:
+            BorderColor: =App.Theme.Colors.Darker40
+            Fill: =RGBA(varTheme.Main.PopUpBackground.R,varTheme.Main.PopUpBackground.G,varTheme.Main.PopUpBackground.B,varTheme.Main.PopUpBackground.A)
+            Height: =768
+            OnSelect: |-
+                =UpdateContext({locvisColours:false,locvisRequest:false,locvisPopUp:false})
+            Width: =1366
+            ZIndex: =1
+
+        conColours_1 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Visible: =locvisColours
+            X: =866
+            ZIndex: =2
+
+            txtColoursTitle_2 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                Font: =Font.'Segoe UI'
+                FontColor: =
+                Height: =32
+                Text: ="Colours Available"
+                VerticalAlign: =VerticalAlign.Middle
+                Width: =199
+                X: =varGap
+                Y: =varGap
+                ZIndex: =3
+
+            btnCancelColours_2 As Button:
+                Appearance: ='ButtonCanvas.Appearance'.Subtle
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                Icon: ="DismissCircle"
+                OnSelect: |-
+                    =UpdateContext({locvisPopUp:false,locvisColours:false})
+                Text: ="Close"
+                Width: =96
+                X: =Parent.Width - Self.Width - varGap
+                Y: =varGap
+                ZIndex: =4
+
+            Gallery6_1 As gallery.variableTemplateHeightGallery:
+                BorderColor: =App.Theme.Colors.Darker40
+                DelayItemLoading: =true
+                Items: =colTheme
+                Layout: =Layout.Vertical
+                LoadingSpinner: =LoadingSpinner.Data
+                TemplatePadding: =varGap
+                TemplateSize: =91
+                Width: =500
+                Y: =193
+                ZIndex: =5
+
+                TextCanvas6_1 As Text:
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =32
+                    Text: =ThisItem.Category
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =6
+
+                "Gallery7_1 As gallery.'BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0'":
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DelayItemLoading: =true
+                    Height: =Self.AllItemsCount * Self.TemplateHeight
+                    Items: =ThisItem.Colours
+                    Layout: =Layout.Vertical
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TemplatePadding: =0
+                    TemplateSize: =33
+                    Width: =394
+                    X: =75
+                    ZIndex: =7
+
+                    Title1_1 As label:
+                        Color: =RGBA(0, 0, 0, 1)
+                        DisabledColor: =RGBA(166, 166, 166, 1)
+                        Fill: =If(!IsBlank(ThisItem.Hex),ColorValue(ThisItem.Hex),RGBA(ThisItem.R,ThisItem.G,ThisItem.B,ThisItem.A))
+                        Font: =App.Theme.Font
+                        FontWeight: =FontWeight.Semibold
+                        Height: =33
+                        OnSelect: =Select(Parent)
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Size: =10
+                        Text: |-
+                            =$"{ThisItem.Name}   - Hex: {ThisItem.Hex}   - RGBA({ThisItem.R}, {ThisItem.G}, {ThisItem.B}, {ThisItem.A})"
+                        VerticalAlign: =VerticalAlign.Top
+                        Width: =421
+                        ZIndex: =8
+
+        conRequest_1 As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Visible: =locvisRequest
+            X: =866
+            ZIndex: =9
+
+            TextCanvas1_4 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =32
+                Text: ="Request"
+                Width: =96
+                X: =45
+                Y: =40
+                ZIndex: =10
+
+            btnDev_6 As Button:
+                Appearance: ='ButtonCanvas.Appearance'.Subtle
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                Icon: ="DismissCircle"
+                OnSelect: |-
+                    =UpdateContext({locvisPopUp:false,locvisRequest:false})
+                Text: ="close"
+                Width: =96
+                X: =370
+                Y: =40
+                ZIndex: =11
+
+    conDeveloper_3 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =34
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =varDevMode
+        Width: =1366
+        Y: =734
+        ZIndex: =5
+
+        btnOnVis_3 As Button:
+            BasePaletteColor: =
+            BorderColor: =
+            DisplayMode: =DisplayMode.Edit
+            FontColor: =
+            Height: =32
+            OnSelect: |
+                =UpdateContext({locvisMainRight:true});
+                /*
+                Set(varTheme,
+                    {
+                        Signal: {
+                            Pink: { Hex: "#FF9A91", R: 255, G: 154, B: 145, A: 1 },
+                            Red: { Hex: "#B9251C", R: 185, G: 37,  B: 28,  A: 1 },
+                            Amber: { Hex: "#BD8400", R: 189, G: 132, B: 0,  A: 1 },
+                            LightGreen: { Hex: "#8DE8AD", R: 141, G: 232, B: 173, A: 1 },
+                            DarkGreen: { Hex: "#198038", R: 25,  G: 128, B: 56,  A: 1 }
+                        },
+                        Main:{
+                            ScreenBackground: { Hex: "#F6F4F1", R: 246, G: 244, B: 241, A: 1 },
+                            PopUpBackground: { R: 0, G: 0, B: 0, A: 0.15}
+                        },
+                        Support: {
+                            Teal: {Hex: "#4ABDCF",R: 74, G: 189, B: 207, A: 1},
+                            Blue: {Hex: "#233986",R: 35, G: 57, B: 134, A: 1},
+                            Purple: {Hex: "#542671",R: 84, G: 38, B: 113, A: 1},
+                            Magenta:{ Hex: "#E40D7E",R: 228, G: 13, B: 126, A: 1},
+                            Orange:{Hex: "#F0801B",R: 240, G: 128, B: 27, A: 1},
+                            Yellow: {Hex: "#F9E23A",R: 249, G: 226, B: 58, A: 1}
+                        }
+                    }
+                );
+                */
+                ClearCollect(
+                    colTheme,
+                    {
+                        Category: "Signal",
+                        Colours: [
+                            { Name: "Pink", Hex: "#FF9A91", R: 255, G: 154, B: 145, A: 1 },
+                            { Name: "Red", Hex: "#B9251C", R: 185, G: 37, B: 28, A: 1 },
+                            { Name: "Amber", Hex: "#BD8400", R: 189, G: 132, B: 0, A: 1 },
+                            { Name: "LightGreen", Hex: "#8DE8AD", R: 141, G: 232, B: 173, A: 1 },
+                            { Name: "DarkGreen", Hex: "#198038", R: 25, G: 128, B: 56, A: 1 }
+                        ]
+                    },
+                    {
+                        Category: "Main",
+                        Colours: [
+                            { Name: "ScreenBackground", Hex: "#F6F4F1", R: 246, G: 244, B: 241, A: 1 },
+                            { Name: "PopUpBackground", R: 0, G: 0, B: 0, A: 0.15 }
+                        ]
+                    },
+                    {
+                        Category: "Support",
+                        Colours: [
+                            { Name: "Teal", Hex: "#4ABDCF", R: 74, G: 189, B: 207, A: 1 },
+                            { Name: "Blue", Hex: "#233986", R: 35, G: 57, B: 134, A: 1 },
+                            { Name: "Purple", Hex: "#542671", R: 84, G: 38, B: 113, A: 1 },
+                            { Name: "Magenta", Hex: "#E40D7E", R: 228, G: 13, B: 126, A: 1 },
+                            { Name: "Orange", Hex: "#F0801B", R: 240, G: 128, B: 27, A: 1 },
+                            { Name: "Yellow", Hex: "#F9E23A", R: 249, G: 226, B: 58, A: 1 }
+                        ]
+                    }
+                );
+            Text: ="onVis"
+            Width: =96
+            X: =0
+            Y: =0
+            ZIndex: =39
+

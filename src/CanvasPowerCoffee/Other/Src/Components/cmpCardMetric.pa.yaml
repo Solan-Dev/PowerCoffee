@@ -1,0 +1,219 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  cmpCardMetric:
+    DefinitionType: CanvasComponent
+    AccessAppScope: true
+    CustomProperties:
+      CardValues:
+        PropertyKind: Input
+        DisplayName: CardValues
+        Description: A custom property
+        DataType: Table
+        Default: |-
+          =Table(
+              {
+                   TitleHeight:10
+                  ,TitleVis:true
+                  ,TitleFontSize:11
+                  ,TitleFontWeight:FontWeight.Bold
+                  ,SubTitleHeight:10
+                  ,SubTitleVis:true
+                  ,SubTitleFontSize:8
+                  ,SubTitleFontWeight:FontWeight.Lighter
+                  ,MainHeight:10
+                  ,MainVis:true
+                  ,MainFontSize:28
+                  ,MainFontWeight:FontWeight.Normal
+                  ,PrefixVis:false
+                  ,PrefixFontSize:10
+                  ,PrefixFontWeight:FontWeight.Normal
+                  ,SuffixVis:false
+                  ,SuffixFontSize:10
+                  ,SuffixFontWeight:FontWeight.Normal
+                  ,NoteVis:true
+                  ,NoteFontSize:8
+                  ,NoteFontWeight:FontWeight.Normal
+
+              }
+          )
+      MainColour:
+        PropertyKind: Input
+        DisplayName: MainColour
+        Description: A custom property
+        DataType: Color
+        Default: =RGBA(0, 0, 0, 1)
+      MainText:
+        PropertyKind: Input
+        DisplayName: MainText
+        Description: A custom property
+        DataType: Text
+        Default: ="Main Text"
+      NoteText:
+        PropertyKind: Input
+        DisplayName: NoteText
+        Description: A custom property
+        DataType: Text
+        Default: ="NoteText"
+      SubTitleColour:
+        PropertyKind: Input
+        DisplayName: SubTitleColour
+        Description: A custom property
+        DataType: Color
+        Default: =RGBA(0, 0, 0, 1)
+      SubTitleText:
+        PropertyKind: Input
+        DisplayName: SubTitleText
+        Description: A custom property
+        DataType: Text
+        Default: ="Text"
+      TitleColour:
+        PropertyKind: Input
+        DisplayName: TitleColour
+        Description: A custom property
+        DataType: Color
+        Default: =RGBA(0, 0, 0, 1)
+      TitleText:
+        PropertyKind: Input
+        DisplayName: TitleText
+        Description: A custom property
+        DataType: Text
+        Default: ="TitleText"
+    Properties:
+      Height: =105
+      Width: |+
+        =300
+    Children:
+      - conCard:
+          Control: GroupContainer@1.4.0
+          Variant: AutoLayout
+          Properties:
+            DropShadow: =DropShadow.None
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =cmpCardMetric.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            RadiusBottomLeft: =5
+            RadiusBottomRight: =5
+            RadiusTopLeft: =5
+            RadiusTopRight: =5
+            Width: =cmpCardMetric.Width
+          Children:
+            - conTitle:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =3
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =First(cmpCardMetric.CardValues).TitleHeight
+                  LayoutMinWidth: =Parent.Width
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                Children:
+                  - lblPrefix_2:
+                      Control: Label@2.5.1
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Start
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =cmpCardMetric.TitleColour
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =First(cmpCardMetric.CardValues).TitleFontWeight
+                        Height: =Parent.Height
+                        LayoutMinWidth: =10
+                        Size: =First(cmpCardMetric.CardValues).TitleFontSize
+                        Text: =cmpCardMetric.TitleText
+                        Visible: =First(cmpCardMetric.CardValues).TitleVis
+                        Width: =Parent.Width
+            - conSubTitle:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =3
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =First(cmpCardMetric.CardValues).SubTitleHeight
+                  LayoutMinWidth: =Parent.Width
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                Children:
+                  - lblPrefix_3:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: =cmpCardMetric.SubTitleColour
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =First(cmpCardMetric.CardValues).SubTitleFontWeight
+                        Height: =Parent.Height
+                        LayoutMinWidth: =10
+                        Size: =First(cmpCardMetric.CardValues).SubTitleFontSize
+                        Text: =cmpCardMetric.SubTitleText
+                        Visible: =First(cmpCardMetric.CardValues).SubTitleVis
+                        Width: =Parent.Width
+            - conMetric:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =6
+                  Height: =First(cmpCardMetric.CardValues).MainHeight
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =10
+                  LayoutMinWidth: =Parent.Width
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                Children:
+                  - lblValue:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        FillPortions: =4
+                        Font: =Font.'Open Sans'
+                        FontWeight: =First(cmpCardMetric.CardValues).MainFontWeight
+                        Height: =Parent.Height
+                        Size: =First(cmpCardMetric.CardValues).MainFontSize
+                        Text: =cmpCardMetric.MainText
+                        Visible: =First(cmpCardMetric.CardValues).MainVis
+                        Width: =Parent.Width
+            - conComment:
+                Control: GroupContainer@1.4.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =3
+                  Height: =90
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutMinHeight: =10
+                  LayoutMinWidth: =Parent.Width
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                Children:
+                  - lblPrefix_1:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        FillPortions: =1
+                        Font: =Font.'Open Sans'
+                        FontWeight: =First(cmpCardMetric.CardValues).NoteFontWeight
+                        Height: =Parent.Height
+                        LayoutMinWidth: =10
+                        Size: =First(cmpCardMetric.CardValues).NoteFontSize
+                        Text: =cmpCardMetric.NoteText
+                        Visible: =First(cmpCardMetric.CardValues).NoteVis
+                        Width: =Parent.Width

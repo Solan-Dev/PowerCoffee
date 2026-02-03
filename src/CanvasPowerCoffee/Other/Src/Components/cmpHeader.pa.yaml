@@ -1,0 +1,360 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+ComponentDefinitions:
+  cmpHeader:
+    DefinitionType: CanvasComponent
+    AccessAppScope: true
+    CustomProperties:
+      Font:
+        PropertyKind: Input
+        DisplayName: Font
+        Description: A custom property
+        DataType: Text
+        Default: =varFont
+      Title:
+        PropertyKind: Input
+        DisplayName: Title
+        Description: A custom property
+        DataType: Text
+        Default: =LookUp(colNav,Navigation.Name = App.ActiveScreen.Name,DisplayScreenName)
+      inLastAllocationDate:
+        PropertyKind: Input
+        DisplayName: inLastAllocationDate
+        Description: A custom property
+        DataType: DateAndTime
+        Default: =Today() - 4
+      inLastDecisionEngineDate:
+        PropertyKind: Input
+        DisplayName: inLastDecisionEngineDate
+        Description: A custom property
+        DataType: DateAndTime
+        Default: =Today() - 4
+      inNextAllocationDate:
+        PropertyKind: Input
+        DisplayName: inNextAllocationDate
+        Description: A custom property
+        DataType: DateAndTime
+        Default: =Today() + 8
+      inNextDecisionEngineDate:
+        PropertyKind: Input
+        DisplayName: inNextDecisionEngineDate
+        Description: A custom property
+        DataType: DateAndTime
+        Default: =Today() + 4
+    Properties:
+      Height: =56
+      Width: =1366
+    Children:
+      - conGlobalHeader:
+          Control: GroupContainer@1.4.0
+          Variant: AutoLayout
+          Properties:
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =56
+            LayoutDirection: =LayoutDirection.Horizontal
+            RadiusBottomLeft: =0
+            RadiusBottomRight: =0
+            RadiusTopLeft: =0
+            RadiusTopRight: =0
+            Width: =Parent.Width
+          Children:
+            - imgDiageo_1:
+                Control: Image@2.2.3
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Height: =56
+                  Image: |-
+                    ="data:image/svg+xml;utf8, "& EncodeUrl("<svg width='64' height='14' viewBox='0 0 64 14' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                    <path fill-rule='evenodd' clip-rule='evenodd' d='M61.9723 2.24644C60.6027 0.906402 59.0133 0.263184 57.096 0.263184C55.1781 0.263184 53.5339 0.906402 52.219 2.24644C50.8492 3.53288 50.1917 5.14093 50.1917 6.96339C50.1917 10.7155 53.2602 13.6636 57.096 13.6636C60.9312 13.6636 64 10.7155 64 6.96339C64 5.14093 63.2875 3.53288 61.9723 2.24644ZM8.32875 2.03221C7.06848 0.960172 5.26027 0.477758 2.84931 0.477758H0V13.4494H2.79452C5.26027 13.4494 7.12331 12.9133 8.38357 11.7877C9.80821 10.5013 10.5754 8.94682 10.5754 6.96354C10.5754 4.92669 9.80821 3.26504 8.32875 2.03221ZM12.3292 0.477758H14.521V13.4494H12.3292V0.477758ZM2.84962 11.4126C4.71263 11.4126 6.08251 10.9837 6.90443 10.2333C7.83589 9.3757 8.32907 8.30366 8.32907 6.96365C8.32907 5.57 7.83589 4.44436 6.8496 3.58673C6.02768 2.88991 4.71263 2.5147 2.84962 2.5147H2.24687V11.4126H2.84962ZM57.0416 11.5731C58.3568 11.5731 59.4523 11.1443 60.384 10.2331C61.3152 9.37549 61.7536 8.24987 61.7536 6.96344C61.7536 5.67696 61.3152 4.55135 60.384 3.69372C59.4523 2.7825 58.3568 2.30008 56.9867 2.24648C55.7264 2.24648 54.576 2.67529 53.6992 3.58652C52.8223 4.49775 52.3292 5.62338 52.3292 6.9098C52.3292 9.48271 54.4112 11.5731 57.0416 11.5731ZM42.0823 13.4494H49.3151V11.4125H44.2741V7.39237H48.8768V5.35551H44.2193V2.51462H49.3151V0.477758H42.0823V13.4494ZM34.6295 6.53456H40.5474L40.6021 6.9098C40.657 7.87462 40.5474 8.67864 40.3829 9.32185C40.1638 10.1259 39.7802 10.8227 39.2323 11.4659C38.6296 12.1627 37.9172 12.6988 37.0405 13.074C36.1638 13.4492 35.2323 13.6636 34.3008 13.6636C30.5747 13.6636 27.5062 10.6619 27.5062 7.01697C27.5062 3.26487 30.5747 0.263184 34.4104 0.263184C36.657 0.263184 38.5747 1.17441 39.9994 3.05046L38.3556 4.44411C37.2597 3.05046 35.9994 2.30004 34.4104 2.30004C33.0953 2.30004 31.9994 2.72886 31.1227 3.64008C30.1364 4.60491 29.698 5.73055 29.698 7.01697C29.698 8.24981 30.1912 9.32185 31.0679 10.1795C32.0542 11.1443 33.0953 11.6267 34.3008 11.6267C35.2871 11.6267 36.2186 11.3051 37.0405 10.6619C37.7528 10.0723 38.1912 9.37544 38.3008 8.57142H34.6295V6.53456ZM21.1509 0.424115L15.3427 13.4493H17.7537L19.0139 10.5548C19.0139 10.5012 19.0687 10.394 19.0687 10.394C19.1026 10.394 19.1365 10.4145 19.1833 10.4428C19.2122 10.4603 19.2461 10.4807 19.2879 10.5012C20.0003 10.7692 20.877 10.93 21.6989 10.93C22.5208 10.93 23.3427 10.7692 23.8358 10.6084C24.1098 10.5548 24.1646 10.5012 24.2194 10.4476C24.2194 10.4476 24.2742 10.5548 24.2742 10.6084L25.4797 13.4493H27.9454L22.2468 0.424115H21.1509ZM21.6978 8.89318C22.2458 8.89318 22.7937 8.78601 23.2321 8.67879L23.4513 8.62521C23.4513 8.51799 23.3964 8.41077 23.3417 8.35719L21.6978 4.33707L19.9991 8.30361C19.9991 8.35719 19.9444 8.46441 19.8896 8.57158C19.9444 8.57158 20.054 8.62521 20.1636 8.67879C20.6567 8.8396 21.1499 8.89318 21.6978 8.89318Z' fill='black'/>
+                    </svg>
+                    ")
+                  ImagePosition: =ImagePosition.Center
+            - rectDivide_1:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(236, 234, 230, 1)
+                  Height: =Parent.Height
+                  Width: =1
+                  X: =101
+            - htmlHeaderTitle:
+                Control: HtmlViewer@2.1.0
+                Properties:
+                  FillPortions: =1
+                  Font: =Font.'Open Sans'
+                  Height: =56
+                  HtmlText: |+
+                    =$"<p style='font-size: 10px; font-weight: normal; font-family: {cmpHeader.Font}; 
+                        background: linear-gradient(90deg, #FF7A00 0%, #FF0F00 100%);
+                        -webkit-background-clip: text; 
+                        color: transparent; 
+                        margin-bottom: 0px; 
+                        margin-top:12px;
+                        overflow: hidden;'>
+                        Scotch Intelligence Platform
+                    </p>
+                    <p style='font-size: 14px; font-weight: bold; font-family: {cmpHeader.Font}; 
+                        color: black; 
+                        margin-top: 0px; 
+                        margin-bottom:0px;
+                        overflow: hidden;'>
+                        {cmpHeader.Title}
+                    </p>"
+                  PaddingBottom: =0
+                  PaddingRight: =0
+                  PaddingTop: =0
+                  Width: =278
+                  X: =469
+            - rectDivide_2:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(236, 234, 230, 1)
+                  Height: =56
+                  Width: =1
+                  X: =1297
+            - conCalendarHeader:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  FillPortions: =0
+                  LayoutMinHeight: =Parent.Height
+                  LayoutMinWidth: =280
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                  Width: =280
+                Children:
+                  - htmlDEgraph:
+                      Control: HtmlViewer@2.1.0
+                      Properties:
+                        DisabledBorderColor: =RGBA(56, 56, 56, 1)
+                        Font: =Font.'Open Sans'
+                        Height: =9
+                        HtmlText: |+
+                          =
+                          If(IsBlank(cmpHeader.inLastDecisionEngineDate) || IsBlank(cmpHeader.inNextDecisionEngineDate),
+                          // If is blank, show the background
+                              $"<div style='width: 100%; background: rgba(236, 234, 230, 1); 
+                                  box-shadow: inset -0.5px 1px 0px rgba(0, 0, 0, 0.05); 
+                                  border-radius: 25px; overflow: hidden;'>
+                                  <div style='width: {0 / (1) * 100}% ;
+                                      height: 5px; 
+                                      background: linear-gradient(90deg, #0057FF 0%, #A6DFFF 100%);
+                                      text-align: center; 
+                                      line-height: 30px; 
+                                      color: white; 
+                                      border-radius: 25px;'>
+                                  </div>
+                              </div>",
+                          // If has values, show the progression
+                                  With(
+                                      {
+                                          CycleCountUp:Today() - cmpHeader.inLastDecisionEngineDate,
+                                          CycleRemaining:cmpHeader.inNextDecisionEngineDate - Today()
+                                      },
+                                  $"<div style='width: 100%; background: rgba(236, 234, 230, 1); 
+                                      box-shadow: inset -0.5px 1px 0px rgba(0, 0, 0, 0.05); 
+                                      border-radius: 25px; overflow: hidden;'>
+
+                                      <div style='width: {CycleCountUp / (CycleCountUp+CycleRemaining) * 100}% ;
+                                          height: 5px; 
+                                          background: linear-gradient(90deg, #0057FF 0%, #A6DFFF 100%);
+                                          text-align: center; 
+                                          line-height: 30px; 
+                                          color: white; 
+                                          border-radius: 25px;'>
+                                      </div>
+
+                                  </div>"
+                              )
+                          )
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Width: =251
+                        X: =16
+                        Y: =47
+                  - lblDECount:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Right
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: |-
+                          =If(cmpHeader.inNextDecisionEngineDate  - Today()<= 3,Color.Red,
+                          RGBA(140, 130, 122, 1))
+                        Font: =cmpHeader.Font
+                        Height: =16
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingTop: =0
+                        Size: =7
+                        Text: "=$\"50%\"/*\r\nWith(\r\n    {\r\n        CycleCountUp:Today() - cmpHeader.inLastDecisionEngineDate,\r\n        CycleRemaining:cmpHeader.inNextDecisionEngineDate - Today()\r\n    },\r\n    \r\n    $\"{Text(cmpHeader.inNextDecisionEngineDate,\"dd/mm\")} ({RoundUp(CycleRemaining,0)} Days remaining)\"\r\n)\r\n/*\r\n*/"
+                        VerticalAlign: =VerticalAlign.Bottom
+                        Visible: =If(cmpHeader.inNextDecisionEngineDate < Today(),false,true)
+                        Width: =127
+                        X: =140
+                        Y: =31
+                  - lblDETitle:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =cmpHeader.Font
+                        FontWeight: =FontWeight.Semibold
+                        Height: =15
+                        PaddingLeft: =0
+                        Size: =10
+                        Text: ="Empty Cask Places Available"
+                        Width: =210
+                        X: =16
+                        Y: =32
+                  - htmlACgraph:
+                      Control: HtmlViewer@2.1.0
+                      Properties:
+                        DisabledBorderColor: =RGBA(56, 56, 56, 1)
+                        Font: =Font.'Open Sans'
+                        Height: =9
+                        HtmlText: |-
+                          =If(IsBlank(cmpHeader.inNextAllocationDate),
+                          // If is blank, show the background
+                              $"<div style='width: 100%; background: rgba(236, 234, 230, 1); 
+                                  box-shadow: inset -0.5px 1px 0px rgba(0, 0, 0, 0.05); 
+                                  border-radius: 25px; overflow: hidden;'>
+                                  <div style='width: {0 / (1) * 100}% ;
+                                      height: 5px; 
+                                      background: linear-gradient(90deg, #FF7A00 0%, #FF0F00 100%);
+                                      text-align: center; 
+                                      line-height: 30px; 
+                                      color: white; 
+                                      border-radius: 25px;'>
+                                  </div>
+                              </div>",
+                          // If has values, show the progression
+                              With(
+                                  {
+                                      CycleCountUp:Today() - cmpHeader.inLastAllocationDate,
+                                      CycleRemaining:cmpHeader.inNextAllocationDate - Today()
+                                  },
+                                  $"<div style='width: 100%; background: rgba(236, 234, 230, 1); 
+                                      box-shadow: inset -0.5px 1px 0px rgba(0, 0, 0, 0.05); 
+                                      border-radius: 25px; overflow: hidden;'>
+
+                                      <div style='width: {CycleCountUp / (CycleCountUp+CycleRemaining) * 100}% ;
+                                          height: 5px; 
+                                          background: linear-gradient(90deg, #FF7A00 0%, #FF0F00 100%);
+                                          text-align: center; 
+                                          line-height: 30px; 
+                                          color: white; 
+                                          border-radius: 25px;'>
+                                      </div>
+
+                                  </div>"
+                              )
+                          )
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingRight: =0
+                        PaddingTop: =0
+                        Width: =251
+                        X: =16
+                        Y: =22
+                  - lblACCount:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Right
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Color: |-
+                          =// if today is within 3 days of next allocation cycle, show red
+                          If(cmpHeader.inNextAllocationDate - Today()<= 3,Color.Red,
+                          RGBA(140, 130, 122, 1))
+                        Font: =cmpHeader.Font
+                        Height: =15
+                        PaddingBottom: =0
+                        PaddingLeft: =0
+                        PaddingTop: =0
+                        Size: =7
+                        Text: "=$\"50%\"/*\r\nWith(\r\n    {\r\n        CycleCountUp:Today() - cmpHeader.inLastAllocationDate,\r\n        CycleRemaining:cmpHeader.inNextAllocationDate - Today()\r\n    },\r\n    \r\n    $\"{Text(cmpHeader.inNextAllocationDate,\"dd/mm\")}  ({RoundUp(CycleRemaining,0)} Days remaining)\"\r\n)\r\n/*\r\n*/"
+                        VerticalAlign: =VerticalAlign.Bottom
+                        Visible: =If(cmpHeader.inNextAllocationDate < Today(),false,true)
+                        Width: =99
+                        X: =168
+                        Y: =7
+                  - lblACTitle:
+                      Control: Label@2.5.1
+                      Properties:
+                        BorderColor: =RGBA(0, 18, 107, 1)
+                        Font: =cmpHeader.Font
+                        FontWeight: =FontWeight.Semibold
+                        Height: =15
+                        PaddingLeft: =0
+                        Size: =10
+                        Text: ="Filled Cask Places Available"
+                        Width: =210
+                        X: =16
+                        Y: =7
+                  - btnVisCalendar:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderColor: =RGBA(0,0,0,0)
+                        BorderThickness: =0
+                        Color: =RGBA(0,0,0,0)
+                        DisabledBorderColor: =RGBA(0,0,0,0)
+                        DisabledColor: =RGBA(0,0,0,0)
+                        DisabledFill: =RGBA(0,0,0,0)
+                        Fill: =RGBA(0,0,0,0)
+                        FocusedBorderColor: =RGBA(0,0,0,0)
+                        FocusedBorderThickness: =0
+                        Font: =Font.'Open Sans'
+                        Height: =56
+                        HoverBorderColor: =RGBA(0,0,0,0)
+                        HoverColor: =RGBA(0,0,0,0)
+                        HoverFill: =RGBA(240, 232, 245, 0.4)
+                        OnSelect: =Set(visCalendarPopup,!visCalendarPopup)
+                        PressedBorderColor: =RGBA(0,0,0,0)
+                        PressedColor: =RGBA(0,0,0,0)
+                        PressedFill: =RGBA(0,0,0,0)
+                        RadiusBottomLeft: =0
+                        RadiusBottomRight: =0
+                        RadiusTopLeft: =0
+                        RadiusTopRight: =0
+                        Text: ="varUser"
+                        Width: =280
+            - rectDivide_3:
+                Control: Rectangle@2.3.0
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Fill: =RGBA(236, 234, 230, 1)
+                  Height: =56
+                  Width: =1
+                  X: =1297
+            - imgBell_1:
+                Control: Image@2.2.3
+                Properties:
+                  BorderColor: =RGBA(0, 18, 107, 1)
+                  Height: =56
+                  Image: |-
+                    ="data:image/svg+xml;utf8,"& EncodeUrl("<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                    <path fill-rule='evenodd' clip-rule='evenodd' d='M12.12 2.9502C10.7471 2.9502 9.43855 3.53227 8.47976 4.55498C7.52212 5.57647 6.99 6.95446 6.99 8.3842C6.99 11.1434 6.43624 12.8765 5.91251 13.9007C5.65009 14.4139 5.39271 14.7541 5.21007 14.9597C5.11861 15.0627 5.04549 15.1324 4.99928 15.1734C4.97539 15.1947 4.9588 15.2087 4.94446 15.2194C4.74608 15.3639 4.66222 15.6194 4.73701 15.8536C4.81245 16.0898 5.03199 16.2502 5.28 16.2502H18.96C19.208 16.2502 19.4276 16.0898 19.503 15.8536C19.5778 15.6194 19.4937 15.3647 19.2969 15.2204C19.2533 15.1867 19.2174 15.1442 19.179 15.1048L19.1774 15.1032L19.1721 15.0978C18.9214 14.8408 18.711 14.5697 18.526 14.2599C18.0819 13.5164 17.5612 12.2662 17.3482 10.2989C17.3143 9.98588 17.0332 9.75963 16.7202 9.79351C16.4072 9.82739 16.181 10.1086 16.2148 10.4215C16.4441 12.5395 17.0126 13.9494 17.5472 14.8445C17.6036 14.9388 17.6595 15.0273 17.7145 15.1102H6.52554C6.6564 14.9129 6.79244 14.6838 6.9275 14.4197C7.54376 13.2146 8.13 11.2996 8.13 8.3842C8.13 7.23392 8.55873 6.13756 9.31143 5.33467C10.0629 4.53306 11.0741 4.0902 12.12 4.0902C12.3422 4.0902 12.5625 4.11015 12.7789 4.14916C13.0887 4.20502 13.3851 3.99915 13.441 3.68934C13.4968 3.37954 13.2909 3.08311 12.9811 3.02725C12.6985 2.9763 12.4105 2.9502 12.12 2.9502ZM4.94446 15.2194L4.94362 15.22L4.94576 15.2185L4.94446 15.2194Z' fill='#24201A'/>
+                    <circle cx='16.6469' cy='5.8002' r='2.6' fill='url(#paint0_linear_10548_15831)'/>
+                    <path fill-rule='evenodd' clip-rule='evenodd' d='M13.7211 17.4672C13.4488 17.3092 13.1 17.4019 12.942 17.6742C12.8585 17.8182 12.7386 17.9377 12.5944 18.0207C12.4502 18.1038 12.2867 18.1475 12.1202 18.1475C11.9538 18.1475 11.7903 18.1038 11.6461 18.0207C11.5019 17.9377 11.382 17.8182 11.2985 17.6742C11.1405 17.4019 10.7917 17.3092 10.5194 17.4672C10.2471 17.6251 10.1544 17.9739 10.3124 18.2462C10.4961 18.563 10.7598 18.8259 11.0771 19.0086C11.3944 19.1913 11.7541 19.2875 12.1202 19.2875C12.4864 19.2875 12.8461 19.1913 13.1634 19.0086C13.4807 18.8259 13.7444 18.563 13.9281 18.2462C14.0861 17.9739 13.9934 17.6251 13.7211 17.4672Z' fill='#24201A'/>
+                    <defs>
+                    <linearGradient id='paint0_linear_10548_15831' x1='14.0469' y1='5.8002' x2='19.2469' y2='5.8002' gradientUnits='userSpaceOnUse'>
+                    <stop stop-color='#FF7A00'/>
+                    <stop offset='1' stop-color='#FF0F00'/>
+                    </linearGradient>
+                    </defs>
+                    </svg>
+
+                    ")
+                  ImagePosition: =ImagePosition.Center
+                  Width: =68
+                  X: =1

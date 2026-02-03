@@ -1,0 +1,2366 @@
+VacuityScreen As screen:
+    Fill: =RGBA(246, 244, 240,1)
+    LoadingSpinnerColor: =App.Theme.Colors.Primary
+    OnVisible: =Select(btnOnVis_4)
+
+    cmpNavBar_6 As cmpNavBar:
+        Height: =767
+        navItems: |-
+            =colNav
+            /*
+            Table(
+                {
+                    ScreenName:["TemplateScreen",""]
+                    ,DisplayScreenName:"TemplateScreen"
+                    ,Navigation:TemplateScreen
+                    ,DefaultPathColour:"'#FFFFFF'"
+                    ,LogoHeight:"'28'"
+                    ,LogoWidth:"'48'"
+                    ,ViewBox:"'1 1 46 26'"
+                    ,SelectedPathColour:"<linearGradient id='StrokeGradient' x1='0' y1='10' x2='48' y2='28' gradientUnits='userSpaceOnUse'><stop stop-color='#FF7A00'/><stop offset='1' stop-color='#FF0F00'/></linearGradient>"
+                    ,LogoPath:"d='M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z'"
+                    ,LogoStrokeWidth:"'1'"
+                    ,LogoFill:"'none'"
+                    ,TextSize:10
+                    ,TextColour:RGBA(255,255,255,1)
+                },
+                {
+                    ScreenName:["TemplateControls",""]
+                    ,DisplayScreenName:"TemplateControls"
+                    ,Navigation:TemplateControls
+                    ,DefaultPathColour:"'#FFFFFF'"
+                    ,LogoHeight:"'28'"
+                    ,LogoWidth:"'48'"
+                    ,ViewBox:"'1 1 46 26'"
+                    ,SelectedPathColour:"<linearGradient id='StrokeGradient' x1='0' y1='10' x2='20' y2='10' gradientUnits='userSpaceOnUse'><stop stop-color='#FF7A00'/><stop offset='1' stop-color='#FF0F00'/></linearGradient>"
+                    ,LogoPath:"d='M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z'"
+                    ,LogoStrokeWidth:"'1'"
+                    ,LogoFill:"'none'"
+                    ,TextSize:10
+                    ,TextColour:RGBA(255,255,255,1)
+                }
+            )
+            /*
+            */
+        TopGap: =56
+
+    cmpHeader_3 As cmpHeader:
+        Height: |
+            =60
+        Title: ="Overview of Warehouse Operational Status"//LookUp(colNav,Navigation.Name = App.ActiveScreen.Name,DisplayScreenName)
+        ZIndex: =2
+
+    conScreen_3 As groupContainer.verticalAutoLayoutContainer:
+        Height: =708
+        LayoutDirection: =LayoutDirection.Vertical
+        LayoutGap: |
+            =varGap*0.25
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        LayoutMode: =LayoutMode.Auto
+        PaddingBottom: =varGap *0.25
+        PaddingLeft: =varGap *0.25
+        PaddingRight: =varGap *0.25
+        PaddingTop: =varGap *0.25
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =1302
+        X: =64
+        Y: =60
+        ZIndex: =3
+
+        conFilters_3 As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 0)
+            FillPortions: =0
+            Height: =45
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutGap: =varGap
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =varGap*0.25
+            PaddingLeft: =varGap*0.5
+            PaddingRight: =varGap*0.25
+            PaddingTop: =varGap*0.25
+            ZIndex: =1
+
+            conLeftFilterBlock_3 As groupContainer.horizontalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =11
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutGap: =varGap
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - (Parent.PaddingTop + Parent.PaddingBottom)
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =varGap*0.5
+                PaddingLeft: =varGap*0.5
+                PaddingRight: =varGap*0.5
+                PaddingTop: =varGap*0.5
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =13
+
+                txtFilterTitle As Text:
+                    Align: ='TextCanvas.Align'.End
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: |-
+                        ="Filters:"
+                    VerticalAlign: =VerticalAlign.Middle
+                    Width: =48
+                    X: =0
+                    Y: =0
+                    ZIndex: =1
+
+                ddSites As Dropdown.pcfdataset:
+                    DefaultSelectedItems: =varUserDefaultSite
+                    DisplayMode: =DisplayMode.Edit
+                    Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
+                    Items: =colSites
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    Width: =150
+                    X: =0
+                    Y: =0
+                    ZIndex: =2
+
+                    SiteID3_1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="SiteID"
+                        FieldName: ="SiteID"
+                        FieldType: ="g"
+                        FieldVariantName: ="textualColumn"
+                        Order: =2
+                        ZIndex: =40
+
+                    SiteName3_1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="SiteName"
+                        FieldName: ="SiteName"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =41
+
+                ddWarehouses As Dropdown.pcfdataset:
+                    DefaultSelectedItems: =
+                    DisplayMode: =If(IsBlank(ddSites.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+                    Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
+                    Items: =Filter(colWarehouses,SiteID =ddSites.Selected.SiteID)
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    Width: =150
+                    X: =0
+                    Y: =0
+                    ZIndex: =3
+
+                    WarehouseID1_1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="WarehouseID"
+                        FieldName: ="WarehouseID"
+                        FieldType: ="g"
+                        FieldVariantName: ="textualColumn"
+                        Order: =2
+                        ZIndex: =42
+
+                    WarehouseName3_1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="WarehouseName"
+                        FieldName: ="WarehouseName"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =43
+
+                    SiteID4_1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="SiteID"
+                        FieldName: ="SiteID"
+                        FieldType: ="g"
+                        FieldVariantName: ="textualColumn"
+                        Order: =3
+                        ZIndex: =44
+
+                ddDoors As Dropdown.pcfdataset:
+                    DefaultSelectedItems: =
+                    DisplayMode: =If(IsBlank(ddWarehouses.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+                    Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
+                    Items: =Filter(colDoors,WarehouseID=ddWarehouses.Selected.WarehouseID)
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =320
+                    OnChange: |-
+                        =Reset(ddRacksLow);
+                        Reset(ddRacksHigh);
+                        Reset(ddTiersLow);
+                        Reset(ddTiersHigh);
+                    Width: =150
+                    X: =0
+                    Y: =0
+                    ZIndex: =4
+
+                    DoorID1_1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="DoorID"
+                        FieldName: ="DoorID"
+                        FieldType: ="g"
+                        FieldVariantName: ="textualColumn"
+                        Order: =2
+                        ZIndex: =45
+
+                    DoorName1_1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="DoorName"
+                        FieldName: ="DoorName"
+                        FieldType: ="s"
+                        FieldVariantName: ="textualColumn"
+                        Order: =1
+                        ZIndex: =46
+
+                    WarehouseID2_1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                        FieldDisplayName: ="WarehouseID"
+                        FieldName: ="WarehouseID"
+                        FieldType: ="g"
+                        FieldVariantName: ="textualColumn"
+                        Order: =3
+                        ZIndex: =47
+
+                btnSearchLocations_2 As Button:
+                    BasePaletteColor: =
+                    BorderColor: =
+                    DisplayMode: =If(IsBlank(ddDoors.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+                    FontColor: =
+                    FontSize: =11
+                    Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
+                    Icon: ="AppsListDetail"
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    OnSelect: |-
+                        =UpdateContext({locvisRackTierFilter:true})
+                    Text: ="R&T Filter"
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =5
+
+                btnSearchLocations_1 As Button:
+                    Appearance: ='ButtonCanvas.Appearance'.Secondary
+                    BasePaletteColor: =
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
+                    Icon: ="ArrowReset"
+                    Layout: ='ButtonCanvas.Layout'.IconOnly
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    OnSelect: |-
+                        =Reset(ddSites);
+                        Reset(ddWarehouses);
+                        Reset(ddDoors);
+                        Reset(ddRacksLow);
+                        Reset(ddRacksHigh);
+                        Reset(ddTiersLow);
+                        Reset(ddTiersHigh);
+                        Clear(colSelectedLocations);
+                    Text: =
+                    Width: =36
+                    X: =0
+                    Y: =0
+                    ZIndex: =7
+
+                btnSearchLocations_8 As Button:
+                    BasePaletteColor: =
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
+                    Icon: ="Search"
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    OnSelect: |
+                        =// 1. Add closure columns as blank to colSelectedLocations
+                        ClearCollect(
+                            colSelectedLocations,
+                            AddColumns(
+                                Filter(
+                                    colLocations,
+                                    (IsBlank(ddSites.Selected) || SiteID = ddSites.Selected.SiteID),
+                                    (IsBlank(ddWarehouses.Selected) || WarehouseID = ddWarehouses.Selected.WarehouseID),
+                                    (IsBlank(ddDoors.Selected) || DoorID = ddDoors.Selected.DoorID),
+                        // RackCode is not blank, and is between two values
+                                    (IsBlank(ddRacksLow.Selected) || IsBlank(ddRacksHigh.Selected) ||  
+                                        (RackCode >= Value(ddRacksLow.Selected.Value) && RackCode <= Value(ddRacksHigh.Selected.Value))),
+                        // TierCode is not blank and is between two values
+                                    (IsBlank(ddTiersLow.Selected) || IsBlank(ddTiersHigh.Selected) || 
+                                        (TierCode >= Value(ddTiersLow.Selected.Value) && TierCode <= Value(ddTiersHigh.Selected.Value)))
+                                ),
+                            ClosedDate, DateTimeValue("2000-01-01"),
+                            ExpectedOpenDate, DateTimeValue("2000-01-02"),
+                            ClosedReason, "Init",
+                            ClosedReasonDescription, "Init desc",
+                            ClosedOn, DateTimeValue("2000-01-01")
+                            )
+                        );
+                        
+                        // 2. Patch in closure values for matched locations
+                        ForAll(
+                            colClosedLocations,
+                            With(
+                                {
+                                    index: ThisRecord
+                                },
+                                Patch(
+                                    colSelectedLocations,
+                                    LookUp(colSelectedLocations,LocationID = index.LocationID),
+                                    {
+                                        ClosedDate: index.ClosedDate, // not working
+                                        ExpectedOpenDate: index.ExpectedOpenDate, // not working
+                                        ClosedReason: index.ClosedReason, // not working
+                                        ClosedReasonDescription: index.ClosedReasonDescription // not working
+                                    }
+                                )
+                            )
+                        );
+                    Text: ="Search"
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =8
+
+                Toggle1 As Toggle:
+                    BasePaletteColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =35
+                    Label: ="Open/Closed"
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =35
+                    LayoutMinWidth: =113
+                    OnCheck: =false
+                    OnUncheck: =false
+                    Width: =196
+                    X: =0
+                    Y: =0
+                    ZIndex: =9
+
+            conFloatFilter_3 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - Parent.PaddingTop - Parent.PaddingBottom
+                LayoutMinWidth: =96
+                PaddingBottom: =varGap *0.5
+                PaddingLeft: =varGap *0.5
+                PaddingRight: =varGap *0.5
+                PaddingTop: =varGap *0.5
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =20
+
+                btnSearchLocations_9 As Button:
+                    BasePaletteColor: =
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    FontColor: =
+                    Height: =Parent.Height - (Parent.PaddingBottom + Parent.PaddingTop)
+                    Icon: ="DocumentAdd"
+                    OnSelect: |-
+                        =UpdateContext({locvisPopUp:true,locvisNewClosed:true})
+                    Text: ="New"
+                    Width: =96
+                    X: =5
+                    Y: =5
+                    ZIndex: =1
+
+        conHeadlineMetrics_3 As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 0)
+            FillPortions: =0
+            Height: =100
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutGap: |
+                =varGap *0.5
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =varGap*0.25
+            PaddingLeft: =varGap*0.5
+            PaddingRight: =varGap*0.25
+            PaddingTop: =varGap*0.25
+            ZIndex: =2
+
+            conMetric_5 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                FillPortions: =4
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - (Parent.PaddingTop + Parent.PaddingBottom)
+                LayoutMinWidth: =210
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =1
+
+                cmpCardMetric_5 As cmpCardMetric:
+                    Height: =Parent.Height
+                    MainText: =Sum(colSelectedLocations,CaskNumber)
+                    TitleText: ="Total Cask Places (Capacity)"//Cask count
+                    Width: =Parent.Width
+
+            conMetric_11 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                FillPortions: =4
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - (Parent.PaddingTop + Parent.PaddingBottom)
+                LayoutMinWidth: =210
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =2
+
+                cmpCardMetric_11 As cmpCardMetric:
+                    Height: =Parent.Height
+                    MainText: =Sum(Filter(colSelectedLocations,IsOpen),CaskNumber)
+                    TitleText: ="Total Filled Cask Places"
+                    Width: =Parent.Width
+
+            conMetric_12 As groupContainer.manualLayoutContainer:
+                DropShadow: =DropShadow.Light
+                FillPortions: =4
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - (Parent.PaddingTop + Parent.PaddingBottom)
+                LayoutMinWidth: =210
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =3
+
+                cmpCardMetric_12 As cmpCardMetric:
+                    Height: =Parent.Height
+                    MainText: =Sum(Filter(colSelectedLocations,!IsOpen),CaskNumber)
+                    TitleText: ="Total Empty Cask Places"
+                    Width: =Parent.Width
+
+        conMain_3 As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 0)
+            Height: =45
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutGap: |
+                =varGap *0.5
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =varGap*0.25
+            PaddingLeft: =varGap*0.5
+            PaddingRight: =varGap*0.25
+            PaddingTop: =varGap*0.25
+            ZIndex: =3
+
+            conLeftMain_3 As groupContainer.horizontalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =9
+                LayoutDirection: =LayoutDirection.Vertical
+                LayoutGap: =varGap
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - (Parent.PaddingTop + Parent.PaddingBottom)
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =varGap *0.5
+                PaddingLeft: =varGap *0.5
+                PaddingRight: =varGap *0.5
+                PaddingTop: =varGap *0.5
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =29
+
+                conHeaders As groupContainer.horizontalAutoLayoutContainer:
+                    DropShadow: =DropShadow.Light
+                    FillPortions: =0
+                    Height: =64
+                    LayoutGridColumns: =6
+                    LayoutGridRows: =6
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =100
+                    LayoutMinWidth: =250
+                    LayoutMode: =LayoutMode.Auto
+                    LayoutOverflowX: =LayoutOverflow.Scroll
+                    PaddingLeft: =varGap*1.5
+                    RadiusBottomLeft: =4
+                    RadiusBottomRight: =4
+                    RadiusTopLeft: =4
+                    RadiusTopRight: =4
+                    ZIndex: =1
+
+                    txtHeader_1 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Site"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =32
+                        X: =0
+                        Y: =0
+                        ZIndex: =1
+
+                    txtHeader_2 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Warehouse"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =2
+
+                    txtHeader_3 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Door"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =64
+                        X: =0
+                        Y: =0
+                        ZIndex: =3
+
+                    txtHeader_4 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Rack"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =64
+                        X: =0
+                        Y: =0
+                        ZIndex: =4
+
+                    txtHeader_5 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Tier"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =64
+                        X: =0
+                        Y: =0
+                        ZIndex: =5
+
+                    txtHeader_11 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Storage Type"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =6
+
+                    txtHeader_6 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Status"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =7
+
+                    txtHeader_15 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Total Cask Places"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =8
+
+                    txtHeader_17 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Total Filled Cask Places"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =9
+
+                    txtHeader_16 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Total Empty Cask Places"
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =10
+
+                    txtHeader_8 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Closed Description"
+                        Visible: =Toggle1.Checked
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =11
+
+                    txtHeader_13 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Closed date"
+                        Visible: =Toggle1.Checked
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =12
+
+                    txtHeader_9 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Expected Open Date"
+                        Visible: =Toggle1.Checked
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =64
+                        X: =0
+                        Y: =0
+                        ZIndex: =13
+
+                    txtHeader_14 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Days Closed"
+                        Visible: =Toggle1.Checked
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =14
+
+                    txtHeader_7 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Closed Reason"
+                        Visible: =Toggle1.Checked
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =15
+
+                    txtHeader_10 As Text:
+                        AutoHeight: =false
+                        BorderColor: =
+                        DisplayMode: =DisplayMode.Edit
+                        Fill: =
+                        FontColor: =
+                        Height: =Parent.Height
+                        LayoutMaxHeight: =0
+                        LayoutMaxWidth: =0
+                        LayoutMinHeight: =32
+                        LayoutMinWidth: =96
+                        Text: ="Closed By"
+                        Visible: =Toggle1.Checked
+                        Weight: ='TextCanvas.Weight'.Semibold
+                        Width: =96
+                        X: =0
+                        Y: =0
+                        ZIndex: =16
+
+                galRackAndTier As gallery.variableTemplateHeightGallery:
+                    BorderColor: =App.Theme.Colors.Darker40
+                    DelayItemLoading: =true
+                    Items: =SortByColumns(Filter(colSelectedLocations,IsOpen = Toggle1.Checked),"SiteID",SortOrder.Ascending,"WarehouseID",SortOrder.Ascending,"DoorID",SortOrder.Ascending,"RackCode",SortOrder.Ascending)
+                    Layout: =Layout.Vertical
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =287
+                    LayoutMinWidth: =320
+                    LoadingSpinner: =LoadingSpinner.Data
+                    TemplateSize: =32
+                    Transition: =Transition.Pop
+                    ZIndex: =2
+
+                    conRackAndTierValues As groupContainer.horizontalAutoLayoutContainer:
+                        DropShadow: =DropShadow.Light
+                        Height: =Parent.TemplateHeight
+                        LayoutGap: |
+                            =2
+                        LayoutGridColumns: =6
+                        LayoutGridRows: =6
+                        LayoutMode: =LayoutMode.Auto
+                        PaddingLeft: =varGap
+                        RadiusBottomLeft: =4
+                        RadiusBottomRight: =4
+                        RadiusTopLeft: =4
+                        RadiusTopRight: =4
+                        Width: =Parent.TemplateWidth - Parent.TemplatePadding - varGap
+                        ZIndex: =1
+
+                        txtSiteID As Text:
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =LookUp(colSites,SiteID=ThisItem.SiteID,SiteName)
+                            VerticalAlign: =VerticalAlign.Middle
+                            Width: =48
+                            X: =0
+                            Y: =0
+                            ZIndex: =1
+
+                        txtWarehouseID As Text:
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =LookUp(colWarehouses,WarehouseID = ThisItem.WarehouseID,WarehouseName)
+                            VerticalAlign: =VerticalAlign.Middle
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =2
+
+                        txtDoor As Text:
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =LookUp(colDoors,DoorID = ThisItem.DoorID,DoorName)
+                            VerticalAlign: =VerticalAlign.Middle
+                            Width: =64
+                            X: =0
+                            Y: =0
+                            ZIndex: =3
+
+                        txtRack As Text:
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =$"Rack {ThisItem.RackCode}"
+                            VerticalAlign: =VerticalAlign.Middle
+                            Width: =64
+                            X: =0
+                            Y: =0
+                            ZIndex: =4
+
+                        txtTier As Text:
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =$"Tier {ThisItem.TierCode}"
+                            VerticalAlign: =VerticalAlign.Middle
+                            Width: =64
+                            X: =0
+                            Y: =0
+                            ZIndex: =5
+
+                        txtTier_7 As Text:
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =ThisItem.StorageType
+                            VerticalAlign: =VerticalAlign.Middle
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =6
+
+                        txtTier_1 As Text:
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =$"{If(ThisItem.IsOpen,"Closed","Open")}"
+                            VerticalAlign: =VerticalAlign.Middle
+                            Width: =64
+                            X: =0
+                            Y: =0
+                            ZIndex: =7
+
+                        txtTier_10 As Text:
+                            Align: ="Start"
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =$"{Text(ThisItem.ClosedDate,"dd/mm/yy")}"
+                            VerticalAlign: =VerticalAlign.Middle
+                            Visible: =Toggle1.Checked
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =8
+
+                        txtTier_11 As Text:
+                            Align: ="Start"
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =$"{Text(ThisItem.ClosedDate,"dd/mm/yy")}"
+                            VerticalAlign: =VerticalAlign.Middle
+                            Visible: =Toggle1.Checked
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =9
+
+                        txtTier_12 As Text:
+                            Align: ="Start"
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =$"{Text(ThisItem.ClosedDate,"dd/mm/yy")}"
+                            VerticalAlign: =VerticalAlign.Middle
+                            Visible: =Toggle1.Checked
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =10
+
+                        txtTier_2 As Text:
+                            Align: ="Start"
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =$"{Text(ThisItem.ClosedDate,"dd/mm/yy")}"
+                            VerticalAlign: =VerticalAlign.Middle
+                            Visible: =Toggle1.Checked
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =11
+
+                        txtTier_4 As Text:
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =$"{Text(ThisItem.ExpectedOpenDate,"dd/mm/yy")}"
+                            VerticalAlign: =VerticalAlign.Middle
+                            Visible: =Toggle1.Checked
+                            Width: =64
+                            X: =0
+                            Y: =0
+                            ZIndex: =12
+
+                        txtTier_9 As Text:
+                            Align: ='TextCanvas.Align'.Center
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =If(Value(Self.Text) > 5, ColorValue(varTheme.Signal.Pink.Hex),ColorValue(varTheme.Signal.LightGreen.Hex))
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =ThisItem.ExpectedOpenDate - ThisItem.ClosedDate
+                            VerticalAlign: =VerticalAlign.Middle
+                            Visible: =Toggle1.Checked
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =13
+
+                        txtTier_5 As Text:
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =$"{ThisItem.ClosedReason}"
+                            VerticalAlign: =VerticalAlign.Middle
+                            Visible: =Toggle1.Checked
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =14
+
+                        txtTier_3 As Text:
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =$"Closed DEsc{ThisItem.ClosedReasonDescription}"
+                            VerticalAlign: =VerticalAlign.Middle
+                            Visible: =Toggle1.Checked
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =15
+
+                        txtTier_6 As Text:
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =User().FullName
+                            VerticalAlign: =VerticalAlign.Middle
+                            Visible: =Toggle1.Checked
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =16
+
+                        txtTier_8 As Text:
+                            BorderColor: =
+                            DisplayMode: =DisplayMode.Edit
+                            Fill: =
+                            FontColor: =
+                            Height: =Parent.Height
+                            LayoutMaxHeight: =0
+                            LayoutMaxWidth: =0
+                            LayoutMinHeight: =32
+                            LayoutMinWidth: =96
+                            Text: =ThisItem.CaskNumber
+                            VerticalAlign: =VerticalAlign.Middle
+                            Width: =96
+                            X: =0
+                            Y: =0
+                            ZIndex: =17
+
+        conSummary_1 As groupContainer.horizontalAutoLayoutContainer:
+            Fill: =RGBA(255, 255, 255, 0)
+            FillPortions: =0
+            Height: =45
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutGap: =varGap
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            LayoutMaxHeight: =0
+            LayoutMaxWidth: =0
+            LayoutMinHeight: =100
+            LayoutMinWidth: =250
+            LayoutMode: =LayoutMode.Auto
+            PaddingBottom: =varGap*0.25
+            PaddingLeft: =varGap*0.5
+            PaddingRight: =varGap*0.25
+            PaddingTop: =varGap*0.25
+            ZIndex: =4
+
+            conLeftFilterBlock_6 As groupContainer.horizontalAutoLayoutContainer:
+                DropShadow: =DropShadow.Light
+                Fill: =RGBA(255, 255, 255, 1)
+                FillPortions: =11
+                LayoutAlignItems: =LayoutAlignItems.Center
+                LayoutGap: =varGap
+                LayoutGridColumns: =6
+                LayoutGridRows: =6
+                LayoutMaxHeight: =0
+                LayoutMaxWidth: =0
+                LayoutMinHeight: =Parent.Height - (Parent.PaddingTop + Parent.PaddingBottom)
+                LayoutMinWidth: =250
+                LayoutMode: =LayoutMode.Auto
+                PaddingBottom: =varGap*0.5
+                PaddingLeft: =varGap*0.5
+                PaddingRight: =varGap*0.5
+                PaddingTop: =varGap*0.5
+                RadiusBottomLeft: =4
+                RadiusBottomRight: =4
+                RadiusTopLeft: =4
+                RadiusTopRight: =4
+                ZIndex: =13
+
+                txtFilterTitle_4 As Text:
+                    Align: ='TextCanvas.Align'.End
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: |-
+                        =$"Total Count:"
+                    VerticalAlign: =VerticalAlign.Middle
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =2
+
+                txtFilterTitle_5 As Text:
+                    Align: ='TextCanvas.Align'.Start
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: |-
+                        =$"Rows: {galRackAndTier.AllItemsCount}"
+                    VerticalAlign: =VerticalAlign.Middle
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =3
+
+                txtFilterTitle_6 As Text:
+                    Align: ='TextCanvas.Align'.Start
+                    BorderColor: =
+                    DisplayMode: =DisplayMode.Edit
+                    Fill: =
+                    FontColor: =
+                    Height: =32
+                    LayoutMaxHeight: =0
+                    LayoutMaxWidth: =0
+                    LayoutMinHeight: =32
+                    LayoutMinWidth: =96
+                    Text: |-
+                        =$"Casks: {Sum(Filter(colSelectedLocations,IsOpen = Toggle1.Checked),CaskNumber)}"
+                    VerticalAlign: =VerticalAlign.Middle
+                    Width: =96
+                    X: =0
+                    Y: =0
+                    ZIndex: =4
+
+    conDeveloper_4 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =34
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =varDevMode
+        Width: =64
+        Y: =734
+        ZIndex: =4
+
+        btnOnVis_4 As Button:
+            BasePaletteColor: =
+            BorderColor: =
+            DisplayMode: =DisplayMode.Edit
+            FontColor: =
+            Height: =34
+            OnSelect: |-
+                =UpdateContext({locvisMainRight:true});
+            Text: ="onVis"
+            Width: =64
+            X: =0
+            Y: =0
+            ZIndex: =39
+
+    conPopUp_3 As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Height: =768
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =locvisPopUp
+        Width: =1366
+        ZIndex: =5
+
+        Rectangle1_2 As rectangle:
+            BorderColor: =App.Theme.Colors.Darker40
+            Fill: =RGBA(varTheme.Main.PopUpBackground.R,varTheme.Main.PopUpBackground.G,varTheme.Main.PopUpBackground.B,varTheme.Main.PopUpBackground.A)
+            Height: =768
+            OnSelect: |-
+                =UpdateContext({locvisNewClosed:false,locvisPopUp:false})
+            Width: =1366
+            ZIndex: =1
+
+        conNewClosed As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Light
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =768
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Visible: =locvisNewClosed
+            X: =866
+            ZIndex: =9
+
+            TextCanvas1_6 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =32
+                Text: ="Record Closure"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =96
+                X: =30
+                Y: =20
+                ZIndex: =10
+
+            btnDev_7 As Button:
+                Appearance: ='ButtonCanvas.Appearance'.Secondary
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                Icon: ="DismissCircle"
+                OnSelect: |-
+                    =UpdateContext({locvisPopUp:false,locvisNewClosed:false})
+                Text: ="Close"
+                Width: =96
+                X: =370
+                Y: =20
+                ZIndex: =11
+
+            ddSites_2 As Dropdown.pcfdataset:
+                DefaultSelectedItems: =ddSites.Selected
+                DisplayMode: =DisplayMode.Edit
+                Height: =32
+                Items: =colSites
+                Width: =256
+                X: =156
+                Y: =90
+                ZIndex: =12
+
+                SiteID3_3 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="SiteID"
+                    FieldName: ="SiteID"
+                    FieldType: ="g"
+                    FieldVariantName: ="textualColumn"
+                    Order: =2
+                    ZIndex: =40
+
+                SiteName3_3 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="SiteName"
+                    FieldName: ="SiteName"
+                    FieldType: ="s"
+                    FieldVariantName: ="textualColumn"
+                    Order: =1
+                    ZIndex: =41
+
+            ddWarehouses_2 As Dropdown.pcfdataset:
+                DefaultSelectedItems: =ddWarehouses.Selected
+                DisplayMode: =If(IsBlank(ddSites_2.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+                Height: =32
+                Items: =Filter(colWarehouses,SiteID =ddSites_2.Selected.SiteID)
+                Width: =256
+                X: =156
+                Y: =125
+                ZIndex: =13
+
+                WarehouseID1_3 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="WarehouseID"
+                    FieldName: ="WarehouseID"
+                    FieldType: ="g"
+                    FieldVariantName: ="textualColumn"
+                    Order: =2
+                    ZIndex: =42
+
+                WarehouseName3_3 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="WarehouseName"
+                    FieldName: ="WarehouseName"
+                    FieldType: ="s"
+                    FieldVariantName: ="textualColumn"
+                    Order: =1
+                    ZIndex: =43
+
+                SiteID4_3 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="SiteID"
+                    FieldName: ="SiteID"
+                    FieldType: ="g"
+                    FieldVariantName: ="textualColumn"
+                    Order: =3
+                    ZIndex: =44
+
+            ddDoors_2 As Dropdown.pcfdataset:
+                DefaultSelectedItems: =ddDoors.Selected
+                DisplayMode: =If(IsBlank(ddWarehouses_2.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+                Height: =32
+                Items: =Filter(colDoors,WarehouseID=ddWarehouses_2.Selected.WarehouseID)
+                Width: =256
+                X: =156
+                Y: =161
+                ZIndex: =14
+
+                DoorID1_3 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="DoorID"
+                    FieldName: ="DoorID"
+                    FieldType: ="g"
+                    FieldVariantName: ="textualColumn"
+                    Order: =2
+                    ZIndex: =45
+
+                DoorName1_3 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="DoorName"
+                    FieldName: ="DoorName"
+                    FieldType: ="s"
+                    FieldVariantName: ="textualColumn"
+                    Order: =1
+                    ZIndex: =46
+
+                WarehouseID2_3 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="WarehouseID"
+                    FieldName: ="WarehouseID"
+                    FieldType: ="g"
+                    FieldVariantName: ="textualColumn"
+                    Order: =3
+                    ZIndex: =47
+
+            RackFilter_2 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =36
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    ="Rack Filter:   From:"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =0
+                Y: =236
+                ZIndex: =15
+
+            TiersFilter_2 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =36
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    ="Tier Filter:     From:"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =0
+                Y: =272
+                ZIndex: =16
+
+            ddRacksLow_2 As Dropdown.pcfdataset:
+                DefaultSelectedItems: =ddRacksLow.Selected
+                DisplayMode: =If(IsBlank(ddDoors.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+                Height: =32
+                Items: =Distinct(Filter(colLocations,DoorID=ddDoors.Selected.DoorID),RackCode)
+                Width: =136
+                X: =156
+                Y: =243
+                ZIndex: =17
+
+            ddTiersLow_2 As Dropdown.pcfdataset:
+                DefaultSelectedItems: =ddTiersLow.Selected
+                DisplayMode: =If(IsBlank(ddDoors.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+                Height: =32
+                Items: =Distinct(Filter(colLocations,DoorID=ddDoors.Selected.DoorID),TierCode)
+                Width: =136
+                X: =156
+                Y: =279
+                ZIndex: =18
+
+            TextCanvas1_19 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =36
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    ="To:"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =56
+                X: =292
+                Y: =236
+                ZIndex: =19
+
+            TextCanvas1_20 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =36
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    ="To:"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =56
+                X: =292
+                Y: =272
+                ZIndex: =20
+
+            ddRacksHigh_2 As Dropdown.pcfdataset:
+                DefaultSelectedItems: =ddRacksHigh.Selected
+                DisplayMode: =If(IsBlank(ddRacksLow_2.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+                Height: =32
+                Items: =Distinct(Filter(colLocations,DoorID=ddDoors.Selected.DoorID,RackCode >= ddRacksLow_2.Selected.Value),RackCode)
+                Width: =136
+                X: =348
+                Y: =243
+                ZIndex: =21
+
+            ddTiersHigh_2 As Dropdown.pcfdataset:
+                DefaultSelectedItems: =ddTiersHigh.Selected
+                DisplayMode: =If(IsBlank(ddTiersLow_2.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+                Height: =32
+                Items: =Distinct(Filter(colLocations,DoorID=ddDoors.Selected.DoorID,TierCode >= ddTiersLow_2.Selected.Value),TierCode)
+                Width: =136
+                X: =348
+                Y: =279
+                ZIndex: =22
+
+            btnCloseRackandTierFilter_4 As Button:
+                Appearance: ='ButtonCanvas.Appearance'.Secondary
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =24
+                Icon: ="ArrowReset"
+                Layout: ='ButtonCanvas.Layout'.IconOnly
+                OnSelect: |-
+                    =Reset(ddSites_2);
+                    Reset(ddWarehouses_2);
+                    Reset(ddDoors_2);
+                    Reset(ddRacksLow_2);
+                    Reset(ddRacksHigh_2);
+                    Reset(ddTiersLow_2);
+                    Reset(ddTiersHigh_2);
+                Text: =
+                Width: =36
+                X: =312
+                Y: =24
+                ZIndex: =23
+
+            TiersFilter_3 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =36
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    ="Storage Type:"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =0
+                Y: =313
+                ZIndex: =24
+
+            TiersFilter_4 As Text:
+                Align: ='TextCanvas.Align'.Start
+                AutoHeight: =false
+                BorderColor: =
+                BorderRadius: =4
+                DisplayMode: =DisplayMode.Edit
+                Fill: =RGBA(245, 245, 245, 1)
+                FontColor: =
+                Height: =32
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    =First(Filter(
+                                colLocations,
+                                (IsBlank(ddSites_2.Selected) || SiteID = ddSites_2.Selected.SiteID),
+                                (IsBlank(ddWarehouses_2.Selected) || WarehouseID = ddWarehouses_2.Selected.WarehouseID),
+                                (IsBlank(ddDoors_2.Selected) || DoorID = ddDoors_2.Selected.DoorID),
+                    // RackCode is not blank, and is between two values
+                                (IsBlank(ddRacksLow_2.Selected) || IsBlank(ddRacksHigh_2.Selected) ||  
+                                    (RackCode >= Value(ddRacksLow_2.Selected.Value) && RackCode <= Value(ddRacksHigh_2.Selected.Value))),
+                    // TierCode is not blank and is between two values
+                                (IsBlank(ddTiersLow_2.Selected) || IsBlank(ddTiersHigh_2.Selected) || 
+                                    (TierCode >= Value(ddTiersLow_2.Selected.Value) && TierCode <= Value(ddTiersHigh_2.Selected.Value)))
+                            )
+                    ).StorageType
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =156
+                Y: =317
+                ZIndex: =25
+
+            TiersFilter_5 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =36
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    ="Total Cask Count:"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =0
+                Y: =349
+                ZIndex: =26
+
+            TiersFilter_6 As Text:
+                Align: ='TextCanvas.Align'.Start
+                AutoHeight: =false
+                BorderColor: =
+                BorderRadius: =4
+                DisplayMode: =DisplayMode.Edit
+                Fill: =RGBA(245, 245, 245, 1)
+                FontColor: =
+                Height: =32
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    =Sum(        Filter(
+                                colLocations,
+                                (IsBlank(ddSites_2.Selected) || SiteID = ddSites_2.Selected.SiteID),
+                                (IsBlank(ddWarehouses_2.Selected) || WarehouseID = ddWarehouses_2.Selected.WarehouseID),
+                                (IsBlank(ddDoors_2.Selected) || DoorID = ddDoors_2.Selected.DoorID),
+                    // RackCode is not blank, and is between two values
+                                (IsBlank(ddRacksLow_2.Selected) || IsBlank(ddRacksHigh_2.Selected) ||  
+                                    (RackCode >= Value(ddRacksLow_2.Selected.Value) && RackCode <= Value(ddRacksHigh_2.Selected.Value))),
+                    // TierCode is not blank and is between two values
+                                (IsBlank(ddTiersLow_2.Selected) || IsBlank(ddTiersHigh_2.Selected) || 
+                                    (TierCode >= Value(ddTiersLow_2.Selected.Value) && TierCode <= Value(ddTiersHigh_2.Selected.Value)))
+                            ),CaskNumber)
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =156
+                Y: =353
+                ZIndex: =27
+
+            TiersFilter_7 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =36
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    ="Change Status:"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =0
+                Y: =507
+                ZIndex: =28
+
+            ddIsOpen As Dropdown.pcfdataset:
+                DefaultSelectedItems: =
+                DisplayMode: =If(IsBlank(ddSites_2.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+                Height: =32
+                Items: =colLocationStatusOptions
+                Width: =150
+                X: =156
+                Y: =511
+                ZIndex: =29
+
+                Label1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="Label"
+                    FieldName: ="Label"
+                    FieldType: ="s"
+                    FieldVariantName: ="textualColumn"
+                    Order: =1
+                    ZIndex: =48
+
+                Value1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="Value"
+                    FieldName: ="Value"
+                    FieldType: ="n"
+                    FieldVariantName: ="textualColumn"
+                    Order: =2
+                    ZIndex: =49
+
+            TiersFilter_8 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =36
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    ="Status Reason:"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =0
+                Y: =543
+                ZIndex: =30
+
+            ddClosedReason As Dropdown.pcfdataset:
+                DefaultSelectedItems: =
+                DisplayMode: =If(IsBlank(ddSites_2.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+                Height: =32
+                Items: =colClosedReasons
+                Width: =150
+                X: =156
+                Y: =547
+                ZIndex: =31
+
+                ID1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="ID"
+                    FieldName: ="ID"
+                    FieldType: ="n"
+                    FieldVariantName: ="textualColumn"
+                    Order: =2
+                    ZIndex: =50
+
+                Reason1 As PowerApps_CoreControls_DropdownCanvasTemplate_dataField.textualColumn:
+                    FieldDisplayName: ="Reason"
+                    FieldName: ="Reason"
+                    FieldType: ="s"
+                    FieldVariantName: ="textualColumn"
+                    Order: =1
+                    ZIndex: =51
+
+            TiersFilter_9 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =36
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    ="Close Date:"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =0
+                Y: =435
+                ZIndex: =32
+
+            TiersFilter_10 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =36
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    ="Expected Open Date:"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =0
+                Y: =471
+                ZIndex: =33
+
+            TiersFilter_11 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =36
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    ="Status Comment:"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =0
+                Y: =579
+                ZIndex: =34
+
+            "dateClosedOn As 'Date picker'":
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =32
+                Width: =256
+                X: =156
+                Y: =437
+                ZIndex: =35
+
+            "dateOpenOn As 'Date picker'":
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =32
+                Width: =256
+                X: =156
+                Y: =474
+                ZIndex: =36
+
+            "txtClosedReasonDescription As 'Text input'":
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =67
+                Mode: ='TextInputCanvas.Mode'.Multiline
+                Width: =320
+                X: =71
+                Y: =615
+                ZIndex: =37
+
+            btnSearchLocations_10 As Button:
+                BasePaletteColor: =
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =32
+                Icon: ="Save"
+                OnSelect: |-
+                    =ClearCollect(coltempUpdateLocations,
+                        Filter(
+                                DropColumns(colLocations,IsOpen),
+                                (IsBlank(ddSites_2.Selected) || SiteID = ddSites_2.Selected.SiteID),
+                                (IsBlank(ddWarehouses_2.Selected) || WarehouseID = ddWarehouses_2.Selected.WarehouseID),
+                                (IsBlank(ddDoors_2.Selected) || DoorID = ddDoors_2.Selected.DoorID),
+                    // RackCode is not blank, and is between two values
+                                (IsBlank(ddRacksLow_2.Selected) || IsBlank(ddRacksHigh_2.Selected) ||  
+                                    (RackCode >= Value(ddRacksLow_2.Selected.Value) && RackCode <= Value(ddRacksHigh_2.Selected.Value))),
+                    // TierCode is not blank and is between two values
+                                (IsBlank(ddTiersLow_2.Selected) || IsBlank(ddTiersHigh_2.Selected) || 
+                                    (TierCode >= Value(ddTiersLow_2.Selected.Value) && TierCode <= Value(ddTiersHigh_2.Selected.Value)))
+                            )
+                    );
+                    
+                    ClearCollect(colUpdateLocations,
+                        AddColumns(
+                            coltempUpdateLocations,
+                            IsOpen,If(ddIsOpen.Selected.Value = 0,true,false),
+                            ClosedDate, dateClosedOn.SelectedDate,
+                            ExpectedOpenDate, dateOpenOn.SelectedDate,
+                            ClosedReason, ddClosedReason.Selected.Reason,
+                            ClosedReasonDescription,txtClosedReasonDescription.Value
+                    
+                            
+                    ));
+                    
+                    ForAll(colUpdateLocations,
+                        With(
+                            {
+                                X:ThisRecord
+                            },
+                            Patch(colSelectedLocations,LookUp(colSelectedLocations,LocationID = X.LocationID),
+                            {
+                                IsOpen:X.IsOpen,
+                                ClosedDate:X.ClosedDate,
+                                ExpectedOpenDate: X.ExpectedOpenDate,
+                                ClosedReason: X.ClosedReason,
+                                ClosedReasonDescription:X.ClosedReasonDescription
+                    
+                            }
+                            )
+                        )
+                    )
+                    /*
+                    */
+                Text: ="Save"
+                Width: =96
+                X: =370
+                Y: =695
+                ZIndex: =38
+
+            RackFilter_3 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =36
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    ="Site:"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =0
+                Y: =90
+                ZIndex: =39
+
+            TiersFilter_12 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =36
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    ="Warehouse:"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =0
+                Y: =125
+                ZIndex: =40
+
+            TiersFilter_13 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =36
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    ="Door:"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =0
+                Y: =161
+                ZIndex: =41
+
+            TiersFilter_14 As Text:
+                Align: ='TextCanvas.Align'.End
+                AutoHeight: =false
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =36
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    ="Total Locations:"
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =0
+                Y: =385
+                ZIndex: =42
+
+            TiersFilter_15 As Text:
+                Align: ='TextCanvas.Align'.Start
+                AutoHeight: =false
+                BorderColor: =
+                BorderRadius: =4
+                DisplayMode: =DisplayMode.Edit
+                Fill: =RGBA(245, 245, 245, 1)
+                FontColor: =
+                Height: =32
+                PaddingLeft: =varGap
+                PaddingRight: =varGap
+                PaddingTop: =
+                Text: |-
+                    =CountRows(Filter(
+                                colLocations,
+                                (IsBlank(ddSites_2.Selected) || SiteID = ddSites_2.Selected.SiteID),
+                                (IsBlank(ddWarehouses_2.Selected) || WarehouseID = ddWarehouses_2.Selected.WarehouseID),
+                                (IsBlank(ddDoors_2.Selected) || DoorID = ddDoors_2.Selected.DoorID),
+                    // RackCode is not blank, and is between two values
+                                (IsBlank(ddRacksLow_2.Selected) || IsBlank(ddRacksHigh_2.Selected) ||  
+                                    (RackCode >= Value(ddRacksLow_2.Selected.Value) && RackCode <= Value(ddRacksHigh_2.Selected.Value))),
+                    // TierCode is not blank and is between two values
+                                (IsBlank(ddTiersLow_2.Selected) || IsBlank(ddTiersHigh_2.Selected) || 
+                                    (TierCode >= Value(ddTiersLow_2.Selected.Value) && TierCode <= Value(ddTiersHigh_2.Selected.Value)))
+                            )
+                    )
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Regular
+                Width: =156
+                X: =156
+                Y: =389
+                ZIndex: =43
+
+            CheckboxCanvas3 As Checkbox:
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =42
+                Label: =
+                OnCheck: =false
+                OnUncheck: =false
+                Width: =42
+                X: =424
+                Y: =119
+                ZIndex: =44
+
+            CheckboxCanvas3_1 As Checkbox:
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =42
+                Label: =
+                OnCheck: =false
+                OnUncheck: =false
+                Width: =42
+                X: =424
+                Y: =80
+                ZIndex: =45
+
+            CheckboxCanvas3_2 As Checkbox:
+                BasePaletteColor: =
+                DisplayMode: =DisplayMode.Edit
+                FontColor: =
+                Height: =42
+                Label: =
+                OnCheck: =false
+                OnUncheck: =false
+                Width: =42
+                X: =424
+                Y: =151
+                ZIndex: =46
+
+            TextCanvas4 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =RGBA(189, 49, 51, 1)
+                Height: =31
+                Text: ="concat me with a distinct filter"
+                Width: =248
+                X: =236
+                Y: =322
+                ZIndex: =47
+
+            TextCanvas4_1 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =RGBA(189, 49, 51, 1)
+                Height: =31
+                Text: ="Add total days closed"
+                Width: =248
+                X: =252
+                Y: =452
+                ZIndex: =48
+
+            TextCanvas4_2 As Text:
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =RGBA(189, 49, 51, 1)
+                Height: =93
+                Text: ="Hold physical closures when site wide tactical closures occur"
+                Width: =155
+                X: =269
+                Y: =97
+                ZIndex: =49
+
+    conRackandTierFilter As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Bold
+        Fill: =RGBA(255, 255, 255, 1)
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Visible: =locvisRackTierFilter
+        X: =235
+        Y: =110
+        ZIndex: =6
+
+        RackandTierFilterTitle As Text:
+            Align: ='TextCanvas.Align'.Start
+            AutoHeight: =false
+            BorderColor: =
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =36
+            PaddingLeft: =varGap
+            PaddingRight: =varGap
+            PaddingTop: =
+            Text: |-
+                ="Rack and Tier Filter:"
+            VerticalAlign: =VerticalAlign.Middle
+            Weight: ='TextCanvas.Weight'.Semibold
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =21
+
+        RackFilter As Text:
+            Align: ='TextCanvas.Align'.End
+            AutoHeight: =false
+            BorderColor: =
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =36
+            PaddingLeft: =varGap
+            PaddingRight: =varGap
+            PaddingTop: =
+            Text: |-
+                ="Rack Filter:   From:"
+            VerticalAlign: =VerticalAlign.Middle
+            Weight: ='TextCanvas.Weight'.Regular
+            Width: =156
+            X: =0
+            Y: =36
+            ZIndex: =22
+
+        TiersFilter As Text:
+            Align: ='TextCanvas.Align'.End
+            AutoHeight: =false
+            BorderColor: =
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =36
+            PaddingLeft: =varGap
+            PaddingRight: =varGap
+            PaddingTop: =
+            Text: |-
+                ="Tier Filter:     From:"
+            VerticalAlign: =VerticalAlign.Middle
+            Weight: ='TextCanvas.Weight'.Regular
+            Width: =156
+            X: =0
+            Y: =72
+            ZIndex: =23
+
+        ddRacksLow As Dropdown.pcfdataset:
+            DefaultSelectedItems: =
+            DisplayMode: =If(IsBlank(ddDoors.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+            Height: =24
+            Items: =Distinct(Filter(colLocations,DoorID=ddDoors.Selected.DoorID),RackCode)
+            Width: =136
+            X: =156
+            Y: =43
+            ZIndex: =24
+
+        ddTiersLow As Dropdown.pcfdataset:
+            DefaultSelectedItems: =
+            DisplayMode: =If(IsBlank(ddDoors.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+            Height: =24
+            Items: =Distinct(Filter(colLocations,DoorID=ddDoors.Selected.DoorID),TierCode)
+            Width: =136
+            X: =156
+            Y: =79
+            ZIndex: =25
+
+        TextCanvas1_15 As Text:
+            Align: ='TextCanvas.Align'.End
+            AutoHeight: =false
+            BorderColor: =
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =36
+            PaddingLeft: =varGap
+            PaddingRight: =varGap
+            PaddingTop: =
+            Text: |-
+                ="To:"
+            VerticalAlign: =VerticalAlign.Middle
+            Weight: ='TextCanvas.Weight'.Regular
+            Width: =56
+            X: =292
+            Y: =36
+            ZIndex: =26
+
+        TextCanvas1_16 As Text:
+            Align: ='TextCanvas.Align'.End
+            AutoHeight: =false
+            BorderColor: =
+            DisplayMode: =DisplayMode.Edit
+            Fill: =
+            FontColor: =
+            Height: =36
+            PaddingLeft: =varGap
+            PaddingRight: =varGap
+            PaddingTop: =
+            Text: |-
+                ="To:"
+            VerticalAlign: =VerticalAlign.Middle
+            Weight: ='TextCanvas.Weight'.Regular
+            Width: =56
+            X: =292
+            Y: =72
+            ZIndex: =27
+
+        ddRacksHigh As Dropdown.pcfdataset:
+            DefaultSelectedItems: =
+            DisplayMode: =If(IsBlank(ddRacksLow.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+            Height: =24
+            Items: =Distinct(Filter(colLocations,DoorID=ddDoors.Selected.DoorID,RackCode >= ddRacksLow.Selected.Value),RackCode)
+            Width: =136
+            X: =348
+            Y: =43
+            ZIndex: =28
+
+        ddTiersHigh As Dropdown.pcfdataset:
+            DefaultSelectedItems: =
+            DisplayMode: =If(IsBlank(ddTiersLow.Selected),DisplayMode.Disabled,DisplayMode.Edit)
+            Height: =24
+            Items: =Distinct(Filter(colLocations,DoorID=ddDoors.Selected.DoorID,TierCode >= ddTiersLow.Selected.Value),TierCode)
+            Width: =136
+            X: =348
+            Y: =79
+            ZIndex: =29
+
+        btnCloseRackandTierFilter As Button:
+            Appearance: ='ButtonCanvas.Appearance'.Secondary
+            BasePaletteColor: =
+            BorderColor: =
+            DisplayMode: =DisplayMode.Edit
+            FontColor: =
+            Height: =24
+            Icon: ="DismissCircle"
+            Layout: ='ButtonCanvas.Layout'.IconOnly
+            OnSelect: |-
+                =UpdateContext({locvisRackTierFilter:false})
+            Text: =
+            Width: =36
+            X: =448
+            Y: =6
+            ZIndex: =30
+
+        btnCloseRackandTierFilter_1 As Button:
+            Appearance: ='ButtonCanvas.Appearance'.Secondary
+            BasePaletteColor: =
+            BorderColor: =
+            DisplayMode: =DisplayMode.Edit
+            FontColor: =
+            Height: =24
+            Icon: ="ArrowReset"
+            Layout: ='ButtonCanvas.Layout'.IconOnly
+            OnSelect: |-
+                =Reset(ddRacksLow);
+                Reset(ddRacksHigh);
+                Reset(ddTiersLow);
+                Reset(ddTiersHigh);
+            Text: =
+            Width: =36
+            X: =400
+            Y: =6
+            ZIndex: =31
+
+        btnSearchLocations_3 As Button:
+            BasePaletteColor: =
+            BorderColor: =
+            DisplayMode: =DisplayMode.Edit
+            FontColor: =
+            Height: |
+                =24
+            Icon: ="Search"
+            OnSelect: |
+                =UpdateContext({locvisRackTierFilter:false});
+                ClearCollect(colSelectedLocations,
+                    Filter(colLocations,
+                        (IsBlank(ddSites.Selected) || SiteID = ddSites.Selected.SiteID),
+                        (IsBlank(ddWarehouses.Selected) || WarehouseID = ddWarehouses.Selected.WarehouseID),
+                        (IsBlank(ddDoors.Selected) || DoorID = ddDoors.Selected.DoorID),
+                        // Select all if rack blank, if not, select values between low and high rack
+                        (And(IsBlank(ddRacksLow.Selected),IsBlank(ddRacksHigh.Selected)) || (RackCode >= Value(ddRacksLow.Selected.Value) && RackCode <= Value(ddRacksHigh.Selected.Value))),
+                        // Select all if tier blank, if not, select values between low and high tier
+                        (And(IsBlank(ddTiersLow.Selected),IsBlank(ddTiersHigh.Selected)) || (TierCode >= Value(ddTiersLow.Selected.Value) && TierCode <= Value(ddTiersHigh.Selected.Value)))
+                    )
+                );
+            Text: ="Search"
+            Width: =96
+            X: =Parent.Width - Self.Width - varGap
+            Y: =Parent.Height - Self.Height - varGap
+            ZIndex: =32
+

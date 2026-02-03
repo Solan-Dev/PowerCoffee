@@ -1,0 +1,83 @@
+cmpLoadingSpinner As CanvasComponent:
+    Background: =RGBA(0, 0, 0, 0.15)
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =App.DesignHeight
+    LoadingMessage: =""
+    LoadingText: ="Loading"
+    Width: =App.DesignWidth
+    X: =0
+    Y: =0
+    ZIndex: =1
+
+    conSpinnerBackground As groupContainer.manualLayoutContainer:
+        DropShadow: =DropShadow.Light
+        Fill: =cmpLoadingSpinner.Background
+        Height: =Parent.Height
+        LayoutGridColumns: =6
+        LayoutGridRows: =6
+        RadiusBottomLeft: =4
+        RadiusBottomRight: =4
+        RadiusTopLeft: =4
+        RadiusTopRight: =4
+        Width: =Parent.Width
+        ZIndex: =1
+
+        conSpinner As groupContainer.manualLayoutContainer:
+            DropShadow: =DropShadow.Regular
+            Fill: =RGBA(255, 255, 255, 1)
+            Height: =Parent.Height*0.5
+            LayoutGridColumns: =6
+            LayoutGridRows: =6
+            RadiusBottomLeft: =4
+            RadiusBottomRight: =4
+            RadiusTopLeft: =4
+            RadiusTopRight: =4
+            Width: =Parent.Width * 0.25
+            X: =(Parent.Width - Self.Width) *0.5
+            Y: =(Parent.Height - Self.Height) *0.5
+            ZIndex: =2
+
+            imgSpinner As image:
+                BorderColor: =App.Theme.Colors.Darker40
+                DisabledBorderColor: =RGBA(166, 166, 166, 1)
+                DisabledFill: =RGBA(244, 244, 244, 1)
+                Image: |
+                    ="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyB2aWV3Qm94PScwIDAgMTAwIDEwMCc+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSdnJyB4MT0nMCUnIHkxPScwJScgeDI9JzEwMCUnIHkyPScwJSc+PHN0b3Agb2Zmc2V0PScwJScgc3RvcC1jb2xvcj0nI0ZGN0EwMCcvPjxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nI0ZGMEYwMCcvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxjaXJjbGUgY3g9JzUwJyBjeT0nNTAnIHI9JzQ1JyBzdHJva2U9J3JnYmEoMjM2LDIzNCwyMzAsMSknIHN0cm9rZS13aWR0aD0nMTAnIGZpbGw9J25vbmUnLz48Y2lyY2xlIGN4PSc1MCcgY3k9JzUwJyByPSc0NScgc3Ryb2tlPSd1cmwoI2cpJyBzdHJva2Utd2lkdGg9JzEwJyBmaWxsPSdub25lJyBzdHJva2UtbGluZWNhcD0ncm91bmQnIHRyYW5zZm9ybT0ncm90YXRlKC05MCA1MCA1MCknPjxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9J3N0cm9rZS1kYXNoYXJyYXknIHZhbHVlcz0nMSwyODIuNjs3MCwyMTIuNjsxLDI4Mi42JyBkdXI9JzEuNXMnIHJlcGVhdENvdW50PSdpbmRlZmluaXRlJyBrZXlUaW1lcz0nMDswLjU7MScgY2FsY01vZGU9J2xpbmVhcicvPjxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9J3N0cm9rZS1kYXNob2Zmc2V0JyB2YWx1ZXM9JzA7LTI4Mi42JyBkdXI9JzEuNXMnIHJlcGVhdENvdW50PSdpbmRlZmluaXRlJyBjYWxjTW9kZT0nbGluZWFyJy8+PC9jaXJjbGU+PC9zdmc+"
+                X: =(Parent.Width - Self.Width) *0.5
+                Y: =(Parent.Height - Self.Height) *0.25
+                ZIndex: =1
+
+            txtLoading As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =32
+                Text: =cmpLoadingSpinner.LoadingText
+                VerticalAlign: =VerticalAlign.Middle
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =Parent.Width
+                X: =(Parent.Width - Self.Width) *0.5
+                Y: =imgSpinner.Y+imgSpinner.Height
+                ZIndex: =2
+
+            txtMessage As Text:
+                Align: ='TextCanvas.Align'.Center
+                BorderColor: =
+                DisplayMode: =DisplayMode.Edit
+                Fill: =
+                FontColor: =
+                Height: =Parent.Height-Self.Y
+                PaddingBottom: =15
+                PaddingLeft: =15
+                PaddingRight: =15
+                PaddingTop: =15
+                Text: =cmpLoadingSpinner.LoadingMessage
+                VerticalAlign: =VerticalAlign.Top
+                Weight: ='TextCanvas.Weight'.Semibold
+                Width: =Parent.Width
+                X: =(Parent.Width - Self.Width) *0.5
+                Y: =txtLoading.Y + txtLoading.Height
+                ZIndex: =3
+

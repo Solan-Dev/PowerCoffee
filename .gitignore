@@ -1,3 +1,5 @@
 artifacts/
 *.zip
 *.msapp
+_TemplateApp/
+src/CanvasTemplate/
